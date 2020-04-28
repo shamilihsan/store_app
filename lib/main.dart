@@ -26,3 +26,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// Command to get SHA-1 key firebase
+
+//keytool -list -v -keystore "C:\Users\Shamil\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
