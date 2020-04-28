@@ -137,7 +137,7 @@ class _AuthCardState extends State<AuthCard> {
     try {
       if (_authMode == AuthMode.Login) {
         // Log user in
-        await Provider.of<Auth>(context)
+        await Provider.of<Auth>(context, listen: false)
             .login(_authData['email'], _authData['password']);
       } else {
         // Sign user up
@@ -147,17 +147,20 @@ class _AuthCardState extends State<AuthCard> {
         print(user.uid);
       }
     } catch (error) {
-      var errorMessage = 'Oops. Something\'s wrong. Try again later';
+      print(error);
+      var errorMessage = 'Oops. Something\'s wrong. Try again later!';
 
       if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
-        errorMessage = 'This email address exists!';
+        errorMessage = 'Seems like you entered a wrong password!';
+      } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
+        errorMessage = 'Way too many failed attemps. Try again later!';
       }
       _showErrorDialog(errorMessage);
-    }
 
-    setState(() {
-      _isLoading = false;
-    });
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   void _switchAuthMode() {

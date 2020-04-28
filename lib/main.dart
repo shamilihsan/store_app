@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.brown,
             accentColor: Colors.deepOrange,
           ),
-          home: AuthScreen(),
+          home: authData.isAuth ? HomeScreen() : AuthScreen(),
           routes: {
             HomeScreen.routeName: (ctx) => HomeScreen(),
           },
