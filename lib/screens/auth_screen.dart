@@ -1,6 +1,9 @@
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:store_app/models/http_exception.dart';
+import 'dart:convert';
 
 enum AuthMode { Signup, Login }
 
@@ -101,24 +104,56 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
-  void _submit() async {
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Oops.......'),
+        content: Text(message),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Okay'),
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<String> _submit() async {
     if (!_formKey.currentState.validate()) {
       // Invalid!
-      return;
+      return null;
     }
     _formKey.currentState.save();
     setState(() {
       _isLoading = true;
     });
-    if (_authMode == AuthMode.Login) {
-      // Log user in
-    } else {
-      // Sign user up
-      AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
-          email: _authData['email'], password: _authData['password']);
+    try {
+      if (_authMode == AuthMode.Login) {
+        // Log user in
+        AuthResult result = await _firebaseAuth.signInWithEmailAndPassword(
+            email: _authData['email'], password: _authData['password']);
+        FirebaseUser user = result.user;
+        print(user.uid);
+      } else {
+        // Sign user up
+        AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+            email: _authData['email'], password: _authData['password']);
+        FirebaseUser user = result.user;
+        print(user.uid);
+      }
+    } catch (error) {
+      var errorMessage = 'Oops. Something\'s wrong. Try again later';
 
-      print(result);
+      if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
+        errorMessage = 'This email address exists!';
+      }
+      _showErrorDialog(errorMessage);
     }
+
     setState(() {
       _isLoading = false;
     });
