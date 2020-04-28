@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/providers/auth.dart';
 import 'package:store_app/screens/auth_screen.dart';
+import 'package:store_app/screens/home_screen.dart';
 
 void main() {
   runApp(
@@ -16,13 +19,23 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.brown,
-        accentColor: Colors.deepOrange,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Auth(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.brown,
+          accentColor: Colors.deepOrange,
+        ),
+        home: AuthScreen(),
+        routes: {
+          HomeScreen.routeName: (ctx) => HomeScreen(),
+        },
       ),
-      home: AuthScreen(),
     );
   }
 }
