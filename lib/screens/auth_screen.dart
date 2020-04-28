@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 enum AuthMode { Signup, Login }
@@ -56,7 +56,8 @@ class AuthScreen extends StatelessWidget {
                         child: Text(
                           'Store',
                           style: TextStyle(
-                            color: Theme.of(context).accentTextTheme.title.color,
+                            color:
+                                Theme.of(context).accentTextTheme.title.color,
                             fontSize: 50,
                             fontFamily: 'Anton',
                             fontWeight: FontWeight.normal,
@@ -89,7 +90,9 @@ class AuthCard extends StatefulWidget {
 }
 
 class _AuthCardState extends State<AuthCard> {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   AuthMode _authMode = AuthMode.Login;
   Map<String, String> _authData = {
     'email': '',
@@ -98,7 +101,7 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
-  void _submit() {
+  void _submit() async {
     if (!_formKey.currentState.validate()) {
       // Invalid!
       return;
@@ -111,6 +114,10 @@ class _AuthCardState extends State<AuthCard> {
       // Log user in
     } else {
       // Sign user up
+      AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: _authData['email'], password: _authData['password']);
+
+      print(result);
     }
     setState(() {
       _isLoading = false;
