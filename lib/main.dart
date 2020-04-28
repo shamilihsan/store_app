@@ -25,16 +25,18 @@ class MyApp extends StatelessWidget {
           value: Auth(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.brown,
-          accentColor: Colors.deepOrange,
+      child: Consumer<Auth>(
+        builder: (ctx, authData, _) => MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData(
+            primarySwatch: Colors.brown,
+            accentColor: Colors.deepOrange,
+          ),
+          home: AuthScreen(),
+          routes: {
+            HomeScreen.routeName: (ctx) => HomeScreen(),
+          },
         ),
-        home: AuthScreen(),
-        routes: {
-          HomeScreen.routeName: (ctx) => HomeScreen(),
-        },
       ),
     );
   }
