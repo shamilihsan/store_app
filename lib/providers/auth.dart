@@ -55,4 +55,12 @@ class Auth with ChangeNotifier {
     _userId = prefs.getString('userId');
     notifyListeners();
   }
+
+  Future<void> logout() async {
+    _userId = null;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+  }
 }
