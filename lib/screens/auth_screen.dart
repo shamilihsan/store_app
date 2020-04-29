@@ -153,7 +153,7 @@ class _AuthCardState extends State<AuthCard> {
       if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
         errorMessage = 'Seems like you entered a wrong password!';
       } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
-        errorMessage = 'Way too many failed attemps. Try again later!';
+        errorMessage = 'Way too many failed login attempts. Try again later!';
       }
       _showErrorDialog(errorMessage);
 
