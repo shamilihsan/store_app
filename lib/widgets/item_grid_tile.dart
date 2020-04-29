@@ -14,7 +14,6 @@ class ItemGridTile extends StatelessWidget {
           Text(item.name),
           Text(item.description),
           Text(item.price.toString()),
-          Divider(),
         ],
       ),
     );
