@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/providers/auth.dart';
 import 'package:store_app/screens/auth_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
+import 'package:store_app/screens/splash_screen.dart';
 
 void main() {
   runApp(
@@ -32,7 +33,16 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.brown,
             accentColor: Colors.deepOrange,
           ),
-          home: authData.isAuth ? HomeScreen() : AuthScreen(),
+          home: authData.isAuth
+              ? HomeScreen()
+              : FutureBuilder(
+                  future: authData.autoLogin(),
+                  builder: (ctx, authResultSnapshot) =>
+                      authResultSnapshot.connectionState ==
+                              ConnectionState.waiting
+                          ? SplashScreen()
+                          : AuthScreen(),
+                ),
           routes: {
             HomeScreen.routeName: (ctx) => HomeScreen(),
           },

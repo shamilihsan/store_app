@@ -27,4 +27,18 @@ class Auth with ChangeNotifier {
       throw error;
     }
   }
+
+  Future<void> autoLogin() async {
+    // prefs contains the data and not a Future since await is used
+    final prefs = await SharedPreferences.getInstance();
+
+    // Quit function since userId is null
+    if(!prefs.containsKey('userId')) {
+      return;
+    }
+
+    _userId = prefs.getString('userId');
+    notifyListeners();
+  }
+
 }
