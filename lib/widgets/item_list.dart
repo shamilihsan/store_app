@@ -7,12 +7,14 @@ class ItemList extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = Provider.of<List<Item>>(context);
 
-    items.forEach((item) {
-      print(item.id);
-      print(item.name);
-      print(item.description);
-      print(item.price);
-    });
+    if (items != null) {
+      items.forEach((item) {
+        print(item.id);
+        print(item.name);
+        print(item.description);
+        print(item.price);
+      });
+    }
 
     return Container();
   }
