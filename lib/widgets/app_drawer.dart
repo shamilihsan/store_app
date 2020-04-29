@@ -29,10 +29,12 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.edit),
+            leading: Icon(Icons.undo),
             title: Text('Sign Out'),
             onTap: () {
               Navigator.of(context).pop();
+
+              // Ensures that the home route autoLogin() function is always called
               Navigator.of(context).pushReplacementNamed('/');
 
               Provider.of<Auth>(context, listen: false).logout();
