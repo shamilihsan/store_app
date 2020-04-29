@@ -28,17 +28,31 @@ class Auth with ChangeNotifier {
     }
   }
 
+  Future<void> signUp(String email, String password) async {
+    try {
+      AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+
+      _userId = user.uid;
+
+      notifyListeners();
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('userId', _userId);
+    } catch (error) {}
+  }
+
   Future<void> autoLogin() async {
     // prefs contains the data and not a Future since await is used
     final prefs = await SharedPreferences.getInstance();
 
     // Quit function since userId is null
-    if(!prefs.containsKey('userId')) {
+    if (!prefs.containsKey('userId')) {
       return;
     }
 
     _userId = prefs.getString('userId');
     notifyListeners();
   }
-
 }

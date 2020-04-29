@@ -1,10 +1,7 @@
-import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:store_app/models/http_exception.dart';
-import 'dart:convert';
 
 import 'package:store_app/providers/auth.dart';
 
@@ -141,10 +138,8 @@ class _AuthCardState extends State<AuthCard> {
             .login(_authData['email'], _authData['password']);
       } else {
         // Sign user up
-        AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
-            email: _authData['email'], password: _authData['password']);
-        FirebaseUser user = result.user;
-        print(user.uid);
+        await Provider.of<Auth>(context, listen: false)
+            .signUp(_authData['email'], _authData['password']);
       }
     } catch (error) {
       print(error);
