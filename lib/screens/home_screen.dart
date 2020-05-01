@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
-import 'package:store_app/widgets/item_list.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -14,7 +13,11 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
+
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
       // appBar: AppBar(
       //   title: Text('Home'),
@@ -25,24 +28,25 @@ class _HomeScreenState extends State<HomeScreen> {
           Flexible(
             flex: 1,
             child: Container(
-              padding: EdgeInsets.only(top: 15.0, left: 10.0),
+              padding: EdgeInsets.only(top: mediaQuery.padding.top),
               child: Column(
                 children: <Widget>[
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Container(
-                        width: 125.0,
+                        width: mediaQuery.size.width,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             IconButton(
-                              icon: Icon(Icons.filter_list),
+                              icon: Icon(Icons.menu),
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () =>
+                                  _scaffoldKey.currentState.openDrawer(),
                             ),
                             IconButton(
-                              icon: Icon(Icons.menu),
+                              icon: Icon(Icons.filter_list),
                               color: Colors.white,
                               onPressed: () {},
                             ),
