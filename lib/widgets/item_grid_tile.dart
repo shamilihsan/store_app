@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -7,11 +8,19 @@ class ItemGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = Provider.of<Item>(context);
-
+    //final downloadUrl = FirebaseStorage.instance.ref().getDownloadURL();
     return Container(
       child: Column(
         children: <Widget>[
-          Text(item.name),
+          Container(
+            height: 58,
+            width: double.infinity,
+            child: Image.network(
+              item.imageUrl.toString(),
+              fit: BoxFit.cover,
+            ),
+          ),
+          Text(item.name,),
           Text(item.description),
           Text(item.price.toString()),
         ],
