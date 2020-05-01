@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/item.dart';
+import 'package:store_app/screens/item_detail_screen.dart';
 
 class ItemListTile extends StatelessWidget {
   @override
@@ -11,7 +12,17 @@ class ItemListTile extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ItemDetailsScreen(
+                heroTag: item.id,
+                itemName: item.name,
+                itemPrice: item.price,
+              ),
+            ),
+          );
+        },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
