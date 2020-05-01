@@ -24,13 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
           Padding(
             padding: EdgeInsets.only(top: 15.0, left: 10.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  color: Colors.white,
-                  onPressed: () {},
-                ),
                 Container(
                   width: 125.0,
                   child: Row(
@@ -137,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Text(
-                        'Rs. 12.0',
+                        'Rs. 12.00',
                         style: TextStyle(
                             fontSize: 17.0,
                             fontWeight: FontWeight.bold,
