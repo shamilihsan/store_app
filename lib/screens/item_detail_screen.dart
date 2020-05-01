@@ -22,7 +22,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   }
 
   _increaseQuantity() {
-    print('Comes here');
     setState(() {
       numberOfItems++;
     });
