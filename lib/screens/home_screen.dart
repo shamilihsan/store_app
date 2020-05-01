@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
+import 'package:store_app/widgets/item_list.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -96,11 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: EdgeInsets.only(top: 45.0, bottom: 10.0),
                       child: Container(
-                        height: mediaQuery.size.height - 300.0,
-                        child: ListView(
-                          children: <Widget>[_buildItem()],
-                        ),
-                      ),
+                          height: mediaQuery.size.height - 300.0,
+                          child: ItemList()),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

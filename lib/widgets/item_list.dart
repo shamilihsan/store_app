@@ -16,13 +16,7 @@ class _ItemListState extends State<ItemList> {
     final items = Provider.of<List<Item>>(context);
 
     if (items != null) {
-      return GridView.builder(
-        padding: const EdgeInsets.all(10.0),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 3 / 2,
-            crossAxisSpacing: 20,
-            mainAxisSpacing: 10),
+      return ListView.builder(
         itemBuilder: (context, index) => ChangeNotifierProvider.value(
           // Value should be used in grids or lists because of the widget being destroyed and reference being empty issue
           value: items[index],
