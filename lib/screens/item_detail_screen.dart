@@ -4,8 +4,10 @@ class ItemDetailsScreen extends StatefulWidget {
   final String heroTag;
   final String itemName;
   final int itemPrice;
+  final String imageUrl;
 
-  ItemDetailsScreen({this.heroTag, this.itemName, this.itemPrice});
+  ItemDetailsScreen(
+      {this.heroTag, this.itemName, this.itemPrice, this.imageUrl});
 
   @override
   _ItemDetailsScreenState createState() => _ItemDetailsScreenState();
@@ -76,7 +78,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                 child: Container(
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('assets/images/breakfast.jpg'),
+                          image: NetworkImage(widget.imageUrl),
                           fit: BoxFit.cover),
                     ),
                     height: 200.0,

@@ -8,6 +8,7 @@ class ItemListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = Provider.of<Item>(context);
+
     //final downloadUrl = FirebaseStorage.instance.ref().getDownloadURL();
     return Padding(
       padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
@@ -19,6 +20,7 @@ class ItemListTile extends StatelessWidget {
                 heroTag: item.id,
                 itemName: item.name,
                 itemPrice: item.price,
+                imageUrl: item.imageUrl,
               ),
             ),
           );
@@ -31,8 +33,8 @@ class ItemListTile extends StatelessWidget {
                 children: <Widget>[
                   Hero(
                     tag: item.id,
-                    child: Image.asset(
-                      'assets/images/breakfast.jpg',
+                    child: Image.network(
+                      item.imageUrl,
                       fit: BoxFit.cover,
                       height: 50,
                       width: 50,
