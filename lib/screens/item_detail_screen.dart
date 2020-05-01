@@ -13,6 +13,26 @@ class ItemDetailsScreen extends StatefulWidget {
 
 class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   var selectedCard = 'WEIGHT';
+  var numberOfItems = 1;
+
+  _selectCard(cardTitle) {
+    setState(() {
+      selectedCard = cardTitle;
+    });
+  }
+
+  _increaseQuantity() {
+    print('Comes here');
+    setState(() {
+      numberOfItems++;
+    });
+  }
+
+  _decreaseQuantity() {
+    setState(() {
+      numberOfItems--;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +119,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               InkWell(
-                                onTap: () {},
+                                onTap: () => _decreaseQuantity(),
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -115,11 +135,11 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                   ),
                                 ),
                               ),
-                              Text('2',
+                              Text(numberOfItems.toString(),
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15.0)),
                               InkWell(
-                                onTap: () {},
+                                onTap: () => _increaseQuantity(),
                                 child: Container(
                                   height: 25.0,
                                   width: 25.0,
@@ -184,7 +204,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   Widget _buildInfoCard(String cardTitle, String info, String unit) {
     return InkWell(
         onTap: () {
-          selectCard(cardTitle);
+          _selectCard(cardTitle);
         },
         child: AnimatedContainer(
             duration: Duration(milliseconds: 500),
@@ -239,11 +259,5 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                     ),
                   )
                 ])));
-  }
-
-  selectCard(cardTitle) {
-    setState(() {
-      selectedCard = cardTitle;
-    });
   }
 }
