@@ -197,10 +197,12 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             color: Colors.black),
                         height: 50.0,
                         child: Center(
-                          child: Text('Rs. ${total.toString()}',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat')),
+                          child: Text(
+                            'Rs. ${total.toString()}',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                     )
