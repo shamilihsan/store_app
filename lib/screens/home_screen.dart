@@ -110,9 +110,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 60.0,
                         decoration: BoxDecoration(
                           border: Border.all(
-                              color: Colors.grey,
-                              style: BorderStyle.solid,
-                              width: 1.0),
+                            color: Colors.grey,
+                            style: BorderStyle.solid,
+                            width: 1.0,
+                          ),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         child: Center(
@@ -147,9 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Center(
                             child: Text('Checkout',
                                 style: TextStyle(
-                                    fontFamily: 'Montserrat',
-                                    color: Colors.white,
-                                    fontSize: 15.0))),
+                                    color: Colors.white, fontSize: 15.0))),
                       )
                     ],
                   )
