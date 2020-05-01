@@ -53,7 +53,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF7A9BEE),
+        backgroundColor: Theme.of(context).accentColor,
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -64,8 +64,10 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
-          title: Text('Details',
-              style: TextStyle(fontSize: 18.0, color: Colors.white)),
+          title: Text(
+            'Details',
+            style: TextStyle(fontSize: 18.0, color: Colors.white),
+          ),
           centerTitle: true,
         ),
         body: ListView(children: [
@@ -123,7 +125,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                           height: 40.0,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17.0),
-                              color: Color(0xFF7A9BEE)),
+                              color: Theme.of(context).accentColor),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
@@ -134,7 +136,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                   width: 25.0,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(7.0),
-                                      color: Color(0xFF7A9BEE)),
+                                      color: Theme.of(context).accentColor),
                                   child: Center(
                                     child: Icon(
                                       Icons.remove,
@@ -158,7 +160,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                   child: Center(
                                     child: Icon(
                                       Icons.add,
-                                      color: Color(0xFF7A9BEE),
+                                      color: Theme.of(context).accentColor,
                                       size: 20.0,
                                     ),
                                   ),
@@ -222,7 +224,9 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
         curve: Curves.easeIn,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: cardTitle == selectedCard ? Color(0xFF7A9BEE) : Colors.white,
+          color: cardTitle == selectedCard
+              ? Theme.of(context).accentColor
+              : Colors.white,
           border: Border.all(
               color: cardTitle == selectedCard
                   ? Colors.transparent
