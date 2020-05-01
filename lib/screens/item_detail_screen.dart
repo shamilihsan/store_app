@@ -50,18 +50,11 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           title: Text('Details',
               style: TextStyle(fontSize: 18.0, color: Colors.white)),
           centerTitle: true,
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.more_horiz),
-              onPressed: () {},
-              color: Colors.white,
-            )
-          ],
         ),
         body: ListView(children: [
           Stack(children: [
             Container(
-                height: MediaQuery.of(context).size.height - 82.0,
+                height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.transparent),
             Positioned(
@@ -73,7 +66,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                           topRight: Radius.circular(45.0),
                         ),
                         color: Colors.white),
-                    height: MediaQuery.of(context).size.height - 100.0,
+                    height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width)),
             Positioned(
               top: 30.0,
