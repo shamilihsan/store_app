@@ -16,6 +16,7 @@ class ItemDetailsScreen extends StatefulWidget {
 class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   var selectedCard = 'WEIGHT';
   var numberOfItems = 1;
+  var total = 0;
 
   _selectCard(cardTitle) {
     setState(() {
@@ -26,13 +27,27 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
   _increaseQuantity() {
     setState(() {
       numberOfItems++;
+      _updateTotal();
     });
   }
 
   _decreaseQuantity() {
     setState(() {
       numberOfItems--;
+      _updateTotal();
     });
+  }
+
+  _updateTotal() {
+    total = widget.itemPrice * numberOfItems;
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      _updateTotal();
+    });
+    super.initState();
   }
 
   @override
@@ -182,7 +197,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             color: Colors.black),
                         height: 50.0,
                         child: Center(
-                          child: Text('Rs. ${widget.itemPrice.toString()}',
+                          child: Text('Rs. ${total.toString()}',
                               style: TextStyle(
                                   color: Colors.white,
                                   fontFamily: 'Montserrat')),
