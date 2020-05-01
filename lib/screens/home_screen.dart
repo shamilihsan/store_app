@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: <Widget>[
           Container(
-            height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.3,
+            height: (mediaQuery.size.height) * 0.3,
             padding: EdgeInsets.only(top: 15.0, left: 10.0),
             child: Column(
               children: <Widget>[
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Container(
-            height: (mediaQuery.size.height - mediaQuery.padding.top) * 0.7,
+            height: (mediaQuery.size.height) * 0.7,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
