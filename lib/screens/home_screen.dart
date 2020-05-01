@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:store_app/providers/item.dart';
 
-import 'package:store_app/providers/items.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/item_list.dart';
 
