@@ -123,7 +123,7 @@ class _CartScreenState extends State<CartScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(right: 10),
                                 child: Text(
-                                  'Rs. 1000',
+                                  'Rs. ${cart.totalAmount}',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 15.0),
                                 ),
