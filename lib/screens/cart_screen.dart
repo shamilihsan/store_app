@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/providers/cart.dart';
+import 'package:store_app/widgets/cart_item.dart' as cartItem;
 
 class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
@@ -11,6 +14,7 @@ class _CartScreenState extends State<CartScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     final mediaQuery = MediaQuery.of(context);
 
     return Scaffold(
@@ -72,7 +76,20 @@ class _CartScreenState extends State<CartScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 20.0, right: 25.0),
                 child: Column(
-                  children: <Widget>[],
+                  children: <Widget>[
+                    Expanded(
+                      child: ListView.builder(
+                        itemBuilder: (ctx, index) => cartItem.CartItem(
+                          itemId: cart.items.values.toList()[index].id,
+                          itemName: cart.items.values.toList()[index].name,
+                          quantity: cart.items.values.toList()[index].quantity,
+                          price: cart.items.values.toList()[index].price,
+                          imageUrl: cart.items.values.toList()[index].imageUrl,
+                        ),
+                        itemCount: cart.itemCount,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

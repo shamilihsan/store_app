@@ -5,12 +5,14 @@ class CartItem {
   final String name;
   final int price;
   final int quantity;
+  final String imageUrl;
 
   CartItem({
     @required this.id,
     @required this.name,
     @required this.price,
     @required this.quantity,
+    @required this.imageUrl,
   });
 }
 
@@ -25,7 +27,7 @@ class Cart with ChangeNotifier {
     return items.length;
   }
 
-  void addToCart(String itemId, int price, String name) {
+  void addToCart(String itemId, int price, String name, String imageUrl) {
     if (_items.containsKey(itemId)) {
       // Update quantity
       _items.update(
@@ -34,12 +36,19 @@ class Cart with ChangeNotifier {
           id: existingCartItem.id,
           name: existingCartItem.name,
           price: existingCartItem.price,
+          imageUrl: existingCartItem.imageUrl,
           quantity: existingCartItem.quantity + 1,
         ),
       );
     } else {
-      _items.putIfAbsent(itemId,
-          () => CartItem(id: itemId, name: name, price: price, quantity: 1));
+      _items.putIfAbsent(
+          itemId,
+          () => CartItem(
+              id: itemId,
+              name: name,
+              price: price,
+              imageUrl: imageUrl,
+              quantity: 1));
     }
 
     notifyListeners();

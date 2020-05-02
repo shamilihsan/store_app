@@ -201,7 +201,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                         child: InkWell(
                           onTap: () {
                             cart.addToCart(widget.itemId, widget.itemPrice,
-                                widget.itemName);
+                                widget.itemName, widget.imageUrl);
                             Navigator.of(context).pop();
                           },
                           child: Container(
