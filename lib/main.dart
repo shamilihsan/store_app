@@ -7,6 +7,7 @@ import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/items.dart';
 import 'package:store_app/providers/item.dart';
 import 'package:store_app/screens/auth_screen.dart';
+import 'package:store_app/screens/cart_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
 import 'package:store_app/screens/splash_screen.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
                 ),
           routes: {
             HomeScreen.routeName: (ctx) => HomeScreen(),
+            CartScreen.routeName: (ctx) => CartScreen(),
           },
         ),
       ),
