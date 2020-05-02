@@ -200,8 +200,13 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                         padding: EdgeInsets.only(bottom: 5.0),
                         child: InkWell(
                           onTap: () {
-                            cart.addToCart(widget.itemId, widget.itemPrice,
-                                widget.itemName, widget.imageUrl);
+                            cart.addToCart(
+                              widget.itemId,
+                              widget.itemPrice,
+                              widget.itemName,
+                              widget.imageUrl,
+                              numberOfItems,
+                            );
                             Navigator.of(context).pop();
                           },
                           child: Container(

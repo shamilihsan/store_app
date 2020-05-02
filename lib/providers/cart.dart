@@ -27,7 +27,8 @@ class Cart with ChangeNotifier {
     return items.length;
   }
 
-  void addToCart(String itemId, int price, String name, String imageUrl) {
+  void addToCart(
+      String itemId, int price, String name, String imageUrl, int quantity) {
     if (_items.containsKey(itemId)) {
       // Update quantity
       _items.update(
@@ -37,7 +38,7 @@ class Cart with ChangeNotifier {
           name: existingCartItem.name,
           price: existingCartItem.price,
           imageUrl: existingCartItem.imageUrl,
-          quantity: existingCartItem.quantity + 1,
+          quantity: existingCartItem.quantity + quantity,
         ),
       );
     } else {
@@ -48,7 +49,7 @@ class Cart with ChangeNotifier {
           name: name,
           price: price,
           imageUrl: imageUrl,
-          quantity: 1,
+          quantity: quantity,
         ),
       );
     }
