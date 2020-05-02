@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/screens/cart_screen.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/item_list.dart';
@@ -120,36 +121,42 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Icon(Icons.search, color: Colors.black),
                           ),
                         ),
-                        Container(
-                          height: 65.0,
-                          width: 60.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Colors.grey,
-                                style: BorderStyle.solid,
-                                width: 1.0),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(right: 5, top: 3),
-                                    child: Consumer<Cart>(
-                                      builder: (_, cartData, ch) =>
-                                          Text(cartData.itemCount.toString()),
+                        InkWell(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(CartScreen.routeName),
+                          child: Container(
+                            height: 65.0,
+                            width: 60.0,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.grey,
+                                  style: BorderStyle.solid,
+                                  width: 1.0),
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 5, top: 3),
+                                      child: Consumer<Cart>(
+                                        builder: (_, cartData, ch) =>
+                                            Text(cartData.itemCount.toString()),
+                                      ),
                                     ),
+                                  ],
+                                ),
+                                Center(
+                                  child: Icon(
+                                    Icons.shopping_basket,
+                                    color: Colors.black,
                                   ),
-                                ],
-                              ),
-                              Center(
-                                child: Icon(Icons.shopping_basket,
-                                    color: Colors.black),
-                              ),
-                            ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Container(
@@ -176,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-          )
+          ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
