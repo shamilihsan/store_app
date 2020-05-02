@@ -75,7 +75,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           Stack(
             children: [
               Container(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height - 50,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.transparent),
               Positioned(
