@@ -201,7 +201,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                   topRight: Radius.circular(10.0),
                                   bottomLeft: Radius.circular(25.0),
                                   bottomRight: Radius.circular(25.0)),
-                              color: Colors.black),
+                              color: Theme.of(context).accentColor),
                           height: 50.0,
                           child: Center(
                             child: Text(
