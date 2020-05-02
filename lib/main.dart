@@ -1,8 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import 'package:store_app/providers/auth.dart';
+import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/items.dart';
 import 'package:store_app/providers/item.dart';
 import 'package:store_app/screens/auth_screen.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         StreamProvider<List<Item>>.value(
           value: Items().items,
         ),
+        ChangeNotifierProvider.value(
+          value: Cart(),
+        )
       ],
       child: Consumer<Auth>(
         builder: (ctx, authData, _) => MaterialApp(

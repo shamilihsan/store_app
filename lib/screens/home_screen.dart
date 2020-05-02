@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/providers/cart.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/item_list.dart';
@@ -136,7 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   Padding(
                                     padding:
                                         const EdgeInsets.only(right: 5, top: 3),
-                                    child: Text('0'),
+                                    child: Consumer<Cart>(
+                                      builder: (_, cartData, ch) =>
+                                          Text(cartData.itemCount.toString()),
+                                    ),
                                   ),
                                 ],
                               ),
