@@ -17,7 +17,7 @@ class ItemListTile extends StatelessWidget {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => ItemDetailsScreen(
-                heroTag: item.id,
+                itemId: item.id,
                 itemName: item.name,
                 itemPrice: item.price,
                 imageUrl: item.imageUrl,

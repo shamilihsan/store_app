@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/providers/cart.dart';
 
 class ItemDetailsScreen extends StatefulWidget {
-  final String heroTag;
+  final String itemId;
   final String itemName;
   final int itemPrice;
   final String imageUrl;
 
   ItemDetailsScreen(
-      {this.heroTag, this.itemName, this.itemPrice, this.imageUrl});
+      {this.itemId, this.itemName, this.itemPrice, this.imageUrl});
 
   @override
   _ItemDetailsScreenState createState() => _ItemDetailsScreenState();
@@ -52,6 +54,8 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context, listen: false);
+
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
@@ -93,7 +97,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                 top: 30.0,
                 left: (MediaQuery.of(context).size.width / 2) - 100.0,
                 child: Hero(
-                  tag: widget.heroTag,
+                  tag: widget.itemId,
                   child: Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -194,20 +198,27 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                       SizedBox(height: 20.0),
                       Padding(
                         padding: EdgeInsets.only(bottom: 5.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10.0),
-                                  topRight: Radius.circular(10.0),
-                                  bottomLeft: Radius.circular(25.0),
-                                  bottomRight: Radius.circular(25.0)),
-                              color: Theme.of(context).accentColor),
-                          height: 50.0,
-                          child: Center(
-                            child: Text(
-                              'Rs. ${total.toString()}',
-                              style: TextStyle(
-                                color: Colors.white,
+                        child: InkWell(
+                          onTap: () {
+                            cart.addToCart(widget.itemId, widget.itemPrice,
+                                widget.itemName);
+                            Navigator.of(context).pop();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10.0),
+                                    topRight: Radius.circular(10.0),
+                                    bottomLeft: Radius.circular(25.0),
+                                    bottomRight: Radius.circular(25.0)),
+                                color: Theme.of(context).accentColor),
+                            height: 50.0,
+                            child: Center(
+                              child: Text(
+                                'Rs. ${total.toString()}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                           ),
