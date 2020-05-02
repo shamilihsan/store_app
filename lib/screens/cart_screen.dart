@@ -74,10 +74,12 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+                padding:
+                    const EdgeInsets.only(top: 20, left: 20.0, right: 25.0),
                 child: Column(
                   children: <Widget>[
-                    Expanded(
+                    Container(
+                      height: mediaQuery.size.height - 300.0,
                       child: ListView.builder(
                         itemBuilder: (ctx, index) => cartItem.CartItem(
                           itemId: cart.items.values.toList()[index].id,
@@ -89,6 +91,27 @@ class _CartScreenState extends State<CartScreen> {
                         itemCount: cart.itemCount,
                       ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          height: 40,
+                          width: mediaQuery.size.width - 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.grey,
+                                  style: BorderStyle.solid,
+                                  width: 1.0),
+                              borderRadius: BorderRadius.circular(10.0),
+                              color: Theme.of(context).accentColor),
+                          child: Text(
+                            'Checkout',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
