@@ -133,7 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
-                                  Text('0'),
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(right: 5, top: 3),
+                                    child: Text('0'),
+                                  ),
                                 ],
                               ),
                               Center(
