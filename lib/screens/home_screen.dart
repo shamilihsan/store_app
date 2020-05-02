@@ -128,9 +128,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 1.0),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          child: Center(
-                            child: Icon(Icons.shopping_basket,
-                                color: Colors.black),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 5, top: 3),
+                                    child: Text('0'),
+                                  ),
+                                ],
+                              ),
+                              Center(
+                                child: Icon(Icons.shopping_basket,
+                                    color: Colors.black),
+                              ),
+                            ],
                           ),
                         ),
                         Container(
