@@ -77,24 +77,28 @@ class _CartScreenState extends State<CartScreen> {
                 padding:
                     const EdgeInsets.only(top: 20, left: 20.0, right: 25.0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    Container(
-                      height: mediaQuery.size.height - 300.0,
-                      child: ListView.builder(
-                        itemBuilder: (ctx, index) => cartItem.CartItem(
-                          itemId: cart.items.values.toList()[index].id,
-                          itemName: cart.items.values.toList()[index].name,
-                          quantity: cart.items.values.toList()[index].quantity,
-                          price: cart.items.values.toList()[index].price,
-                          imageUrl: cart.items.values.toList()[index].imageUrl,
+                    Flexible(
+                      flex: 4,
+                      child: Container(
+                        child: ListView.builder(
+                          itemBuilder: (ctx, index) => cartItem.CartItem(
+                            itemId: cart.items.values.toList()[index].id,
+                            itemName: cart.items.values.toList()[index].name,
+                            quantity:
+                                cart.items.values.toList()[index].quantity,
+                            price: cart.items.values.toList()[index].price,
+                            imageUrl:
+                                cart.items.values.toList()[index].imageUrl,
+                          ),
+                          itemCount: cart.itemCount,
                         ),
-                        itemCount: cart.itemCount,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Container(
+                    Flexible(
+                        flex: 1,
+                        child: Container(
                           height: 40,
                           width: mediaQuery.size.width - 50,
                           decoration: BoxDecoration(
@@ -104,14 +108,29 @@ class _CartScreenState extends State<CartScreen> {
                                   width: 1.0),
                               borderRadius: BorderRadius.circular(10.0),
                               color: Theme.of(context).accentColor),
-                          child: Text(
-                            'Checkout',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 15.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  'Total : ',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15.0),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: Text(
+                                  'Rs. 1000',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15.0),
+                                ),
+                              ),
+                            ],
                           ),
-                        )
-                      ],
-                    )
+                        ))
                   ],
                 ),
               ),
