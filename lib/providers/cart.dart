@@ -42,13 +42,15 @@ class Cart with ChangeNotifier {
       );
     } else {
       _items.putIfAbsent(
-          itemId,
-          () => CartItem(
-              id: itemId,
-              name: name,
-              price: price,
-              imageUrl: imageUrl,
-              quantity: 1));
+        itemId,
+        () => CartItem(
+          id: itemId,
+          name: name,
+          price: price,
+          imageUrl: imageUrl,
+          quantity: 1,
+        ),
+      );
     }
 
     notifyListeners();
