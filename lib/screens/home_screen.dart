@@ -137,18 +137,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: Column(
                                 children: <Widget>[
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 5, top: 3),
-                                        child: Consumer<Cart>(
-                                          builder: (_, cartData, ch) => Text(
-                                              cartData.itemCount.toString()),
-                                        ),
-                                      ),
-                                    ],
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Consumer<Cart>(
+                                      builder: (_, cartData, ch) =>
+                                          Text(cartData.itemCount.toString()),
+                                    ),
                                   ),
                                   Center(
                                     child: Icon(
