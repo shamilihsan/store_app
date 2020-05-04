@@ -33,11 +33,14 @@ class ItemListTile extends StatelessWidget {
                 children: <Widget>[
                   Hero(
                     tag: item.id,
-                    child: Image.network(
-                      item.imageUrl,
-                      fit: BoxFit.cover,
-                      height: 50,
-                      width: 50,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: Image.network(
+                        item.imageUrl,
+                        fit: BoxFit.cover,
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                   ),
                   SizedBox(
