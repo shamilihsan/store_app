@@ -87,6 +87,7 @@ class ItemListTile extends StatelessWidget {
                     action: SnackBarAction(
                       label: 'UNDO',
                       onPressed: () {
+                        cart.removeSingleItem(item.id);
                         //cart.removeSingleItem(product.id);
                       },
                     ),

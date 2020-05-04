@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/providers/cart.dart';
 
 class CartItem extends StatelessWidget {
   final String itemId;
@@ -42,7 +44,9 @@ class CartItem extends StatelessWidget {
           ),
         );
       },
-      onDismissed: (direction) {},
+      onDismissed: (direction) {
+        Provider.of<Cart>(context, listen: false).removeItem(itemId);
+      },
       background: Container(
         color: Theme.of(context).errorColor,
         child: Icon(
