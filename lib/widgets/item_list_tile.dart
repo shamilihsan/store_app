@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/item.dart';
+import 'package:store_app/providers/cart.dart';
+
 import 'package:store_app/screens/item_detail_screen.dart';
 
 class ItemListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final item = Provider.of<Item>(context);
+    final cart = Provider.of<Cart>(context, listen: false);
 
     //final downloadUrl = FirebaseStorage.instance.ref().getDownloadURL();
     return Padding(
@@ -24,6 +27,8 @@ class ItemListTile extends StatelessWidget {
               ),
             ),
           );
+          // .then((_) => Scaffold.of(context)
+          //     .showSnackBar(SnackBar(content: Text("Cars enabled"))));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -71,7 +76,23 @@ class ItemListTile extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.add),
               color: Colors.black,
-              onPressed: () {},
+              onPressed: () {
+                cart.addToCart(
+                    item.id, item.price, item.name, item.imageUrl, 1);
+                Scaffold.of(context).hideCurrentSnackBar();
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Added item to cart!'),
+                    duration: Duration(seconds: 2),
+                    action: SnackBarAction(
+                      label: 'UNDO',
+                      onPressed: () {
+                        //cart.removeSingleItem(product.id);
+                      },
+                    ),
+                  ),
+                );
+              },
             )
           ],
         ),
