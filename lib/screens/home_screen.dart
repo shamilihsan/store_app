@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final mediaQuery = MediaQuery.of(context);
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
-
+        
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Container(
-                              height: 65.0,
+                              height: 60.0,
                               width: 60.0,
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Container(
-                              height: 65.0,
+                              height: 60.0,
                               width: 60.0,
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -170,7 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             // Container(
-                            //   height: 65.0,
+                            //   height: 60.0,
                             //   width: 120.0,
                             //   decoration: BoxDecoration(
                             //       border: Border.all(
