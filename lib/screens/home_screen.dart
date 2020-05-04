@@ -125,62 +125,68 @@ class _HomeScreenState extends State<HomeScreen> {
                                 child: Icon(Icons.search, color: Colors.black),
                               ),
                             ),
-                            InkWell(
-                              onTap: () => Navigator.of(context)
-                                  .pushNamed(CartScreen.routeName),
-                              child: Container(
-                                height: 65.0,
-                                width: 60.0,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.grey,
-                                      style: BorderStyle.solid,
-                                      width: 1.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 5, top: 3),
-                                          child: Consumer<Cart>(
-                                            builder: (_, cartData, ch) => Text(
-                                                cartData.itemCount.toString()),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Center(
-                                      child: Icon(
-                                        Icons.shopping_basket,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
                             Container(
                               height: 65.0,
-                              width: 120.0,
+                              width: 60.0,
                               decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: Colors.grey,
-                                      style: BorderStyle.solid,
-                                      width: 1.0),
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  color: Theme.of(context).accentColor),
-                              child: Center(
-                                child: Text(
-                                  'Checkout',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    style: BorderStyle.solid,
+                                    width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
                               ),
-                            )
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 5, top: 3),
+                                        child: Consumer<Cart>(
+                                          builder: (_, cartData, ch) => Text(
+                                              cartData.itemCount.toString()),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Center(
+                                    child: Icon(
+                                      Icons.shopping_basket,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            RaisedButton(
+                              textColor: Colors.white,
+                              color: Theme.of(context).accentColor,
+                              onPressed: () => Navigator.of(context)
+                                  .pushNamed(CartScreen.routeName),
+                              child: Text(
+                                'Checkout',
+                              ),
+                            ),
+                            // Container(
+                            //   height: 65.0,
+                            //   width: 120.0,
+                            //   decoration: BoxDecoration(
+                            //       border: Border.all(
+                            //           color: Colors.grey,
+                            //           style: BorderStyle.solid,
+                            //           width: 1.0),
+                            //       borderRadius: BorderRadius.circular(10.0),
+                            //       color: Theme.of(context).accentColor),
+                            //   child: Center(
+                            //     child: Text(
+                            //       'Checkout',
+                            //       style: TextStyle(
+                            //           color: Colors.white, fontSize: 15.0),
+                            //     ),
+                            //   ),
+                            // )
                           ],
                         ),
                       ),
