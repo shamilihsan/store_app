@@ -138,7 +138,7 @@ class _CartScreenState extends State<CartScreen> {
                             onPressed: () => Navigator.of(context)
                                 .pushNamed(CartScreen.routeName),
                             child: Text(
-                              'Checkout',
+                              'Order',
                             ),
                           ),
                         ],
