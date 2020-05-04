@@ -10,7 +10,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -55,7 +54,7 @@ class _CartScreenState extends State<CartScreen> {
                         const Text(
                           'Cart',
                           style: TextStyle(color: Colors.white, fontSize: 25.0),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -96,40 +95,58 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                     Flexible(
-                        flex: 1,
-                        child: Container(
-                          height: 40,
-                          width: mediaQuery.size.width - 50,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.grey,
-                                  style: BorderStyle.solid,
-                                  width: 1.0),
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Theme.of(context).accentColor),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  'Total : ',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
+                      flex: 1,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Expanded(
+                            child: Container(
+                              margin: EdgeInsets.only(right: 10),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.grey,
+                                    style: BorderStyle.solid,
+                                    width: 1.0),
+                                borderRadius: BorderRadius.circular(10.0),
+                                color: Theme.of(context).accentColor,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: Text(
-                                  'Rs. ${cart.totalAmount}',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      'Total : ',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: Text(
+                                      'Rs. ${cart.totalAmount}',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15.0),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
-                        ))
+                          RaisedButton(
+                            textColor: Colors.white,
+                            color: Theme.of(context).accentColor,
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(CartScreen.routeName),
+                            child: Text(
+                              'Checkout',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
