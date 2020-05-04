@@ -11,6 +11,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  var _isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -97,57 +99,73 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                     Flexible(
                       flex: 1,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Container(
-                              margin: EdgeInsets.only(right: 10.0),
-                              child: RaisedButton(
-                                onPressed: null,
-                                disabledColor: Theme.of(context).accentColor,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Text(
-                                        'Total : ',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0),
+                      child: _isLoading
+                          ? CircularProgressIndicator()
+                          : Row(
+                              children: <Widget>[
+                                Expanded(
+                                  child: Container(
+                                    margin: EdgeInsets.only(right: 10.0),
+                                    child: RaisedButton(
+                                      onPressed: null,
+                                      disabledColor:
+                                          Theme.of(context).accentColor,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 10),
+                                            child: Text(
+                                              'Total : ',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15.0),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 10),
+                                            child: Text(
+                                              'Rs. ${cart.totalAmount}',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 15.0),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text(
-                                        'Rs. ${cart.totalAmount}',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 15.0),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
+                                RaisedButton(
+                                  textColor: Colors.white,
+                                  color: Theme.of(context).accentColor,
+                                  onPressed: () {
+                                    setState(() {
+                                      _isLoading = true;
+                                    });
+
+                                    Provider.of<Orders>(context, listen: false)
+                                        .addOrder(cart.items.values.toList(),
+                                            cart.totalAmount)
+                                        .then((_) {
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                      cart.clear();
+                                      Navigator.of(context).pop();
+                                    });
+                                  },
+                                  child: Text(
+                                    'Order',
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          RaisedButton(
-                            textColor: Colors.white,
-                            color: Theme.of(context).accentColor,
-                            onPressed: () {
-                              Provider.of<Orders>(context, listen: false)
-                                  .addOrder(cart.items.values.toList(),
-                                      cart.totalAmount);
-                              cart.clear();
-                            },
-                            child: Text(
-                              'Order',
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                   ],
                 ),

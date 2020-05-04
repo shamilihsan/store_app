@@ -8,11 +8,12 @@ class Orders with ChangeNotifier {
   final CollectionReference orderCollection =
       Firestore.instance.collection('orders');
 
-  void addOrder(List<CartItem> cartItems, int total) async {
+  Future<DocumentReference> addOrder(
+      List<CartItem> cartItems, int total) async {
     final prefs = await SharedPreferences.getInstance();
     final _userId = prefs.getString('userId');
 
-    orderCollection.add({
+    return orderCollection.add({
       'userId': _userId,
       'total': total,
       'dateTime': DateTime.now().toIso8601String(),
@@ -24,8 +25,6 @@ class Orders with ChangeNotifier {
                 'price': cartItem.price,
               })
           .toList(),
-    }).then((response) => print(response));
-
-    notifyListeners();
+    });
   }
 }
