@@ -11,7 +11,7 @@ class ItemListTile extends StatelessWidget {
 
     //final downloadUrl = FirebaseStorage.instance.ref().getDownloadURL();
     return Padding(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+      padding: EdgeInsets.only(top: 10.0),
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(
