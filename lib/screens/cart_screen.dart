@@ -10,7 +10,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List picked = [false, false];
 
   @override
   Widget build(BuildContext context) {

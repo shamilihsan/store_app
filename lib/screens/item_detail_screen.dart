@@ -100,6 +100,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                   tag: widget.itemId,
                   child: Container(
                       decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         image: DecorationImage(
                             image: NetworkImage(widget.imageUrl),
                             fit: BoxFit.cover),
