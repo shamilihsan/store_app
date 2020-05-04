@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/providers/orders.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
 
 class CartScreen extends StatefulWidget {
@@ -135,8 +136,11 @@ class _CartScreenState extends State<CartScreen> {
                           RaisedButton(
                             textColor: Colors.white,
                             color: Theme.of(context).accentColor,
-                            onPressed: () => Navigator.of(context)
-                                .pushNamed(CartScreen.routeName),
+                            onPressed: () {
+                              Provider.of<Orders>(context, listen: false)
+                                  .addOrder(cart.items.values.toList(),
+                                      cart.totalAmount);
+                            },
                             child: Text(
                               'Order',
                             ),

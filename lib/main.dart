@@ -6,6 +6,7 @@ import 'package:store_app/providers/auth.dart';
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/items.dart';
 import 'package:store_app/providers/item.dart';
+import 'package:store_app/providers/orders.dart';
 import 'package:store_app/screens/auth_screen.dart';
 import 'package:store_app/screens/cart_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: Cart(),
+        ),
+        ChangeNotifierProvider.value(
+          value: Orders(),
         )
       ],
       child: Consumer<Auth>(
