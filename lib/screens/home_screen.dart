@@ -160,13 +160,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
 
-                            RaisedButton(
-                              textColor: Colors.white,
-                              color: Theme.of(context).accentColor,
-                              onPressed: () => Navigator.of(context)
-                                  .pushNamed(CartScreen.routeName),
-                              child: Text(
-                                'Checkout',
+                            Container(
+                              height: 60.0,
+                              child: RaisedButton(
+                                textColor: Colors.white,
+                                color: Theme.of(context).accentColor,
+                                onPressed: () => Navigator.of(context)
+                                    .pushNamed(CartScreen.routeName),
+                                child: Text(
+                                  'Checkout',
+                                ),
                               ),
                             ),
                             // Container(
