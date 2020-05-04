@@ -11,7 +11,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  var _isLoading = true;
+  var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
