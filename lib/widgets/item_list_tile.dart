@@ -73,9 +73,9 @@ class ItemListTile extends StatelessWidget {
                 ],
               ),
             ),
-            IconButton(
-              icon: Icon(Icons.add),
-              color: Colors.black,
+            FlatButton(
+              splashColor: Theme.of(context).accentColor,
+              child: Icon(Icons.add, color: Colors.black),
               onPressed: () {
                 cart.addToCart(
                     item.id, item.price, item.name, item.imageUrl, 1);
@@ -93,7 +93,7 @@ class ItemListTile extends StatelessWidget {
                   ),
                 );
               },
-            )
+            ),
           ],
         ),
       ),
