@@ -130,46 +130,49 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.only(
-                            topLeft: const Radius.circular(75.0),
-                            topRight: const Radius.circular(75.0),
+                            topLeft: const Radius.circular(70.0),
+                            topRight: const Radius.circular(70.0),
                           ),
                         ),
                         child: Consumer<Cart>(
-                          builder: (_, cartData, ch) => Center(
-                            child: cartData.itemCount == 0
-                                ? Text(
+                          builder: (_, cartData, ch) => cartData.itemCount == 0
+                              ? Center(
+                                  child: Text(
                                     'Seems like your cart is empty.....',
                                     style: TextStyle(color: Colors.white),
-                                  )
-                                : Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25.0, right: 20.0),
-                                    child: Row(
-                                      children: <Widget>[
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: <Widget>[
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Text(
-                                                'Rs. ${cartData.totalAmount}',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                                textAlign: TextAlign.left,
-                                              ),
-                                            ),
-                                            Text(
-                                              '${cartData.itemCount} items in cart',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
                                   ),
-                          ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 25.0, right: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            'Rs. ${cartData.totalAmount}',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          Text(
+                                            '${cartData.itemCount} items in cart',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                      RaisedButton(
+                                        color: Theme.of(context).primaryColor,
+                                        onPressed: () {},
+                                        child: Text('Cart', style: TextStyle(color: Colors.white),),
+                                      )
+                                    ],
+                                  ),
+                                ),
                         ),
 
                         // Container(
