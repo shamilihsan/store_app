@@ -4,6 +4,7 @@ import 'package:store_app/providers/cart.dart';
 import 'package:store_app/screens/cart_screen.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
+import 'package:store_app/widgets/badge.dart';
 import 'package:store_app/widgets/item_list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -48,10 +49,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () =>
                                   _scaffoldKey.currentState.openDrawer(),
                             ),
-                            IconButton(
-                              icon: Icon(Icons.filter_list),
-                              color: Colors.white,
-                              onPressed: () {},
+                            Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(Icons.filter_list),
+                                  color: Colors.white,
+                                  onPressed: () {},
+                                ),
+                                Consumer<Cart>(
+                                  builder: (_, cartData, ch) => Badge(
+                                    child: ch,
+                                    value: cartData.itemCount.toString(),
+                                  ),
+                                  child: IconButton(
+                                    icon: Icon(Icons.shopping_cart),
+                                    color: Colors.white,
+                                    onPressed: () => Navigator.of(context)
+                                        .pushNamed(CartScreen.routeName),
+                                  ),
+                                )
+                              ],
                             ),
                           ],
                         ),
