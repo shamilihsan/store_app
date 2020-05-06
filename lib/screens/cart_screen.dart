@@ -109,71 +109,91 @@ class _CartScreenState extends State<CartScreen> {
                       flex: 1,
                       child: _isLoading
                           ? CircularProgressIndicator()
-                          : Row(
-                              children: <Widget>[
-                                Expanded(
-                                  child: Container(
-                                    margin: const EdgeInsets.only(right: 10.0),
-                                    child: RaisedButton(
-                                      onPressed: null,
-                                      disabledColor:
-                                          Theme.of(context).accentColor,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: <Widget>[
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: Text(
-                                              'Total : ',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 10),
-                                            child: Text(
-                                              'Rs. ${cart.totalAmount}',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 15.0),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                          : cart.itemCount == 0
+                              ? Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).accentColor,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: const Radius.circular(75.0),
+                                      topRight: const Radius.circular(75.0),
                                     ),
                                   ),
-                                ),
-                                RaisedButton(
-                                  textColor: Colors.white,
-                                  color: Theme.of(context).accentColor,
-                                  onPressed: () {
-                                    setState(() {
-                                      _isLoading = true;
-                                    });
-
-                                    Provider.of<Orders>(context, listen: false)
-                                        .addOrder(cart.items.values.toList(),
-                                            cart.totalAmount)
-                                        .then((_) {
-                                      setState(() {
-                                        _isLoading = false;
-                                      });
-                                      cart.clear();
-                                      Navigator.of(context).pop();
-                                    });
-                                  },
-                                  child: Text(
-                                    'Order',
+                                  width: mediaQuery.size.width,
+                                  child: Center(
+                                    child: Text(
+                                      'Seems like your cart is empty',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
+                                )
+                              : Row(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Container(
+                                        margin:
+                                            const EdgeInsets.only(right: 10.0),
+                                        child: RaisedButton(
+                                          onPressed: null,
+                                          disabledColor:
+                                              Theme.of(context).accentColor,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: Text(
+                                                  'Total : ',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 10),
+                                                child: Text(
+                                                  'Rs. ${cart.totalAmount}',
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 15.0),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    RaisedButton(
+                                      textColor: Colors.white,
+                                      color: Theme.of(context).accentColor,
+                                      onPressed: () {
+                                        setState(() {
+                                          _isLoading = true;
+                                        });
+
+                                        Provider.of<Orders>(context,
+                                                listen: false)
+                                            .addOrder(
+                                                cart.items.values.toList(),
+                                                cart.totalAmount)
+                                            .then((_) {
+                                          setState(() {
+                                            _isLoading = false;
+                                          });
+                                          cart.clear();
+                                          Navigator.of(context).pop();
+                                        });
+                                      },
+                                      child: Text(
+                                        'Order',
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
                     ),
                   ],
                 ),
