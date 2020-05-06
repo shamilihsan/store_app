@@ -88,7 +88,6 @@ class ItemListTile extends StatelessWidget {
                       label: 'UNDO',
                       onPressed: () {
                         cart.removeSingleItem(item.id);
-                        //cart.removeSingleItem(product.id);
                       },
                     ),
                   ),
