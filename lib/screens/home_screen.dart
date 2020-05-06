@@ -127,62 +127,63 @@ class _HomeScreenState extends State<HomeScreen> {
                       flex: 1,
                       child: Container(
                         width: mediaQuery.size.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            // Container(
-                            //   height: 60.0,
-                            //   width: 60.0,
-                            //   decoration: BoxDecoration(
-                            //     border: Border.all(
-                            //       color: Colors.grey,
-                            //       style: BorderStyle.solid,
-                            //       width: 1.0,
-                            //     ),
-                            //     borderRadius: BorderRadius.circular(10.0),
-                            //   ),
-                            //   child: Center(
-                            //     child: Icon(Icons.search, color: Colors.black),
-                            // ------------------------ USE ANIMATEDSWITCHER ---------------------- //
-                            //   ),
-                            // ),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: const Radius.circular(75.0),
-                                  topRight: const Radius.circular(75.0),
-                                ),
-                              ),
-                              width: mediaQuery.size.width,
-                              child: Consumer<Cart>(
-                                builder: (_, cartData, ch) => Center(
-                                  child: cartData.itemCount == 0
-                                      ? Text(
-                                          'Seems like your cart is empty.....',
-                                          style: TextStyle(color: Colors.white),
-                                        )
-                                      : Text(
-                                          'Rs. ${cartData.totalAmount}',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                ),
-                              ),
-                            )
-                            // Container(
-                            //   width: mediaQuery.size.width,
-                            //   child: RaisedButton(
-                            //     textColor: Colors.white,
-                            //     color: Theme.of(context).primaryColor,
-                            //     onPressed: () => Navigator.of(context)
-                            //         .pushNamed(CartScreen.routeName),
-                            //     child: Text(
-                            //       'Checkout',
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).primaryColor,
+                          borderRadius: BorderRadius.only(
+                            topLeft: const Radius.circular(75.0),
+                            topRight: const Radius.circular(75.0),
+                          ),
                         ),
+                        child: Consumer<Cart>(
+                          builder: (_, cartData, ch) => Center(
+                            child: cartData.itemCount == 0
+                                ? Text(
+                                    'Seems like your cart is empty.....',
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 25.0, right: 20.0),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: <Widget>[
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Text(
+                                                'Rs. ${cartData.totalAmount}',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                                textAlign: TextAlign.left,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${cartData.itemCount} items in cart',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                          ),
+                        ),
+
+                        // Container(
+                        //   width: mediaQuery.size.width,
+                        //   child: RaisedButton(
+                        //     textColor: Colors.white,
+                        //     color: Theme.of(context).primaryColor,
+                        //     onPressed: () => Navigator.of(context)
+                        //         .pushNamed(CartScreen.routeName),
+                        //     child: Text(
+                        //       'Checkout',
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                     )
                   ],
