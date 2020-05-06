@@ -75,6 +75,10 @@ class _CartScreenState extends State<CartScreen> {
                                 icon: Icon(Icons.arrow_back_ios),
                                 color: Colors.white,
                                 onPressed: () => Navigator.of(context).pop()),
+                            if(cart.itemCount != 0) IconButton(
+                                icon: Icon(Icons.remove_shopping_cart),
+                                color: Colors.white,
+                                onPressed: () => cart.clear()),
                           ],
                         ),
                       )
@@ -169,26 +173,29 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                 )
                               : Padding(
-                                padding: const EdgeInsets.only(left: 20, right: 25),
-                                child: Row(
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 25),
+                                  child: Row(
                                     children: <Widget>[
                                       Expanded(
                                         child: Container(
-                                          margin:
-                                              const EdgeInsets.only(right: 10.0),
+                                          margin: const EdgeInsets.only(
+                                              right: 10.0),
                                           child: RaisedButton(
                                             onPressed: null,
                                             disabledColor:
                                                 Theme.of(context).primaryColor,
                                             child: Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 10),
                                                   child: Text(
                                                     'Total : ',
                                                     style: TextStyle(
@@ -197,8 +204,9 @@ class _CartScreenState extends State<CartScreen> {
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      right: 10),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10),
                                                   child: Text(
                                                     'Rs. ${cart.totalAmount}',
                                                     style: TextStyle(
@@ -237,7 +245,7 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ],
                                   ),
-                              ),
+                                ),
                     ),
                   ],
                 ),
