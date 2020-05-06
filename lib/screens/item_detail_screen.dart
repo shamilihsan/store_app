@@ -123,7 +123,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Text(widget.itemPrice.toString(),
+                          Text('Rs. ${widget.itemPrice.toString()}',
                               style: TextStyle(
                                   fontSize: 20.0, color: Colors.grey)),
                           Container(
@@ -221,7 +221,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             height: 50.0,
                             child: Center(
                               child: Text(
-                                'Rs. ${total.toString()}',
+                                'Add to Cart',
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),

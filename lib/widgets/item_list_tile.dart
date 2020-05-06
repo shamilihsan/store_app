@@ -30,72 +30,114 @@ class ItemListTile extends StatelessWidget {
           // .then((_) => Scaffold.of(context)
           //     .showSnackBar(SnackBar(content: Text("Item added"))));
         },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Hero(
-                    tag: item.id,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.0),
-                      child: Image.network(
-                        item.imageUrl,
-                        fit: BoxFit.cover,
-                        height: 50,
-                        width: 50,
-                      ),
-                    ),
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ListTile(
+              leading: Hero(
+                tag: item.id,
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(
+                    item.imageUrl,
                   ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        item.name,
-                        style: TextStyle(
-                          fontSize: 17.0,
-                          fontWeight: FontWeight.bold,
+                ),
+              ),
+              title: Text(item.name),
+              subtitle: Text('Price: Rs. ${(item.price)}'),
+              trailing: AspectRatio(
+                aspectRatio: 1 / 1,
+                child: FlatButton(
+                  splashColor: Theme.of(context).accentColor,
+                  child: Icon(Icons.add, color: Colors.black),
+                  onPressed: () {
+                    cart.addToCart(
+                        item.id, item.price, item.name, item.imageUrl, 1);
+                    Scaffold.of(context).hideCurrentSnackBar();
+                    Scaffold.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Added ${item.name} to cart!'),
+                        duration: Duration(seconds: 2),
+                        action: SnackBarAction(
+                          label: 'UNDO',
+                          onPressed: () {
+                            cart.removeSingleItem(item.id);
+                          },
                         ),
                       ),
-                      Text(
-                        'Rs. ${item.price}',
-                        style: TextStyle(
-                            fontSize: 17.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
-                      ),
-                    ],
-                  )
-                ],
+                    );
+                  },
+                ),
               ),
             ),
-            FlatButton(
-              splashColor: Theme.of(context).accentColor,
-              child: Icon(Icons.add, color: Colors.black),
-              onPressed: () {
-                cart.addToCart(
-                    item.id, item.price, item.name, item.imageUrl, 1);
-                Scaffold.of(context).hideCurrentSnackBar();
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Added ${item.name} to cart!'),
-                    duration: Duration(seconds: 2),
-                    action: SnackBarAction(
-                      label: 'UNDO',
-                      onPressed: () {
-                        cart.removeSingleItem(item.id);
-                      },
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
+          ),
+          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
         ),
+        // child: Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: <Widget>[
+        //     Container(
+        //       child: Row(
+        //         children: <Widget>[
+        //           Hero(
+        //             tag: item.id,
+        //             child: ClipRRect(
+        //               borderRadius: BorderRadius.circular(10.0),
+        //               child: Image.network(
+        //                 item.imageUrl,
+        //                 fit: BoxFit.cover,
+        //                 height: 50,
+        //                 width: 50,
+        //               ),
+        //             ),
+        //           ),
+        //           SizedBox(
+        //             width: 10.0,
+        //           ),
+        //           Column(
+        //             crossAxisAlignment: CrossAxisAlignment.start,
+        //             children: <Widget>[
+        //               Text(
+        //                 item.name,
+        //                 style: TextStyle(
+        //                   fontSize: 17.0,
+        //                   fontWeight: FontWeight.bold,
+        //                 ),
+        //               ),
+        //               Text(
+        //                 'Rs. ${item.price}',
+        //                 style: TextStyle(
+        //                     fontSize: 17.0,
+        //                     fontWeight: FontWeight.bold,
+        //                     color: Colors.grey),
+        //               ),
+        //             ],
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //     FlatButton(
+        //       splashColor: Theme.of(context).accentColor,
+        //       child: Icon(Icons.add, color: Colors.black),
+        //       onPressed: () {
+        //         cart.addToCart(
+        //             item.id, item.price, item.name, item.imageUrl, 1);
+        //         Scaffold.of(context).hideCurrentSnackBar();
+        //         Scaffold.of(context).showSnackBar(
+        //           SnackBar(
+        //             content: Text('Added ${item.name} to cart!'),
+        //             duration: Duration(seconds: 2),
+        //             action: SnackBarAction(
+        //               label: 'UNDO',
+        //               onPressed: () {
+        //                 cart.removeSingleItem(item.id);
+        //               },
+        //             ),
+        //           ),
+        //         );
+        //       },
+        //     ),
+        //   ],
+        // ),
       ),
     );
   }
