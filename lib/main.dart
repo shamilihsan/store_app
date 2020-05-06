@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Store App',
           theme: ThemeData(
-            primarySwatch: Colors.brown,
-            accentColor: Colors.blueAccent,
+            primarySwatch: Colors.blue,
+            accentColor: Colors.cyan,
           ),
           home: authData.isAuth
               ? HomeScreen()
