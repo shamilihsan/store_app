@@ -110,19 +110,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 20, left: 25.0, right: 20.0),
+                padding: const EdgeInsets.only(top: 20),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Flexible(
                       flex: 4,
-                      child: Container(child: ItemList()),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 25.0, right: 20.0),
+                        child: Container(child: ItemList()),
+                      ),
                     ),
                     Flexible(
                       flex: 1,
                       child: Container(
-                        width: mediaQuery.size.width - 50,
+                        width: mediaQuery.size.width,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -143,36 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             //   ),
                             // ),
                             Container(
-                              height: 60.0,
-                              width: 60.0,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.grey,
-                                    style: BorderStyle.solid,
-                                    width: 1.0),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Column(
-                                children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Consumer<Cart>(
-                                      builder: (_, cartData, ch) =>
-                                          Text(cartData.itemCount.toString()),
-                                    ),
-                                  ),
-                                  Center(
-                                    child: Icon(
-                                      Icons.shopping_basket,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Container(
-                              height: 60.0,
+                              width: mediaQuery.size.width,
                               child: RaisedButton(
                                 textColor: Colors.white,
                                 color: Theme.of(context).accentColor,
@@ -183,24 +156,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                             ),
-                            // Container(
-                            //   height: 60.0,
-                            //   width: 120.0,
-                            //   decoration: BoxDecoration(
-                            //       border: Border.all(
-                            //           color: Colors.grey,
-                            //           style: BorderStyle.solid,
-                            //           width: 1.0),
-                            //       borderRadius: BorderRadius.circular(10.0),
-                            //       color: Theme.of(context).accentColor),
-                            //   child: Center(
-                            //     child: Text(
-                            //       'Checkout',
-                            //       style: TextStyle(
-                            //           color: Colors.white, fontSize: 15.0),
-                            //     ),
-                            //   ),
-                            // )
                           ],
                         ),
                       ),
