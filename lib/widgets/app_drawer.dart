@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/auth.dart';
+import 'package:store_app/providers/cart.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -32,8 +33,8 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.undo),
             title: Text('Sign Out'),
             onTap: () {
+              Provider.of<Cart>(context, listen: false).clear();
               Navigator.of(context).pop();
-
               // Ensures that the home route autoLogin() function is always called
               Navigator.of(context).pushReplacementNamed('/');
 
