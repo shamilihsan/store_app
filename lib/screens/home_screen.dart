@@ -118,7 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       flex: 4,
                       child: Padding(
                         padding: const EdgeInsets.only(left: 25.0, right: 20.0),
-                        child: Container(child: ItemList()),
+                        child: Container(
+                            margin: const EdgeInsets.only(bottom: 10),
+                            child: ItemList()),
                       ),
                     ),
                     Flexible(
@@ -145,17 +147,33 @@ class _HomeScreenState extends State<HomeScreen> {
                             //   ),
                             // ),
                             Container(
-                              width: mediaQuery.size.width,
-                              child: RaisedButton(
-                                textColor: Colors.white,
+                              decoration: BoxDecoration(
                                 color: Theme.of(context).accentColor,
-                                onPressed: () => Navigator.of(context)
-                                    .pushNamed(CartScreen.routeName),
-                                child: Text(
-                                  'Checkout',
+                                borderRadius: BorderRadius.only(
+                                  topLeft: const Radius.circular(75.0),
+                                  topRight: const Radius.circular(75.0),
                                 ),
                               ),
-                            ),
+                              width: mediaQuery.size.width,
+                              child: Center(
+                                child: Text(
+                                  'Seems like your cart is empty.....',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            )
+                            // Container(
+                            //   width: mediaQuery.size.width,
+                            //   child: RaisedButton(
+                            //     textColor: Colors.white,
+                            //     color: Theme.of(context).accentColor,
+                            //     onPressed: () => Navigator.of(context)
+                            //         .pushNamed(CartScreen.routeName),
+                            //     child: Text(
+                            //       'Checkout',
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),

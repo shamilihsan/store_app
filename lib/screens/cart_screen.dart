@@ -115,14 +115,14 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.only(top: 20, left: 20.0, right: 25.0),
+                padding: const EdgeInsets.only(top: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Flexible(
                       flex: 4,
                       child: Container(
+                        padding: const EdgeInsets.only(left: 20.0, right: 25.0),
                         child: cart.itemCount == 0
                             ? (SvgPicture.asset('assets/images/empty_cart.svg',
                                 placeholderBuilder: (BuildContext context) =>
@@ -163,7 +163,7 @@ class _CartScreenState extends State<CartScreen> {
                                   width: mediaQuery.size.width,
                                   child: Center(
                                     child: Text(
-                                      'Seems like your cart is empty',
+                                      'Seems like your cart is empty.....',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ),
