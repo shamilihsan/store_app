@@ -53,7 +53,7 @@ class _CartScreenState extends State<CartScreen> {
     final mediaQuery = MediaQuery.of(context);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).primaryColor,
       drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
@@ -154,7 +154,7 @@ class _CartScreenState extends State<CartScreen> {
                           : cart.itemCount == 0
                               ? Container(
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).primaryColor,
                                     borderRadius: BorderRadius.only(
                                       topLeft: const Radius.circular(75.0),
                                       topRight: const Radius.circular(75.0),
@@ -177,7 +177,7 @@ class _CartScreenState extends State<CartScreen> {
                                         child: RaisedButton(
                                           onPressed: null,
                                           disabledColor:
-                                              Theme.of(context).accentColor,
+                                              Theme.of(context).primaryColor,
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -211,7 +211,7 @@ class _CartScreenState extends State<CartScreen> {
                                     ),
                                     RaisedButton(
                                       textColor: Colors.white,
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme.of(context).primaryColor,
                                       onPressed: () {
                                         setState(() {
                                           _isLoading = true;
