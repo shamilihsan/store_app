@@ -107,7 +107,11 @@ class _CartScreenState extends State<CartScreen> {
                       flex: 4,
                       child: Container(
                         child: cart.itemCount == 0
-                            ? (SvgPicture.asset('assets/images/empty_cart.svg'))
+                            ? (SvgPicture.asset('assets/images/empty_cart.svg',
+                                placeholderBuilder: (BuildContext context) =>
+                                    Center(
+                                        child:
+                                            const CircularProgressIndicator())))
                             : ListView.builder(
                                 itemBuilder: (ctx, index) => cartItem.CartItem(
                                   itemId: cart.items.values.toList()[index].id,
@@ -210,8 +214,22 @@ class _CartScreenState extends State<CartScreen> {
                                             builder: (ctx) => AlertDialog(
                                               title:
                                                   Text('Order has been placed'),
-                                              content: Text(
-                                                  'Your order has been placed successfully!'),
+                                              content: Column(
+                                                children: <Widget>[
+                                                  Expanded(
+                                                    child: SvgPicture.asset(
+                                                        'assets/images/order_confirmed.svg',
+                                                        placeholderBuilder:
+                                                            (BuildContext
+                                                                    context) =>
+                                                                Center(
+                                                                    child:
+                                                                        const CircularProgressIndicator())),
+                                                  ),
+                                                  Text(
+                                                      'Your order has been placed successfully!'),
+                                                ],
+                                              ),
                                               elevation: 10,
                                               actions: <Widget>[
                                                 FlatButton(
