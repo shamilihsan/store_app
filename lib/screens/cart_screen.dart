@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/orders.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
@@ -83,18 +85,24 @@ class _CartScreenState extends State<CartScreen> {
                     Flexible(
                       flex: 4,
                       child: Container(
-                        child: ListView.builder(
-                          itemBuilder: (ctx, index) => cartItem.CartItem(
-                            itemId: cart.items.values.toList()[index].id,
-                            itemName: cart.items.values.toList()[index].name,
-                            quantity:
-                                cart.items.values.toList()[index].quantity,
-                            price: cart.items.values.toList()[index].price,
-                            imageUrl:
-                                cart.items.values.toList()[index].imageUrl,
-                          ),
-                          itemCount: cart.itemCount,
-                        ),
+                        child: cart.itemCount == 0
+                            ? (SvgPicture.asset('assets/images/empty_cart.svg'))
+                            : ListView.builder(
+                                itemBuilder: (ctx, index) => cartItem.CartItem(
+                                  itemId: cart.items.values.toList()[index].id,
+                                  itemName:
+                                      cart.items.values.toList()[index].name,
+                                  quantity: cart.items.values
+                                      .toList()[index]
+                                      .quantity,
+                                  price:
+                                      cart.items.values.toList()[index].price,
+                                  imageUrl: cart.items.values
+                                      .toList()[index]
+                                      .imageUrl,
+                                ),
+                                itemCount: cart.itemCount,
+                              ),
                       ),
                     ),
                     Flexible(
