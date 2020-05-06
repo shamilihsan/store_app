@@ -15,6 +15,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   var _isLoading = false;
 
+  order(BuildContext context) {}
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -174,7 +176,6 @@ class _CartScreenState extends State<CartScreen> {
                                         setState(() {
                                           _isLoading = true;
                                         });
-
                                         Provider.of<Orders>(context,
                                                 listen: false)
                                             .addOrder(
@@ -185,7 +186,25 @@ class _CartScreenState extends State<CartScreen> {
                                             _isLoading = false;
                                           });
                                           cart.clear();
-                                          Navigator.of(context).pop();
+                                          showDialog(
+                                            context: context,
+                                            builder: (ctx) => AlertDialog(
+                                              title:
+                                                  Text('Order has been placed'),
+                                              content: Text(
+                                                  'Your order has been placed successfully!'),
+                                              elevation: 10,
+                                              actions: <Widget>[
+                                                FlatButton(
+                                                    onPressed: () {
+                                                      Navigator.of(ctx).pop();
+                                                    },
+                                                    child: Text('Okay')),
+                                              ],
+                                            ),
+                                          ).then((_) {
+                                            Navigator.of(context).pop();
+                                          });
                                         });
                                       },
                                       child: Text(
