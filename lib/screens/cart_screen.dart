@@ -18,6 +18,35 @@ class _CartScreenState extends State<CartScreen> {
 
   order(BuildContext context) {}
 
+  showOrderSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Order has been placed'),
+        content: Column(
+          children: <Widget>[
+            Expanded(
+              child: SvgPicture.asset('assets/images/order_confirmed.svg',
+                  placeholderBuilder: (BuildContext context) =>
+                      Center(child: const CircularProgressIndicator())),
+            ),
+            Text('Your order has been placed successfully!'),
+          ],
+        ),
+        elevation: 10,
+        actions: <Widget>[
+          FlatButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: Text('Okay')),
+        ],
+      ),
+    ).then((_) {
+      Navigator.of(context).pop();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -25,18 +54,6 @@ class _CartScreenState extends State<CartScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      // appBar: AppBar(
-      //   leading: IconButton(
-      //     onPressed: () {
-      //       Navigator.of(context).pop();
-      //     },
-      //     icon: Icon(Icons.arrow_back_ios),
-      //     color: Colors.white,
-      //   ),
-      //   backgroundColor: Colors.transparent,
-      //   elevation: 0.0,
-      //   centerTitle: true,
-      // ),
       drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
@@ -209,39 +226,7 @@ class _CartScreenState extends State<CartScreen> {
                                             _isLoading = false;
                                           });
                                           cart.clear();
-                                          showDialog(
-                                            context: context,
-                                            builder: (ctx) => AlertDialog(
-                                              title:
-                                                  Text('Order has been placed'),
-                                              content: Column(
-                                                children: <Widget>[
-                                                  Expanded(
-                                                    child: SvgPicture.asset(
-                                                        'assets/images/order_confirmed.svg',
-                                                        placeholderBuilder:
-                                                            (BuildContext
-                                                                    context) =>
-                                                                Center(
-                                                                    child:
-                                                                        const CircularProgressIndicator())),
-                                                  ),
-                                                  Text(
-                                                      'Your order has been placed successfully!'),
-                                                ],
-                                              ),
-                                              elevation: 10,
-                                              actions: <Widget>[
-                                                FlatButton(
-                                                    onPressed: () {
-                                                      Navigator.of(ctx).pop();
-                                                    },
-                                                    child: Text('Okay')),
-                                              ],
-                                            ),
-                                          ).then((_) {
-                                            Navigator.of(context).pop();
-                                          });
+                                          showOrderSuccessDialog(context);
                                         });
                                       },
                                       child: Text(
