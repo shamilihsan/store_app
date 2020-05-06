@@ -155,10 +155,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               width: mediaQuery.size.width,
-                              child: Center(
-                                child: Text(
-                                  'Seems like your cart is empty.....',
-                                  style: TextStyle(color: Colors.white),
+                              child: Consumer<Cart>(
+                                builder: (_, cartData, ch) => Center(
+                                  child: cartData.itemCount == 0
+                                      ? Text(
+                                          'Seems like your cart is empty.....',
+                                          style: TextStyle(color: Colors.white),
+                                        )
+                                      : Text(
+                                          'Rs. ${cartData.totalAmount}',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                 ),
                               ),
                             )
