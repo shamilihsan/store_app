@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final _scaffoldKey = GlobalKey<ScaffoldState>();
-    final cart = Provider.of<Cart>(context);
 
     return Scaffold(
       key: _scaffoldKey,
@@ -149,35 +148,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             // ),
                             Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).accentColor,
                                 borderRadius: BorderRadius.only(
                                   topLeft: const Radius.circular(75.0),
                                   topRight: const Radius.circular(75.0),
                                 ),
                               ),
                               width: mediaQuery.size.width,
-                              child: cart.itemCount == 0
-                                  ? Center(
-                                      child: const Text(
-                                        'Seems like your cart is empty.....',
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                  : Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 25.0, right: 20.0),
-                                      child: Center(
-                                        child: Row(
-                                          children: <Widget>[
-                                            Text(
-                                              'Rs. ${cart.totalAmount}',
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                              child: Center(
+                                child: Text(
+                                  'Seems like your cart is empty.....',
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             )
                             // Container(
                             //   width: mediaQuery.size.width,

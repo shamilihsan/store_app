@@ -57,7 +57,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
     final cart = Provider.of<Cart>(context, listen: false);
 
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: Theme.of(context).accentColor,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -133,7 +133,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                             height: 40.0,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(17.0),
-                                color: Theme.of(context).primaryColor),
+                                color: Theme.of(context).accentColor),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
@@ -145,7 +145,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                     decoration: BoxDecoration(
                                         borderRadius:
                                             BorderRadius.circular(7.0),
-                                        color: Theme.of(context).primaryColor),
+                                        color: Theme.of(context).accentColor),
                                     child: Center(
                                       child: Icon(
                                         Icons.remove,
@@ -170,7 +170,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                     child: Center(
                                       child: Icon(
                                         Icons.add,
-                                        color: Theme.of(context).primaryColor,
+                                        color: Theme.of(context).accentColor,
                                         size: 20.0,
                                       ),
                                     ),
@@ -217,7 +217,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                     topRight: Radius.circular(10.0),
                                     bottomLeft: Radius.circular(25.0),
                                     bottomRight: Radius.circular(25.0)),
-                                color: Theme.of(context).primaryColor),
+                                color: Theme.of(context).accentColor),
                             height: 50.0,
                             child: Center(
                               child: Text(
@@ -250,7 +250,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: cardTitle == selectedCard
-              ? Theme.of(context).primaryColor
+              ? Theme.of(context).accentColor
               : Colors.white,
           border: Border.all(
               color: cardTitle == selectedCard
