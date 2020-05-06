@@ -122,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             //   ),
                             //   child: Center(
                             //     child: Icon(Icons.search, color: Colors.black),
+                            // ------------------------ USE ANIMATEDSWITCHER ---------------------- //
                             //   ),
                             // ),
                             Container(

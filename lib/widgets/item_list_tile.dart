@@ -28,7 +28,7 @@ class ItemListTile extends StatelessWidget {
             ),
           );
           // .then((_) => Scaffold.of(context)
-          //     .showSnackBar(SnackBar(content: Text("Cars enabled"))));
+          //     .showSnackBar(SnackBar(content: Text("Item added"))));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
