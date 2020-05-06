@@ -82,7 +82,7 @@ class ItemListTile extends StatelessWidget {
                 Scaffold.of(context).hideCurrentSnackBar();
                 Scaffold.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Added to cart!'),
+                    content: Text('Added ${item.name} to cart!'),
                     duration: Duration(seconds: 2),
                     action: SnackBarAction(
                       label: 'UNDO',
