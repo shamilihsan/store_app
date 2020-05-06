@@ -73,7 +73,7 @@ class _CartScreenState extends State<CartScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(75.0),
+                  topRight: const Radius.circular(75.0),
                 ),
               ),
               child: Padding(
@@ -113,7 +113,7 @@ class _CartScreenState extends State<CartScreen> {
                               children: <Widget>[
                                 Expanded(
                                   child: Container(
-                                    margin: EdgeInsets.only(right: 10.0),
+                                    margin: const EdgeInsets.only(right: 10.0),
                                     child: RaisedButton(
                                       onPressed: null,
                                       disabledColor:
