@@ -149,10 +149,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: <Widget>[
-                                        Text(
-                                          'Rs. ${cartData.totalAmount}',
-                                          style: TextStyle(color: Colors.white),
+                                        Container(
+                                          child: Text(
+                                            'Rs. ${cartData.totalAmount}',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                         ),
                                         Text(
                                           '${cartData.itemCount} items in cart',
