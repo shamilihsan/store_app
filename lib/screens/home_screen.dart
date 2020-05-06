@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             // ),
                             Container(
                               decoration: BoxDecoration(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.only(
                                   topLeft: const Radius.circular(75.0),
                                   topRight: const Radius.circular(75.0),
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             //   width: mediaQuery.size.width,
                             //   child: RaisedButton(
                             //     textColor: Colors.white,
-                            //     color: Theme.of(context).accentColor,
+                            //     color: Theme.of(context).primaryColor,
                             //     onPressed: () => Navigator.of(context)
                             //         .pushNamed(CartScreen.routeName),
                             //     child: Text(
