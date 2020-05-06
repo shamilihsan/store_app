@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<Auth>(
         builder: (ctx, authData, _) => MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Store App',
           theme: ThemeData(
             primarySwatch: Colors.brown,
