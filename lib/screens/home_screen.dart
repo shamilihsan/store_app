@@ -142,36 +142,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 )
-                              : Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 25.0, right: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: <Widget>[
-                                          Text(
-                                            'Rs. ${cartData.totalAmount}',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          Text(
-                                            '${cartData.itemCount} items in cart',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ],
+                              : Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: <Widget>[
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          'Rs. ${cartData.totalAmount}',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        Text(
+                                          '${cartData.itemCount} items in cart',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                    RaisedButton(
+                                      color: Theme.of(context).primaryColor,
+                                      onPressed: () {},
+                                      child: Text(
+                                        'Cart',
+                                        style: TextStyle(color: Colors.white),
                                       ),
-                                      RaisedButton(
-                                        color: Theme.of(context).primaryColor,
-                                        onPressed: () {},
-                                        child: Text('Cart', style: TextStyle(color: Colors.white),),
-                                      )
-                                    ],
-                                  ),
+                                    )
+                                  ],
                                 ),
                         ),
 
