@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  SizedBox(height: 25.0),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.only(left: 40.0),
                     child: Row(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontSize: 25.0,
                           ),
                         ),
-                        SizedBox(width: 10.0),
+                        const SizedBox(width: 10.0),
                         Text(
                           'Menu',
                           style: TextStyle(color: Colors.white, fontSize: 25.0),

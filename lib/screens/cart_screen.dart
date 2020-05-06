@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/orders.dart';
+import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
 
 class CartScreen extends StatefulWidget {
@@ -24,18 +25,19 @@ class _CartScreenState extends State<CartScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).accentColor,
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.arrow_back_ios),
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   leading: IconButton(
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //     icon: Icon(Icons.arrow_back_ios),
+      //     color: Colors.white,
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0.0,
+      //   centerTitle: true,
+      // ),
+      drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
           Flexible(
@@ -44,12 +46,29 @@ class _CartScreenState extends State<CartScreen> {
               padding: EdgeInsets.only(top: mediaQuery.padding.top),
               child: Column(
                 children: <Widget>[
-                  const SizedBox(height: 25.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        width: mediaQuery.size.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            IconButton(
+                                icon: Icon(Icons.arrow_back_ios),
+                                color: Colors.white,
+                                onPressed: () => Navigator.of(context).pop()),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.only(left: 40.0),
                     child: Row(
                       children: <Widget>[
-                        const Text(
+                        Text(
                           'Your',
                           style: TextStyle(
                             color: Colors.white,
@@ -58,10 +77,10 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         const SizedBox(width: 10.0),
-                        const Text(
+                        Text(
                           'Cart',
                           style: TextStyle(color: Colors.white, fontSize: 25.0),
-                        ),
+                        )
                       ],
                     ),
                   ),
