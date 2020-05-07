@@ -29,13 +29,26 @@ class OrderItem extends StatelessWidget {
               ),
             ],
           ),
+          key: ValueKey(order.id),
           children: <Widget>[
-            Text(
-              'Rs. ${order.total.toString()}',
-            ),
-            Text(
-              'No. of items ${order.items.length}',
-            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Rs. ${order.total.toString()}',
+                      ),
+                      Text(
+                        'No. of items ${order.items.length}',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
