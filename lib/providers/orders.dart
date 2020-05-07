@@ -37,7 +37,7 @@ class Orders with ChangeNotifier {
   }
 
   List<Order> _orderListFromSnapshot(QuerySnapshot querySnapshot) {
-    return querySnapshot.documents
+    List<Order> unorderedList = querySnapshot.documents
         .map((doc) => Order(
               id: doc.documentID,
               dateTime: DateTime.parse(doc.data['dateTime']),
@@ -55,6 +55,14 @@ class Orders with ChangeNotifier {
                   .toList(),
             ))
         .toList();
+
+    unorderedList.sort((a, b) {
+      var aDate = a.dateTime;
+      var bDate = b.dateTime;
+      return bDate.compareTo(aDate);
+    });
+
+    return unorderedList;
   }
 
   Future<DocumentReference> addOrder(
