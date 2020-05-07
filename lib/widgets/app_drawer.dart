@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/auth.dart';
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/screens/orders_screen.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -26,7 +27,10 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.payment),
             title: Text('Orders'),
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context)
+                  .pushReplacementNamed(OrdersScreen.routeName);
+            },
           ),
           Divider(),
           ListTile(
