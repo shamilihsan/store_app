@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:store_app/providers/order.dart';
 import 'package:store_app/providers/orders.dart';
 import 'package:store_app/widgets/app_drawer.dart';
+import 'package:store_app/widgets/order_item.dart';
 
 class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
@@ -71,6 +72,7 @@ class OrdersScreen extends StatelessWidget {
           Flexible(
               flex: 3,
               child: Container(
+                padding: EdgeInsets.only(top: 50),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -97,7 +99,7 @@ class OrdersScreen extends StatelessWidget {
                             builder: (ctx, orderData, child) =>
                                 ListView.builder(
                               itemBuilder: (ctx, i) =>
-                                  Text(orderData.orders[i].id),
+                                  OrderItem(orderData.orders[i]),
                               itemCount: orderData.orders.length,
                             ),
                           );
