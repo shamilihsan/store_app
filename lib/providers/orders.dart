@@ -3,10 +3,44 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/providers/order.dart';
 
 class Orders with ChangeNotifier {
   final CollectionReference orderCollection =
       Firestore.instance.collection('orders');
+
+  List<Order> _orders = [];
+
+  List<Order> get orders {
+    return [..._orders];
+  }
+
+  Future<List<Order>> getOrders() async {
+    var snapshot = await orderCollection.getDocuments();
+
+    return _orderListFromSnapshot(snapshot);
+  }
+
+  List<Order> _orderListFromSnapshot(QuerySnapshot querySnapshot) {
+    return querySnapshot.documents
+        .map((doc) => Order(
+              id: doc.documentID,
+              dateTime: DateTime.parse(doc.data['dateTime']),
+              total: doc.data['total'],
+              items: (doc.data['items'] as List<dynamic>)
+                  .map(
+                    (item) => CartItem(
+                      id: item['id'] ?? '',
+                      price: item['price'],
+                      quantity: item['quantity'],
+                      name: item['name'],
+                      imageUrl: item['imageUrl'] ?? '',
+                    ),
+                  )
+                  .toList(),
+            ))
+        .toList();
+  }
 
   Future<DocumentReference> addOrder(
       List<CartItem> cartItems, int total) async {
