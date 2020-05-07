@@ -33,20 +33,19 @@ class OrderItem extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: <Widget>[
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Rs. ${order.total.toString()}',
-                      ),
-                      Text(
-                        'No. of items ${order.items.length}',
-                      ),
-                    ],
-                  ),
-                ],
+              child: Column(
+                children: order.items
+                    .map((item) => Row(
+                          children: <Widget>[
+                            Text(
+                              'Rs. ${order.total.toString()}',
+                            ),
+                            Text(
+                              'No. of items ${order.items.length}',
+                            ),
+                          ],
+                        ))
+                    .toList(),
               ),
             )
           ],
