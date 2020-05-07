@@ -9,46 +9,52 @@ class OrderItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).copyWith(dividerColor: Colors.transparent);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8),
-        child: ExpansionTile(
-          title: Text(
-            DateFormat('dd-MM-yyyy hh:mm').format(order.dateTime),
-          ),
-          subtitle: Row(
+        child: Theme(
+          data: theme,
+          child: ExpansionTile(
+            title: Text(
+              DateFormat('dd-MM-yyyy hh:mm').format(order.dateTime),
+            ),
+            subtitle: Row(
+              children: <Widget>[
+                Text(
+                  'Rs. ${order.total.toString()}',
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  'No. of items ${order.items.length}',
+                ),
+              ],
+            ),
+            key: ValueKey(order.id),
             children: <Widget>[
-              Text(
-                'Rs. ${order.total.toString()}',
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                'No. of items ${order.items.length}',
-              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  children: order.items
+                      .map((item) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                '${item.name}',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                ' x ${item.quantity}',
+                              ),
+                            ],
+                          ))
+                      .toList(),
+                ),
+              )
             ],
           ),
-          key: ValueKey(order.id),
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: order.items
-                    .map((item) => Row(
-                          children: <Widget>[
-                            Text(
-                              'Rs. ${order.total.toString()}',
-                            ),
-                            Text(
-                              'No. of items ${order.items.length}',
-                            ),
-                          ],
-                        ))
-                    .toList(),
-              ),
-            )
-          ],
         ),
       ),
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
