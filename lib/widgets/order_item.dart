@@ -17,7 +17,7 @@ class OrderItem extends StatelessWidget {
           data: theme,
           child: ExpansionTile(
             title: Text(
-              DateFormat('dd-MM-yyyy hh:mm').format(order.dateTime),
+              DateFormat('dd-MM-yyyy hh:mm aaa').format(order.dateTime),
             ),
             subtitle: Row(
               children: <Widget>[
@@ -51,6 +51,15 @@ class OrderItem extends StatelessWidget {
                             ],
                           ))
                       .toList(),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Center(
+                child: Text(
+                  'Order ID - ${order.id}',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               )
             ],
