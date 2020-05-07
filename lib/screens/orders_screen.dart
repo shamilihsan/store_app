@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/providers/order.dart';
 import 'package:store_app/providers/orders.dart';
@@ -96,13 +97,52 @@ class OrdersScreen extends StatelessWidget {
                           );
                         } else {
                           return Consumer<Orders>(
-                            builder: (ctx, orderData, child) =>
-                                ListView.builder(
-                              itemBuilder: (ctx, i) =>
-                                  OrderItem(orderData.orders[i]),
-                              itemCount: orderData.orders.length,
-                            ),
-                          );
+                              builder: (ctx, orderData, child) {
+                            return orderData.orders.length == 0
+                                ? Column(
+                                    children: <Widget>[
+                                      Flexible(
+                                        flex: 3,
+                                        child: SvgPicture.asset(
+                                          'assets/images/empty_orders.svg',
+                                          placeholderBuilder:
+                                              (BuildContext context) => Center(
+                                                  child:
+                                                      const CircularProgressIndicator()),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          margin: EdgeInsets.only(top: 20),
+                                          width: mediaQuery.size.width,
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Theme.of(context).primaryColor,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft:
+                                                  const Radius.circular(70.0),
+                                              topRight:
+                                                  const Radius.circular(70.0),
+                                            ),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              'Seems like you haven\'t ordered anything.....',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : ListView.builder(
+                                    itemBuilder: (ctx, i) =>
+                                        OrderItem(orderData.orders[i]),
+                                    itemCount: orderData.orders.length,
+                                  );
+                          });
                         }
                       }
                     }),
