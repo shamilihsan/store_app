@@ -13,9 +13,21 @@ class OrderItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: ListTile(
-          title: Text(order.id),
-          subtitle: Text(
-            DateFormat('dd MM yyyy hh:mm').format(order.dateTime),
+          title: Text(
+            DateFormat('dd-MM-yyyy hh:mm').format(order.dateTime),
+          ),
+          subtitle: Row(
+            children: <Widget>[
+              Text(
+                'Rs. ${order.total.toString()}',
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text(
+                'No. of items ${order.items.length}',
+              ),
+            ],
           ),
           trailing: IconButton(
             icon: Icon(Icons.expand_more),
