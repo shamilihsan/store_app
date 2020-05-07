@@ -34,6 +34,15 @@ class OrderItem extends StatelessWidget {
             ),
             key: ValueKey(order.id),
             children: <Widget>[
+              Center(
+                child: Text(
+                  'Order ID - ${order.id}',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
@@ -45,6 +54,7 @@ class OrderItem extends StatelessWidget {
                                 '${item.name}',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
+                              Text('Rs ${item.price}'),
                               Text(
                                 ' x ${item.quantity}',
                               ),
@@ -53,15 +63,6 @@ class OrderItem extends StatelessWidget {
                       .toList(),
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              Center(
-                child: Text(
-                  'Order ID - ${order.id}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              )
             ],
           ),
         ),
