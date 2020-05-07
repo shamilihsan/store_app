@@ -75,10 +75,11 @@ class _CartScreenState extends State<CartScreen> {
                                 icon: Icon(Icons.arrow_back_ios),
                                 color: Colors.white,
                                 onPressed: () => Navigator.of(context).pop()),
-                            if(cart.itemCount != 0) IconButton(
-                                icon: Icon(Icons.remove_shopping_cart),
-                                color: Colors.white,
-                                onPressed: () => cart.clear()),
+                            if (cart.itemCount != 0)
+                              IconButton(
+                                  icon: Icon(Icons.remove_shopping_cart),
+                                  color: Colors.white,
+                                  onPressed: () => cart.clear()),
                           ],
                         ),
                       )
@@ -127,6 +128,7 @@ class _CartScreenState extends State<CartScreen> {
                       flex: 4,
                       child: Container(
                         padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+                        margin: const EdgeInsets.only(bottom: 10.0),
                         child: cart.itemCount == 0
                             ? (SvgPicture.asset('assets/images/empty_cart.svg',
                                 placeholderBuilder: (BuildContext context) =>
@@ -172,80 +174,117 @@ class _CartScreenState extends State<CartScreen> {
                                     ),
                                   ),
                                 )
-                              : Padding(
+                              : Container(
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: const Radius.circular(70.0),
+                                      topRight: const Radius.circular(70.0),
+                                    ),
+                                  ),
                                   padding: const EdgeInsets.only(
                                       left: 20, right: 25),
-                                  child: Row(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Expanded(
-                                        child: Container(
-                                          margin: const EdgeInsets.only(
-                                              right: 10.0),
-                                          child: RaisedButton(
-                                            onPressed: null,
-                                            disabledColor:
-                                                Theme.of(context).primaryColor,
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10),
-                                                  child: Text(
-                                                    'Total : ',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10),
-                                                  child: Text(
-                                                    'Rs. ${cart.totalAmount}',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 15.0),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                      Container(
+                                        width: mediaQuery.size.width - 45,
+                                        child: RaisedButton(
+                                          elevation: 10.0,
+                                          textColor: Colors.white,
+                                          color: Theme.of(context).primaryColor,
+                                          onPressed: () {
+                                            setState(() {
+                                              _isLoading = true;
+                                            });
+                                            Provider.of<Orders>(context,
+                                                    listen: false)
+                                                .addOrder(
+                                                    cart.items.values.toList(),
+                                                    cart.totalAmount)
+                                                .then((_) {
+                                              setState(() {
+                                                _isLoading = false;
+                                              });
+                                              cart.clear();
+                                              showOrderSuccessDialog(context);
+                                            });
+                                          },
+                                          child: Text(
+                                            'Place your Order of Rs. ${cart.totalAmount}',
                                           ),
                                         ),
                                       ),
-                                      RaisedButton(
-                                        textColor: Colors.white,
-                                        color: Theme.of(context).primaryColor,
-                                        onPressed: () {
-                                          setState(() {
-                                            _isLoading = true;
-                                          });
-                                          Provider.of<Orders>(context,
-                                                  listen: false)
-                                              .addOrder(
-                                                  cart.items.values.toList(),
-                                                  cart.totalAmount)
-                                              .then((_) {
-                                            setState(() {
-                                              _isLoading = false;
-                                            });
-                                            cart.clear();
-                                            showOrderSuccessDialog(context);
-                                          });
-                                        },
-                                        child: Text(
-                                          'Order',
-                                        ),
-                                      ),
                                     ],
+                                  )
+                                  // Expanded(
+                                  //   child: Container(
+                                  //     margin: const EdgeInsets.only(
+                                  //         right: 10.0),
+                                  //     child: RaisedButton(
+                                  //       onPressed: null,
+                                  //       disabledColor:
+                                  //           Theme.of(context).primaryColor,
+                                  //       child: Row(
+                                  //         mainAxisAlignment:
+                                  //             MainAxisAlignment
+                                  //                 .spaceBetween,
+                                  //         crossAxisAlignment:
+                                  //             CrossAxisAlignment.center,
+                                  //         children: <Widget>[
+                                  //           Padding(
+                                  //             padding:
+                                  //                 const EdgeInsets.only(
+                                  //                     left: 10),
+                                  //             child: Text(
+                                  //               'Total : ',
+                                  //               style: TextStyle(
+                                  //                   color: Colors.white,
+                                  //                   fontSize: 15.0),
+                                  //             ),
+                                  //           ),
+                                  //           Padding(
+                                  //             padding:
+                                  //                 const EdgeInsets.only(
+                                  //                     right: 10),
+                                  //             child: Text(
+                                  //               'Rs. ${cart.totalAmount}',
+                                  //               style: TextStyle(
+                                  //                   color: Colors.white,
+                                  //                   fontSize: 15.0),
+                                  //             ),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // RaisedButton(
+                                  //   textColor: Colors.white,
+                                  //   color: Theme.of(context).primaryColor,
+                                  //   onPressed: () {
+                                  //     setState(() {
+                                  //       _isLoading = true;
+                                  //     });
+                                  //     Provider.of<Orders>(context,
+                                  //             listen: false)
+                                  //         .addOrder(
+                                  //             cart.items.values.toList(),
+                                  //             cart.totalAmount)
+                                  //         .then((_) {
+                                  //       setState(() {
+                                  //         _isLoading = false;
+                                  //       });
+                                  //       cart.clear();
+                                  //       showOrderSuccessDialog(context);
+                                  //     });
+                                  //   },
+                                  //   child: Text(
+                                  //     'Order',
+                                  //   ),
+                                  // ),
+
                                   ),
-                                ),
                     ),
                   ],
                 ),
