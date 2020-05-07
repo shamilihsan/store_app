@@ -16,20 +16,24 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> getOrders() async {
-    final prefs = await SharedPreferences.getInstance();
-    // Quit function since userId is null
-    if (!prefs.containsKey('userId')) {
-      return;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Quit function since userId is null
+      if (!prefs.containsKey('userId')) {
+        return;
+      }
+
+      final _userId = prefs.getString('userId');
+
+      var snapshot = await orderCollection
+          .where('userId', isEqualTo: _userId)
+          .getDocuments();
+
+      _orders = _orderListFromSnapshot(snapshot);
+      notifyListeners();
+    } catch (error) {
+      throw error;
     }
-
-    final _userId = prefs.getString('userId');
-    print(_userId);
-    var snapshot = await orderCollection
-        .where('userId', isEqualTo: _userId)
-        .getDocuments();
-
-    _orders = _orderListFromSnapshot(snapshot);
-    notifyListeners();
   }
 
   List<Order> _orderListFromSnapshot(QuerySnapshot querySnapshot) {
