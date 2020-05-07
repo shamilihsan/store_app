@@ -12,7 +12,7 @@ class OrderItem extends StatelessWidget {
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(8),
-        child: ListTile(
+        child: ExpansionTile(
           title: Text(
             DateFormat('dd-MM-yyyy hh:mm').format(order.dateTime),
           ),
@@ -29,10 +29,14 @@ class OrderItem extends StatelessWidget {
               ),
             ],
           ),
-          trailing: IconButton(
-            icon: Icon(Icons.expand_more),
-            onPressed: () {},
-          ),
+          children: <Widget>[
+            Text(
+              'Rs. ${order.total.toString()}',
+            ),
+            Text(
+              'No. of items ${order.items.length}',
+            ),
+          ],
         ),
       ),
       margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
