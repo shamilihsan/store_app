@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
                     padding: EdgeInsets.only(left: 40.0),
                     child: Row(
@@ -178,19 +178,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ],
                                 ),
                         ),
-
-                        // Container(
-                        //   width: mediaQuery.size.width,
-                        //   child: RaisedButton(
-                        //     textColor: Colors.white,
-                        //     color: Theme.of(context).primaryColor,
-                        //     onPressed: () => Navigator.of(context)
-                        //         .pushNamed(CartScreen.routeName),
-                        //     child: Text(
-                        //       'Checkout',
-                        //     ),
-                        //   ),
-                        // ),
                       ),
                     )
                   ],
