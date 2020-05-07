@@ -70,32 +70,41 @@ class OrdersScreen extends StatelessWidget {
           ),
           Flexible(
               flex: 3,
-              child: FutureBuilder(
-                  future:
-                      Provider.of<Orders>(context, listen: false).getOrders(),
-                  builder: (ctx, dataSnapshot) {
-                    if (dataSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      if (dataSnapshot.error != null) {
-                        // Error handle
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(75.0),
+                  ),
+                ),
+                child: FutureBuilder(
+                    future:
+                        Provider.of<Orders>(context, listen: false).getOrders(),
+                    builder: (ctx, dataSnapshot) {
+                      if (dataSnapshot.connectionState ==
+                          ConnectionState.waiting) {
                         return Center(
-                          child: Text('Check your connection'),
+                          child: CircularProgressIndicator(),
                         );
                       } else {
-                        return Consumer<Orders>(
-                          builder: (ctx, orderData, child) => ListView.builder(
-                            itemBuilder: (ctx, i) =>
-                                Text(orderData.orders[i].id),
-                            itemCount: orderData.orders.length,
-                          ),
-                        );
+                        if (dataSnapshot.error != null) {
+                          // Error handle
+                          return Center(
+                            child: Text('Check your connection'),
+                          );
+                        } else {
+                          return Consumer<Orders>(
+                            builder: (ctx, orderData, child) =>
+                                ListView.builder(
+                              itemBuilder: (ctx, i) =>
+                                  Text(orderData.orders[i].id),
+                              itemCount: orderData.orders.length,
+                            ),
+                          );
+                        }
                       }
-                    }
-                  }))
+                    }),
+              ))
         ],
       ),
     );
