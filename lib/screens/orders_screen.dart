@@ -103,12 +103,17 @@ class OrdersScreen extends StatelessWidget {
                                     children: <Widget>[
                                       Flexible(
                                         flex: 3,
-                                        child: SvgPicture.asset(
-                                          'assets/images/empty_orders.svg',
-                                          placeholderBuilder:
-                                              (BuildContext context) => Center(
-                                                  child:
-                                                      const CircularProgressIndicator()),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0),
+                                          child: SvgPicture.asset(
+                                            'assets/images/undraw_empty_xct9.svg',
+                                            placeholderBuilder: (BuildContext
+                                                    context) =>
+                                                Center(
+                                                    child:
+                                                        const CircularProgressIndicator()),
+                                          ),
                                         ),
                                       ),
                                       Flexible(
