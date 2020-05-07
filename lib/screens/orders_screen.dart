@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/providers/order.dart';
 import 'package:store_app/providers/orders.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 
-class OrdersScreen extends StatefulWidget {
+class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
-
-  @override
-  _OrdersScreenState createState() => _OrdersScreenState();
-}
-
-class _OrdersScreenState extends State<OrdersScreen> {
-  @override
-  void initState() {
-    Provider.of<Orders>(context, listen: false).getOrders();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,11 +69,33 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ),
           ),
           Flexible(
-            flex: 3,
-            child: Center(
-              child: Text('data'),
-            ),
-          )
+              flex: 3,
+              child: FutureBuilder(
+                  future:
+                      Provider.of<Orders>(context, listen: false).getOrders(),
+                  builder: (ctx, dataSnapshot) {
+                    if (dataSnapshot.connectionState ==
+                        ConnectionState.waiting) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      if (dataSnapshot.error != null) {
+                        // Error handle
+                        return Center(
+                          child: Text('Check your connection'),
+                        );
+                      } else {
+                        return Consumer<Orders>(
+                          builder: (ctx, orderData, child) => ListView.builder(
+                            itemBuilder: (ctx, i) =>
+                                Text(orderData.orders[i].id),
+                            itemCount: orderData.orders.length,
+                          ),
+                        );
+                      }
+                    }
+                  }))
         ],
       ),
     );

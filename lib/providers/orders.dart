@@ -15,10 +15,11 @@ class Orders with ChangeNotifier {
     return [..._orders];
   }
 
-  Future<List<Order>> getOrders() async {
+  Future<void> getOrders() async {
     var snapshot = await orderCollection.getDocuments();
 
-    return _orderListFromSnapshot(snapshot);
+    _orders = _orderListFromSnapshot(snapshot);
+    notifyListeners();
   }
 
   List<Order> _orderListFromSnapshot(QuerySnapshot querySnapshot) {
