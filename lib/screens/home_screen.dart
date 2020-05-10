@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       canvasColor:
                                           Theme.of(context).accentColor),
                                   child: categories == null
-                                      ? CircularProgressIndicator()
+                                      ? Container(
+                                          width: 50,
+                                          child: LinearProgressIndicator())
                                       : DropdownButton<String>(
                                           value: dropdownValue,
                                           icon: Icon(
