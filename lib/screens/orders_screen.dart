@@ -98,7 +98,7 @@ class OrdersScreen extends StatelessWidget {
                         } else {
                           return Consumer<Orders>(
                               builder: (ctx, orderData, child) {
-                            return orderData.orders.length != 0
+                            return orderData.orders.length == 0
                                 ? Column(
                                     children: <Widget>[
                                       Flexible(
