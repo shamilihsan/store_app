@@ -35,10 +35,11 @@ class OrdersScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             IconButton(
-                              icon: Icon(Icons.menu),
+                              icon: Icon(Icons.arrow_back_ios),
                               color: Colors.white,
-                              onPressed: () =>
-                                  _scaffoldKey.currentState.openDrawer(),
+                              onPressed: () => Navigator.of(context).pop(),
+                              // onPressed: () =>
+                              //     _scaffoldKey.currentState.openDrawer(),
                             ),
                           ],
                         ),
@@ -119,7 +120,8 @@ class OrdersScreen extends StatelessWidget {
                                       Flexible(
                                         flex: 1,
                                         child: Container(
-                                          margin: const EdgeInsets.only(top: 20),
+                                          margin:
+                                              const EdgeInsets.only(top: 20),
                                           width: mediaQuery.size.width,
                                           decoration: BoxDecoration(
                                             color:
