@@ -175,6 +175,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ),
                                 )
                               : Container(
+                                  width: mediaQuery.size.width,
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor,
                                     borderRadius: BorderRadius.only(
@@ -188,11 +189,10 @@ class _CartScreenState extends State<CartScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Container(
-                                        width: mediaQuery.size.width - 45,
                                         child: RaisedButton(
                                           elevation: 10.0,
                                           textColor: Colors.white,
-                                          color: Theme.of(context).primaryColor,
+                                          color: Theme.of(context).accentColor,
                                           onPressed: () {
                                             setState(() {
                                               _isLoading = true;

@@ -199,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     RaisedButton(
                                       elevation: 10.0,
-                                      color: Theme.of(context).primaryColor,
+                                      color: Theme.of(context).accentColor,
                                       onPressed: () => Navigator.of(context)
                                           .pushNamed(CartScreen.routeName),
                                       child: Text(
