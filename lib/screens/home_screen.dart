@@ -15,12 +15,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var dropdownValue = 'One';
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final _scaffoldKey = GlobalKey<ScaffoldState>();
-    String dropdownValue = 'One';
-    
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
@@ -61,7 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     color: Theme.of(context).accentColor,
                                   ),
                                   onChanged: (String newValue) {
-                                    print(newValue);
                                     setState(() {
                                       dropdownValue = newValue;
                                     });
@@ -71,10 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           (String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
-                                      child: Text(
-                                        value,
-                                        style: TextStyle(color: Colors.black),
-                                      ),
+                                      child: Text(value),
                                     );
                                   }).toList(),
                                 ),
