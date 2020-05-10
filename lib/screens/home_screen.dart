@@ -16,10 +16,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var dropdownValue = 'One';
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final _scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
       key: _scaffoldKey,
@@ -49,30 +50,35 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Row(
                               children: <Widget>[
-                                DropdownButton<String>(
-                                  value: dropdownValue,
-                                  icon: Icon(
-                                    Icons.filter_list,
-                                    color: Colors.white,
+                                Theme(
+                                  data: Theme.of(context).copyWith(
+                                      canvasColor:
+                                          Theme.of(context).accentColor),
+                                  child: DropdownButton<String>(
+                                    value: dropdownValue,
+                                    icon: Icon(
+                                      Icons.filter_list,
+                                      color: Colors.white,
+                                    ),
+                                    style: TextStyle(color: Colors.white),
+                                    underline: Container(
+                                      height: 2,
+                                      color: Theme.of(context).accentColor,
+                                    ),
+                                    onChanged: (String newValue) {
+                                      setState(() {
+                                        dropdownValue = newValue;
+                                      });
+                                    },
+                                    items: ['One', 'Two', 'Free', 'Four']
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
                                   ),
-                                  style: TextStyle(color: Colors.white),
-                                  underline: Container(
-                                    height: 2,
-                                    color: Theme.of(context).accentColor,
-                                  ),
-                                  onChanged: (String newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue;
-                                    });
-                                  },
-                                  items: ['One', 'Two', 'Free', 'Four']
-                                      .map<DropdownMenuItem<String>>(
-                                          (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
                                 ),
                                 Consumer<Cart>(
                                   builder: (_, cartData, ch) => Badge(
