@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/providers/categories.dart';
 import 'package:store_app/screens/cart_screen.dart';
 
 import 'package:store_app/widgets/app_drawer.dart';
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
+    final categories = Provider.of<List<Category>>(context);
 
     return Scaffold(
       key: _scaffoldKey,

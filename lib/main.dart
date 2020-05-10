@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/auth.dart';
 import 'package:store_app/providers/cart.dart';
+import 'package:store_app/providers/categories.dart';
 import 'package:store_app/providers/items.dart';
 import 'package:store_app/providers/item.dart';
 import 'package:store_app/providers/orders.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         StreamProvider<List<Item>>.value(
           value: Items().items,
+        ),
+        StreamProvider<List<Category>>.value(
+          value: Categories().categories,
         ),
         ChangeNotifierProvider.value(
           value: Cart(),

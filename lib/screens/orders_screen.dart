@@ -119,7 +119,7 @@ class OrdersScreen extends StatelessWidget {
                                       Flexible(
                                         flex: 1,
                                         child: Container(
-                                          margin: EdgeInsets.only(top: 20),
+                                          margin: const EdgeInsets.only(top: 20),
                                           width: mediaQuery.size.width,
                                           decoration: BoxDecoration(
                                             color:

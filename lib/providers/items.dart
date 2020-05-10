@@ -7,7 +7,7 @@ class Items with ChangeNotifier {
   final CollectionReference itemCollection =
       Firestore.instance.collection('items');
 
-  List<Item> _items = [];
+  // List<Item> _items = [];
 
   // List<Item> get items {
   //   return [...items];
