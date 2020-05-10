@@ -16,8 +16,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var dropdownValue = 'One';
+  var dropdownValue = 'All';
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final testCategories = [Category('One'), Category('two'), Category('three')];
 
   @override
   Widget build(BuildContext context) {
@@ -56,31 +57,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                   data: Theme.of(context).copyWith(
                                       canvasColor:
                                           Theme.of(context).accentColor),
-                                  child: DropdownButton<String>(
-                                    value: dropdownValue,
-                                    icon: Icon(
-                                      Icons.filter_list,
-                                      color: Colors.white,
-                                    ),
-                                    style: TextStyle(color: Colors.white),
-                                    underline: Container(
-                                      height: 2,
-                                      color: Theme.of(context).accentColor,
-                                    ),
-                                    onChanged: (String newValue) {
-                                      setState(() {
-                                        dropdownValue = newValue;
-                                      });
-                                    },
-                                    items: ['One', 'Two', 'Free', 'Four']
-                                        .map<DropdownMenuItem<String>>(
-                                            (String value) {
-                                      return DropdownMenuItem<String>(
-                                        value: value,
-                                        child: Text(value),
-                                      );
-                                    }).toList(),
-                                  ),
+                                  child: categories == null
+                                      ? CircularProgressIndicator()
+                                      : DropdownButton<String>(
+                                          value: dropdownValue,
+                                          icon: Icon(
+                                            Icons.filter_list,
+                                            color: Colors.white,
+                                          ),
+                                          style: TextStyle(color: Colors.white),
+                                          underline: Container(
+                                            height: 2,
+                                            color:
+                                                Theme.of(context).accentColor,
+                                          ),
+                                          onChanged: (String newValue) {
+                                            setState(() {
+                                              dropdownValue = newValue;
+                                            });
+                                          },
+                                          items: categories
+                                              .map<DropdownMenuItem<String>>(
+                                                  (value) {
+                                            return DropdownMenuItem<String>(
+                                              key: ValueKey(value),
+                                              value: value.name,
+                                              child: Text(value.name),
+                                            );
+                                          }).toList(),
+                                        ),
                                 ),
                                 Consumer<Cart>(
                                   builder: (_, cartData, ch) => Badge(
