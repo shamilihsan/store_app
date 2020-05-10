@@ -9,7 +9,6 @@ class ItemList extends StatefulWidget {
 }
 
 class _ItemListState extends State<ItemList> {
-  var _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
