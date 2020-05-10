@@ -18,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var dropdownValue = 'All';
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final testCategories = [Category('One'), Category('two'), Category('three')];
 
   @override
   Widget build(BuildContext context) {
