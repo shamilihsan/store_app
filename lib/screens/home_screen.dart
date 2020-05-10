@@ -20,13 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
     final mediaQuery = MediaQuery.of(context);
     final _scaffoldKey = GlobalKey<ScaffoldState>();
     String dropdownValue = 'One';
-
+    
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
-      // appBar: AppBar(
-      //   title: Text('Home'),
-      // ),
       drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
@@ -58,14 +55,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Icons.filter_list,
                                     color: Colors.white,
                                   ),
-                                  iconSize: 24,
-                                  elevation: 16,
                                   style: TextStyle(color: Colors.white),
                                   underline: Container(
                                     height: 2,
                                     color: Theme.of(context).accentColor,
                                   ),
                                   onChanged: (String newValue) {
+                                    print(newValue);
                                     setState(() {
                                       dropdownValue = newValue;
                                     });
