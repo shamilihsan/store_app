@@ -25,6 +25,7 @@ class Items with ChangeNotifier {
         description: doc.data['description'] ?? '',
         price: doc.data['price'] ?? 0,
         imageUrl: doc.data['imageUrl'] ?? null,
+        category: doc.data['category'] ?? '',
       );
     }).toList();
   }

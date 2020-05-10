@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var dropdownValue = 'All';
+  var selectedCategory = 'All';
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           width: 50,
                                           child: LinearProgressIndicator())
                                       : DropdownButton<String>(
-                                          value: dropdownValue,
+                                          value: selectedCategory,
                                           icon: Icon(
                                             Icons.filter_list,
                                             color: Colors.white,
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                           onChanged: (String newValue) {
                                             setState(() {
-                                              dropdownValue = newValue;
+                                              selectedCategory = newValue;
                                             });
                                           },
                                           items: categories
@@ -152,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.only(left: 25.0, right: 20.0),
                         child: Container(
                             margin: const EdgeInsets.only(bottom: 10),
-                            child: ItemList()),
+                            child: ItemList(selectedCategory)),
                       ),
                     ),
                     Flexible(

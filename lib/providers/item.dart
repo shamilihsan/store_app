@@ -6,6 +6,7 @@ class Item with ChangeNotifier {
   final String description;
   final int price;
   final String imageUrl;
+  final String category;
 
   Item({
     @required this.id,
@@ -13,5 +14,6 @@ class Item with ChangeNotifier {
     @required this.description,
     @required this.price,
     @required this.imageUrl,
+    @required this.category
   });
 }
