@@ -1,3 +1,4 @@
+import 'package:store_app/providers/categories.dart';
 import 'package:store_app/providers/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,11 @@ class ItemList extends StatelessWidget {
 
     if (selectedCategory == 'All') {
       filteredItemList = items;
+    } else {
+      filteredItemList = items
+          .where((item) =>
+              item.category.toLowerCase() == selectedCategory.toLowerCase())
+          .toList();
     }
 
     if (items != null) {
@@ -29,7 +35,7 @@ class ItemList extends StatelessWidget {
             value: filteredItemList[index],
             child: ItemListTile(),
           ),
-          itemCount: items.length,
+          itemCount: filteredItemList.length,
         );
       }
     } else {
