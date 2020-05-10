@@ -25,7 +25,7 @@ class ItemList extends StatelessWidget {
 
     if (items != null) {
       if (filteredItemList.length == 0) {
-        return Text('No results');
+        return Center(child: Text('No results'));
       } else {
         return ListView.builder(
           // Set individual providers for each item which can then accessed in the child widget being built on it (i.e. ItemListTile)
