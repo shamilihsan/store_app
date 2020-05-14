@@ -122,9 +122,15 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Text('Drop off Address'),
             Consumer<Users>(
-              builder: (_, userData, ch) => userData.user.name.length != 0
-                  ? Text(userData.user.name)
-                  : Text('empty'),
+              builder: (_, userData, ch) => userData.user.name.length == 0
+                  ? SizedBox(
+                      height: 20, width: 20, child: CircularProgressIndicator())
+                  : userData.user.address.length == 0
+                      ? FlatButton(
+                          child: Text('Add Address'),
+                          onPressed: null,
+                        )
+                      : Text(userData.user.name),
             ),
             RaisedButton(
               elevation: 10.0,
