@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Auth with ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final CollectionReference usersCollection =
+      Firestore.instance.collection('users');
 
   String _userId;
 
@@ -28,11 +31,25 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<void> signUp(String email, String password) async {
+  Future<void> signUp(String email, String password, String name) async {
     try {
       AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = result.user;
+
+      UserUpdateInfo updateInfo = UserUpdateInfo();
+      updateInfo.displayName = name;
+
+      await user.updateProfile(updateInfo);
+      await user.reload();
+
+      FirebaseUser updatedUser = await FirebaseAuth.instance.currentUser();
+
+      await usersCollection.add({
+        'userId': user.uid,
+        'email': user.email,
+        'name': updatedUser.displayName,
+      });
 
       _userId = user.uid;
 
@@ -40,7 +57,9 @@ class Auth with ChangeNotifier {
 
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('userId', _userId);
-    } catch (error) {}
+    } catch (error) {
+      print(error);
+    }
   }
 
   Future<void> autoLogin() async {

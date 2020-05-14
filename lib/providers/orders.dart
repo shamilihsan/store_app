@@ -70,7 +70,7 @@ class Orders with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final _userId = prefs.getString('userId');
 
-    return orderCollection.add({
+    return await orderCollection.add({
       'userId': _userId,
       'total': total,
       'dateTime': DateTime.now().toIso8601String(),

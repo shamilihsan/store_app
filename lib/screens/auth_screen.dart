@@ -99,6 +99,7 @@ class _AuthCardState extends State<AuthCard> {
   Map<String, String> _authData = {
     'email': '',
     'password': '',
+    'name': '',
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
@@ -137,8 +138,8 @@ class _AuthCardState extends State<AuthCard> {
             .login(_authData['email'], _authData['password']);
       } else {
         // Sign user up
-        await Provider.of<Auth>(context, listen: false)
-            .signUp(_authData['email'], _authData['password']);
+        await Provider.of<Auth>(context, listen: false).signUp(
+            _authData['email'], _authData['password'], _authData['name']);
       }
     } catch (error) {
       print(error);
@@ -200,6 +201,21 @@ class _AuthCardState extends State<AuthCard> {
                     _authData['email'] = value;
                   },
                 ),
+                if (_authMode == AuthMode.Signup)
+                  TextFormField(
+                    enabled: _authMode == AuthMode.Signup,
+                    decoration: InputDecoration(labelText: 'Name'),
+                    validator: _authMode == AuthMode.Signup
+                        ? (value) {
+                            if (value.isEmpty) {
+                              return 'Enter your name!';
+                            }
+                          }
+                        : null,
+                    onSaved: (value) {
+                      _authData['name'] = value;
+                    },
+                  ),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Password'),
                   obscureText: true,
