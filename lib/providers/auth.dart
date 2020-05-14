@@ -45,8 +45,7 @@ class Auth with ChangeNotifier {
 
       FirebaseUser updatedUser = await FirebaseAuth.instance.currentUser();
 
-      await usersCollection.add({
-        'userId': user.uid,
+      await usersCollection.document(user.uid).setData({
         'email': user.email,
         'name': updatedUser.displayName,
       });
