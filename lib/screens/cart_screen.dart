@@ -94,7 +94,6 @@ class _CartScreenState extends State<CartScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.only(left: 20.0, right: 25.0),
               margin: const EdgeInsets.only(bottom: 10.0),
               child: Column(
                 children: cart.items.values
@@ -109,74 +108,32 @@ class _CartScreenState extends State<CartScreen> {
                     .toList(),
               ),
             ),
-            Text('Drop off Address')
+            Text('Drop off Address'),
+            RaisedButton(
+              elevation: 10.0,
+              textColor: Colors.white,
+              color: Theme.of(context).accentColor,
+              onPressed: () {
+                setState(() {
+                  _isLoading = true;
+                });
+                Provider.of<Orders>(context, listen: false)
+                    .addOrder(cart.items.values.toList(), cart.totalAmount)
+                    .then((_) {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                  cart.clear();
+                  showOrderSuccessDialog(context);
+                });
+              },
+              child: Text(
+                'Place your Order of Rs. ${cart.totalAmount}',
+              ),
+            ),
           ],
         ),
       ),
-    );
-
-    return Column(
-      children: <Widget>[
-        Container(
-          padding: const EdgeInsets.only(left: 20.0, right: 25.0),
-          margin: const EdgeInsets.only(bottom: 10.0),
-          height: mediaQuery.size.width,
-          child: ListView.builder(
-            itemBuilder: (ctx, index) => cartItem.CartItem(
-              itemId: cart.items.values.toList()[index].id,
-              itemName: cart.items.values.toList()[index].name,
-              quantity: cart.items.values.toList()[index].quantity,
-              price: cart.items.values.toList()[index].price,
-              imageUrl: cart.items.values.toList()[index].imageUrl,
-            ),
-            itemCount: cart.itemCount,
-          ),
-        ),
-        Container(
-          width: mediaQuery.size.width,
-          decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
-            borderRadius: BorderRadius.only(
-              topLeft: const Radius.circular(70.0),
-              topRight: const Radius.circular(70.0),
-            ),
-          ),
-          padding: const EdgeInsets.only(left: 20, right: 25),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                child: RaisedButton(
-                  elevation: 10.0,
-                  textColor: Colors.white,
-                  color: Theme.of(context).accentColor,
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(OrderScreen.routeName);
-                    // setState(() {
-                    //   _isLoading = true;
-                    // });
-                    // Provider.of<Orders>(context,
-                    //         listen: false)
-                    //     .addOrder(
-                    //         cart.items.values.toList(),
-                    //         cart.totalAmount)
-                    //     .then((_) {
-                    //   setState(() {
-                    //     _isLoading = false;
-                    //   });
-                    //   cart.clear();
-                    //   showOrderSuccessDialog(context);
-                    // });
-                  },
-                  child: Text(
-                    'Place your Order of Rs. ${cart.totalAmount}',
-                  ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
     );
   }
 
