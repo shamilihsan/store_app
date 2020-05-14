@@ -12,7 +12,6 @@ import 'package:store_app/providers/user.dart';
 import 'package:store_app/screens/auth_screen.dart';
 import 'package:store_app/screens/cart_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
-import 'package:store_app/screens/order_screen.dart';
 import 'package:store_app/screens/orders_screen.dart';
 import 'package:store_app/screens/splash_screen.dart';
 
@@ -73,7 +72,6 @@ class MyApp extends StatelessWidget {
             HomeScreen.routeName: (ctx) => HomeScreen(),
             CartScreen.routeName: (ctx) => CartScreen(),
             OrdersScreen.routeName: (ctx) => OrdersScreen(),
-            OrderScreen.routeName: (ctx) => OrderScreen(),
           },
         ),
       ),

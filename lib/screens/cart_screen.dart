@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/orders.dart';
 import 'package:store_app/providers/user.dart';
-import 'package:store_app/screens/order_screen.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
 
