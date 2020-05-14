@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/orders.dart';
+import 'package:store_app/providers/user.dart';
 import 'package:store_app/screens/order_screen.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
@@ -16,6 +17,12 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   var _isLoading = false;
+
+  @override
+  void initState() {
+    Provider.of<User>(context, listen: false).getUser();
+    super.initState();
+  }
 
   order(BuildContext context) {}
 
