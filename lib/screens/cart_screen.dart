@@ -86,8 +86,34 @@ class _CartScreenState extends State<CartScreen> {
         ]);
   }
 
-  Widget renderCart(cart, mediaQuery) {
-    print(cart);
+  Widget renderCart(Cart cart, mediaQuery) {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: Column(
+                children: cart.items.values
+                    .toList()
+                    .map((ctItem) => cartItem.CartItem(
+                          itemId: ctItem.id,
+                          itemName: ctItem.name,
+                          quantity: ctItem.quantity,
+                          price: ctItem.price,
+                          imageUrl: ctItem.imageUrl,
+                        ))
+                    .toList(),
+              ),
+            ),
+            Text('Drop off Address')
+          ],
+        ),
+      ),
+    );
 
     return Column(
       children: <Widget>[
