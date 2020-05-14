@@ -205,6 +205,7 @@ class _AuthCardState extends State<AuthCard> {
                   TextFormField(
                     enabled: _authMode == AuthMode.Signup,
                     decoration: InputDecoration(labelText: 'Name'),
+                    textCapitalization: TextCapitalization.words,
                     validator: _authMode == AuthMode.Signup
                         ? (value) {
                             if (value.isEmpty) {
