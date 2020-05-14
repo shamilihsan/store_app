@@ -79,6 +79,8 @@ class Auth with ChangeNotifier {
     _userId = null;
     notifyListeners();
 
+    await FirebaseAuth.instance.signOut();
+
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();
   }
