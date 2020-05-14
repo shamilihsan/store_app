@@ -48,6 +48,112 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
+  Widget renderEmptyCard(mediaQuery) {
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          Flexible(
+            flex: 4,
+            child: Container(
+              padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+              margin: const EdgeInsets.only(bottom: 10.0),
+              child: SvgPicture.asset(
+                'assets/images/empty_cart.svg',
+                placeholderBuilder: (BuildContext context) =>
+                    Center(child: const CircularProgressIndicator()),
+              ),
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: const Radius.circular(75.0),
+                  topRight: const Radius.circular(75.0),
+                ),
+              ),
+              width: mediaQuery.size.width,
+              child: Center(
+                child: Text(
+                  'Seems like your cart is empty.....',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          )
+        ]);
+  }
+
+  Widget renderCart(cart, mediaQuery) {
+    print(cart);
+
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: const EdgeInsets.only(left: 20.0, right: 25.0),
+          margin: const EdgeInsets.only(bottom: 10.0),
+          height: mediaQuery.size.width,
+          child: ListView.builder(
+            itemBuilder: (ctx, index) => cartItem.CartItem(
+              itemId: cart.items.values.toList()[index].id,
+              itemName: cart.items.values.toList()[index].name,
+              quantity: cart.items.values.toList()[index].quantity,
+              price: cart.items.values.toList()[index].price,
+              imageUrl: cart.items.values.toList()[index].imageUrl,
+            ),
+            itemCount: cart.itemCount,
+          ),
+        ),
+        Container(
+          width: mediaQuery.size.width,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(70.0),
+              topRight: const Radius.circular(70.0),
+            ),
+          ),
+          padding: const EdgeInsets.only(left: 20, right: 25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                child: RaisedButton(
+                  elevation: 10.0,
+                  textColor: Colors.white,
+                  color: Theme.of(context).accentColor,
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(OrderScreen.routeName);
+                    // setState(() {
+                    //   _isLoading = true;
+                    // });
+                    // Provider.of<Orders>(context,
+                    //         listen: false)
+                    //     .addOrder(
+                    //         cart.items.values.toList(),
+                    //         cart.totalAmount)
+                    //     .then((_) {
+                    //   setState(() {
+                    //     _isLoading = false;
+                    //   });
+                    //   cart.clear();
+                    //   showOrderSuccessDialog(context);
+                    // });
+                  },
+                  child: Text(
+                    'Place your Order of Rs. ${cart.totalAmount}',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
@@ -122,111 +228,109 @@ class _CartScreenState extends State<CartScreen> {
               ),
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Flexible(
-                      flex: 4,
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 20.0, right: 25.0),
-                        margin: const EdgeInsets.only(bottom: 10.0),
-                        child: cart.itemCount == 0
-                            ? (SvgPicture.asset('assets/images/empty_cart.svg',
-                                placeholderBuilder: (BuildContext context) =>
-                                    Center(
-                                        child:
-                                            const CircularProgressIndicator())))
-                            : ListView.builder(
-                                itemBuilder: (ctx, index) => cartItem.CartItem(
-                                  itemId: cart.items.values.toList()[index].id,
-                                  itemName:
-                                      cart.items.values.toList()[index].name,
-                                  quantity: cart.items.values
-                                      .toList()[index]
-                                      .quantity,
-                                  price:
-                                      cart.items.values.toList()[index].price,
-                                  imageUrl: cart.items.values
-                                      .toList()[index]
-                                      .imageUrl,
-                                ),
-                                itemCount: cart.itemCount,
-                              ),
-                      ),
-                    ),
-                    Flexible(
-                      flex: 1,
-                      child: _isLoading
-                          ? CircularProgressIndicator()
-                          : cart.itemCount == 0
-                              ? Container(
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: const Radius.circular(75.0),
-                                      topRight: const Radius.circular(75.0),
-                                    ),
-                                  ),
-                                  width: mediaQuery.size.width,
-                                  child: Center(
-                                    child: Text(
-                                      'Seems like your cart is empty.....',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                )
-                              : Container(
-                                  width: mediaQuery.size.width,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: const Radius.circular(70.0),
-                                      topRight: const Radius.circular(70.0),
-                                    ),
-                                  ),
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 25),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Container(
-                                        child: RaisedButton(
-                                          elevation: 10.0,
-                                          textColor: Colors.white,
-                                          color: Theme.of(context).accentColor,
-                                          onPressed: () {
-                                            Navigator.of(context).pushNamed(
-                                                OrderScreen.routeName);
-                                            // setState(() {
-                                            //   _isLoading = true;
-                                            // });
-                                            // Provider.of<Orders>(context,
-                                            //         listen: false)
-                                            //     .addOrder(
-                                            //         cart.items.values.toList(),
-                                            //         cart.totalAmount)
-                                            //     .then((_) {
-                                            //   setState(() {
-                                            //     _isLoading = false;
-                                            //   });
-                                            //   cart.clear();
-                                            //   showOrderSuccessDialog(context);
-                                            // });
-                                          },
-                                          child: Text(
-                                            'Place your Order of Rs. ${cart.totalAmount}',
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                    ),
-                  ],
-                ),
+                child: Container(
+                    child: cart.itemCount == 0
+                        ? renderEmptyCard(mediaQuery)
+                        : renderCart(cart, mediaQuery)),
               ),
             ),
           ),
+          // Flexible(
+          //   flex: 3,
+          //   child: Container(
+          //     decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.only(
+          //         topRight: const Radius.circular(75.0),
+          //       ),
+          //     ),
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(top: 20),
+          //       child: Column(
+          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //         children: <Widget>[
+          //           cart.itemCount == 0
+          //               ? (renderEmptyCard(mediaQuery))
+          //               : Flexible(
+          //                   flex: 4,
+          //                   child: Container(
+          //                     padding: const EdgeInsets.only(
+          //                         left: 20.0, right: 25.0),
+          //                     margin: const EdgeInsets.only(bottom: 10.0),
+          //                     child: ListView.builder(
+          //                       itemBuilder: (ctx, index) => cartItem.CartItem(
+          //                         itemId: cart.items.values.toList()[index].id,
+          //                         itemName:
+          //                             cart.items.values.toList()[index].name,
+          //                         quantity: cart.items.values
+          //                             .toList()[index]
+          //                             .quantity,
+          //                         price:
+          //                             cart.items.values.toList()[index].price,
+          //                         imageUrl: cart.items.values
+          //                             .toList()[index]
+          //                             .imageUrl,
+          //                       ),
+          //                       itemCount: cart.itemCount,
+          //                     ),
+          //                   ),
+          //                 ),
+          //           Flexible(
+          //             flex: 1,
+          //             child: _isLoading
+          //                 ? CircularProgressIndicator()
+          //                 : Container(
+          //                     width: mediaQuery.size.width,
+          //                     decoration: BoxDecoration(
+          //                       color: Theme.of(context).primaryColor,
+          //                       borderRadius: BorderRadius.only(
+          //                         topLeft: const Radius.circular(70.0),
+          //                         topRight: const Radius.circular(70.0),
+          //                       ),
+          //                     ),
+          //                     padding:
+          //                         const EdgeInsets.only(left: 20, right: 25),
+          //                     child: Column(
+          //                       mainAxisAlignment: MainAxisAlignment.center,
+          //                       children: <Widget>[
+          //                         Container(
+          //                           child: RaisedButton(
+          //                             elevation: 10.0,
+          //                             textColor: Colors.white,
+          //                             color: Theme.of(context).accentColor,
+          //                             onPressed: () {
+          //                               Navigator.of(context)
+          //                                   .pushNamed(OrderScreen.routeName);
+          //                               // setState(() {
+          //                               //   _isLoading = true;
+          //                               // });
+          //                               // Provider.of<Orders>(context,
+          //                               //         listen: false)
+          //                               //     .addOrder(
+          //                               //         cart.items.values.toList(),
+          //                               //         cart.totalAmount)
+          //                               //     .then((_) {
+          //                               //   setState(() {
+          //                               //     _isLoading = false;
+          //                               //   });
+          //                               //   cart.clear();
+          //                               //   showOrderSuccessDialog(context);
+          //                               // });
+          //                             },
+          //                             child: Text(
+          //                               'Place your Order of Rs. ${cart.totalAmount}',
+          //                             ),
+          //                           ),
+          //                         ),
+          //                       ],
+          //                     ),
+          //                   ),
+          //           ),
+          //         ],
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
