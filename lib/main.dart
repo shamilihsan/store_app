@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           value: Orders(),
         ),
         ChangeNotifierProvider.value(
-          value: User(),
+          value: Users(),
         )
       ],
       child: Consumer<Auth>(

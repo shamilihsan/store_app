@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
-class User with ChangeNotifier {
-  final CollectionReference usersCollection =
-      Firestore.instance.collection('users');
+final CollectionReference usersCollection =
+    Firestore.instance.collection('users');
 
+class User with ChangeNotifier {
   final String userId;
   final String email;
   final String name;
@@ -16,14 +16,17 @@ class User with ChangeNotifier {
       @required this.email,
       @required this.name,
       @required this.address});
+}
 
-  User _user;
+class Users with ChangeNotifier {
+  User _user =
+      User(userId: '', email: '', name: '', address: '');
 
   User get user {
     return _user;
   }
 
-  set user(User user) {
+  set updateUser(User user) {
     _user = user;
     notifyListeners();
   }
@@ -35,6 +38,14 @@ class User with ChangeNotifier {
 
     print(snapshot.data);
 
+    User user = User(
+      name: snapshot.data['name'],
+      email: snapshot.data['email'],
+      userId: firebaseUser.uid,
+      address: snapshot.data['address'] ?? '',
+    );
 
+    _user = user;
+    notifyListeners();
   }
 }

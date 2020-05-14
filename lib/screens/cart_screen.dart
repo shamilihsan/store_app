@@ -17,10 +17,16 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   var _isLoading = false;
+  var _isUserLoading = true;
 
   @override
   void initState() {
-    Provider.of<User>(context, listen: false).getUser();
+    Provider.of<Users>(context, listen: false)
+        .getUser()
+        .then((_) => setState(() {
+              _isUserLoading = false;
+            }));
+
     super.initState();
   }
 
@@ -116,6 +122,11 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
             Text('Drop off Address'),
+            Consumer<Users>(
+              builder: (_, userData, ch) => userData.user.name.length != 0
+                  ? Text(userData.user.name)
+                  : Text('empty'),
+            ),
             RaisedButton(
               elevation: 10.0,
               textColor: Colors.white,
