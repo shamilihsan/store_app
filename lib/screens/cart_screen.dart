@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/orders.dart';
+import 'package:store_app/screens/order_screen.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
 
@@ -194,21 +195,23 @@ class _CartScreenState extends State<CartScreen> {
                                           textColor: Colors.white,
                                           color: Theme.of(context).accentColor,
                                           onPressed: () {
-                                            setState(() {
-                                              _isLoading = true;
-                                            });
-                                            Provider.of<Orders>(context,
-                                                    listen: false)
-                                                .addOrder(
-                                                    cart.items.values.toList(),
-                                                    cart.totalAmount)
-                                                .then((_) {
-                                              setState(() {
-                                                _isLoading = false;
-                                              });
-                                              cart.clear();
-                                              showOrderSuccessDialog(context);
-                                            });
+                                            Navigator.of(context).pushNamed(
+                                                OrderScreen.routeName);
+                                            // setState(() {
+                                            //   _isLoading = true;
+                                            // });
+                                            // Provider.of<Orders>(context,
+                                            //         listen: false)
+                                            //     .addOrder(
+                                            //         cart.items.values.toList(),
+                                            //         cart.totalAmount)
+                                            //     .then((_) {
+                                            //   setState(() {
+                                            //     _isLoading = false;
+                                            //   });
+                                            //   cart.clear();
+                                            //   showOrderSuccessDialog(context);
+                                            // });
                                           },
                                           child: Text(
                                             'Place your Order of Rs. ${cart.totalAmount}',
