@@ -23,8 +23,8 @@ class AuthScreen extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(215, 117, 255, 1).withOpacity(0.5),
-                  Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9),
+                  Color.fromRGBO(33, 150, 243, 1).withOpacity(0.7),
+                  Color.fromRGBO(23, 118, 194, 1).withOpacity(1),
                 ],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -45,7 +45,7 @@ class AuthScreen extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 20.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: Colors.deepOrange.shade900,
+                        color: Theme.of(context).accentColor,
                         boxShadow: [
                           BoxShadow(
                             blurRadius: 8,
@@ -54,15 +54,15 @@ class AuthScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: Padding(
+                      child: Container(
+                        width: deviceSize.width * 0.75,
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Store',
+                          'Logo',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            color:
-                                Theme.of(context).accentTextTheme.title.color,
+                            color: Colors.white,
                             fontSize: 50,
-                            fontFamily: 'Anton',
                             fontWeight: FontWeight.normal,
                           ),
                         ),
