@@ -213,6 +213,7 @@ class _CartScreenState extends State<CartScreen> {
                                             Text(userData.user.name),
                                           ],
                                         ),
+                                        SizedBox(height: 5),
                                         Row(
                                           children: <Widget>[
                                             Text('Address : '),
