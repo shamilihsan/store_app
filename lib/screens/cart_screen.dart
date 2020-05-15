@@ -160,6 +160,18 @@ class _CartScreenState extends State<CartScreen> {
                     .toList(),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Icon(Icons.info, size: 15),
+                SizedBox(width: 5),
+                Text(
+                  'Swipe left on an item to remove it from the cart',
+                  style: TextStyle(fontSize: 10),
+                )
+              ],
+            ),
             Divider(thickness: 2),
             SizedBox(height: 20),
             Text(
