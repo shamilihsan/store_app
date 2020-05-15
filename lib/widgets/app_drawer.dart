@@ -34,7 +34,7 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.payment),
+            leading: Icon(Icons.portrait),
             title: Text('Profile'),
             onTap: () {
               Navigator.of(context).pushNamed(ProfileScreen.routeName);
