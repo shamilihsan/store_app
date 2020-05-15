@@ -29,7 +29,27 @@ class _CartScreenState extends State<CartScreen> {
     super.initState();
   }
 
-  order(BuildContext context) {}
+  showAddressDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Enter your address'),
+        content: Column(
+          children: <Widget>[],
+        ),
+        elevation: 10,
+        actions: <Widget>[
+          FlatButton(
+              onPressed: () {
+                Navigator.of(ctx).pop();
+              },
+              child: Text('Update')),
+        ],
+      ),
+    ).then((_) {
+      //Navigator.of(context).pop();
+    });
+  }
 
   showOrderSuccessDialog(BuildContext context) {
     showDialog(
@@ -126,9 +146,11 @@ class _CartScreenState extends State<CartScreen> {
                   ? SizedBox(
                       height: 20, width: 20, child: CircularProgressIndicator())
                   : userData.user.address.length == 0
-                      ? FlatButton(
+                      ? RaisedButton(
                           child: Text('Add Address'),
-                          onPressed: null,
+                          onPressed: () {
+                            showAddressDialog(context);
+                          },
                         )
                       : Text(userData.user.name),
             ),
@@ -241,102 +263,6 @@ class _CartScreenState extends State<CartScreen> {
               ),
             ),
           ),
-          // Flexible(
-          //   flex: 3,
-          //   child: Container(
-          //     decoration: BoxDecoration(
-          //       color: Colors.white,
-          //       borderRadius: BorderRadius.only(
-          //         topRight: const Radius.circular(75.0),
-          //       ),
-          //     ),
-          //     child: Padding(
-          //       padding: const EdgeInsets.only(top: 20),
-          //       child: Column(
-          //         mainAxisAlignment: MainAxisAlignment.spaceAround,
-          //         children: <Widget>[
-          //           cart.itemCount == 0
-          //               ? (renderEmptyCard(mediaQuery))
-          //               : Flexible(
-          //                   flex: 4,
-          //                   child: Container(
-          //                     padding: const EdgeInsets.only(
-          //                         left: 20.0, right: 25.0),
-          //                     margin: const EdgeInsets.only(bottom: 10.0),
-          //                     child: ListView.builder(
-          //                       itemBuilder: (ctx, index) => cartItem.CartItem(
-          //                         itemId: cart.items.values.toList()[index].id,
-          //                         itemName:
-          //                             cart.items.values.toList()[index].name,
-          //                         quantity: cart.items.values
-          //                             .toList()[index]
-          //                             .quantity,
-          //                         price:
-          //                             cart.items.values.toList()[index].price,
-          //                         imageUrl: cart.items.values
-          //                             .toList()[index]
-          //                             .imageUrl,
-          //                       ),
-          //                       itemCount: cart.itemCount,
-          //                     ),
-          //                   ),
-          //                 ),
-          //           Flexible(
-          //             flex: 1,
-          //             child: _isLoading
-          //                 ? CircularProgressIndicator()
-          //                 : Container(
-          //                     width: mediaQuery.size.width,
-          //                     decoration: BoxDecoration(
-          //                       color: Theme.of(context).primaryColor,
-          //                       borderRadius: BorderRadius.only(
-          //                         topLeft: const Radius.circular(70.0),
-          //                         topRight: const Radius.circular(70.0),
-          //                       ),
-          //                     ),
-          //                     padding:
-          //                         const EdgeInsets.only(left: 20, right: 25),
-          //                     child: Column(
-          //                       mainAxisAlignment: MainAxisAlignment.center,
-          //                       children: <Widget>[
-          //                         Container(
-          //                           child: RaisedButton(
-          //                             elevation: 10.0,
-          //                             textColor: Colors.white,
-          //                             color: Theme.of(context).accentColor,
-          //                             onPressed: () {
-          //                               Navigator.of(context)
-          //                                   .pushNamed(OrderScreen.routeName);
-          //                               // setState(() {
-          //                               //   _isLoading = true;
-          //                               // });
-          //                               // Provider.of<Orders>(context,
-          //                               //         listen: false)
-          //                               //     .addOrder(
-          //                               //         cart.items.values.toList(),
-          //                               //         cart.totalAmount)
-          //                               //     .then((_) {
-          //                               //   setState(() {
-          //                               //     _isLoading = false;
-          //                               //   });
-          //                               //   cart.clear();
-          //                               //   showOrderSuccessDialog(context);
-          //                               // });
-          //                             },
-          //                             child: Text(
-          //                               'Place your Order of Rs. ${cart.totalAmount}',
-          //                             ),
-          //                           ),
-          //                         ),
-          //                       ],
-          //                     ),
-          //                   ),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
         ],
         crossAxisAlignment: CrossAxisAlignment.stretch,
       ),
