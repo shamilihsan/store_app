@@ -160,7 +160,8 @@ class _CartScreenState extends State<CartScreen> {
                     .toList(),
               ),
             ),
-            Divider(thickness: 2,),
+            Divider(thickness: 2),
+            SizedBox(height: 20),
             Text(
               'Drop Off Details',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -221,6 +222,7 @@ class _CartScreenState extends State<CartScreen> {
                 'Place your Order of Rs. ${cart.totalAmount}',
               ),
             ),
+            SizedBox(height: 20),
           ],
         ),
       ),
@@ -237,61 +239,58 @@ class _CartScreenState extends State<CartScreen> {
       drawer: AppDrawer(),
       body: Column(
         children: <Widget>[
-          Flexible(
-            flex: 1,
-            child: Container(
-              padding: EdgeInsets.only(top: mediaQuery.padding.top),
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        width: mediaQuery.size.width,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
+          Container(
+            height: mediaQuery.size.height * 1 / 4,
+            padding: EdgeInsets.only(top: mediaQuery.padding.top),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      width: mediaQuery.size.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(Icons.arrow_back_ios),
+                              color: Colors.white,
+                              onPressed: () => Navigator.of(context).pop()),
+                          if (cart.itemCount != 0)
                             IconButton(
-                                icon: Icon(Icons.arrow_back_ios),
+                                icon: Icon(Icons.remove_shopping_cart),
                                 color: Colors.white,
-                                onPressed: () => Navigator.of(context).pop()),
-                            if (cart.itemCount != 0)
-                              IconButton(
-                                  icon: Icon(Icons.remove_shopping_cart),
-                                  color: Colors.white,
-                                  onPressed: () => cart.clear()),
-                          ],
+                                onPressed: () => cart.clear()),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.only(left: 40.0),
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Your',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25.0,
                         ),
+                      ),
+                      const SizedBox(width: 10.0),
+                      Text(
+                        'Cart',
+                        style: TextStyle(color: Colors.white, fontSize: 25.0),
                       )
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Container(
-                    padding: EdgeInsets.only(left: 40.0),
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Your',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25.0,
-                          ),
-                        ),
-                        const SizedBox(width: 10.0),
-                        Text(
-                          'Cart',
-                          style: TextStyle(color: Colors.white, fontSize: 25.0),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-          Flexible(
-            flex: 3,
+          Expanded(
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
