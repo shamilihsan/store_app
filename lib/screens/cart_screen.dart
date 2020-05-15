@@ -17,6 +17,7 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   var _isLoading = false;
   var _isUserLoading = true;
+  var address = '';
 
   @override
   void initState() {
@@ -35,13 +36,30 @@ class _CartScreenState extends State<CartScreen> {
       builder: (ctx) => AlertDialog(
         title: Text('Enter your address'),
         content: Column(
-          children: <Widget>[],
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextFormField(
+              decoration: InputDecoration(labelText: 'Your Address'),
+              textCapitalization: TextCapitalization.sentences,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Enter your name!';
+                }
+                return null;
+              },
+              onChanged: (value) {
+                address = value;
+              },
+            ),
+          ],
         ),
         elevation: 10,
         actions: <Widget>[
           FlatButton(
               onPressed: () {
-                Navigator.of(ctx).pop();
+                Provider.of<Users>(context, listen: false)
+                    .updateUserInfo(address)
+                    .then((_) => Navigator.of(context).pop());
               },
               child: Text('Update')),
         ],
@@ -147,12 +165,14 @@ class _CartScreenState extends State<CartScreen> {
                       height: 20, width: 20, child: CircularProgressIndicator())
                   : userData.user.address.length == 0
                       ? RaisedButton(
+                          textColor: Colors.white,
+                          color: Theme.of(context).accentColor,
                           child: Text('Add Address'),
                           onPressed: () {
                             showAddressDialog(context);
                           },
                         )
-                      : Text(userData.user.name),
+                      : Text(userData.user.address),
             ),
             RaisedButton(
               elevation: 10.0,

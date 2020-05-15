@@ -19,8 +19,7 @@ class User with ChangeNotifier {
 }
 
 class Users with ChangeNotifier {
-  User _user =
-      User(userId: '', email: '', name: '', address: '');
+  User _user = User(userId: '', email: '', name: '', address: '');
 
   User get user {
     return _user;
@@ -47,5 +46,13 @@ class Users with ChangeNotifier {
 
     _user = user;
     notifyListeners();
+  }
+
+  Future<void> updateUserInfo(String address) async {
+    FirebaseUser firebaseUser = await FirebaseAuth.instance.currentUser();
+
+    await usersCollection
+        .document(firebaseUser.uid)
+        .updateData({'address': address});
   }
 }
