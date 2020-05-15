@@ -226,7 +226,7 @@ class _CartScreenState extends State<CartScreen> {
                     ),
                   ),
                   RaisedButton(
-                    elevation: 10.0,
+                    elevation: 3.0,
                     textColor: Colors.white,
                     color: Theme.of(context).accentColor,
                     onPressed: () {
