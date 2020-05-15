@@ -222,7 +222,8 @@ class _CartScreenState extends State<CartScreen> {
                                         RaisedButton(
                                           textColor: Colors.white,
                                           color: Theme.of(context).accentColor,
-                                          child: Text('Change Address'),
+                                          child: Text('Change Address',
+                                              style: TextStyle(fontSize: 12)),
                                           onPressed: () {
                                             showAddressDialog(context);
                                           },
