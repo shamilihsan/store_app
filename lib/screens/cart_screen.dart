@@ -185,43 +185,51 @@ class _CartScreenState extends State<CartScreen> {
                     child: ListTile(
                       title: Text('Drop Off Details'),
                       subtitle: Consumer<Users>(
-                        builder: (_, userData, ch) =>
-                            userData.user.name.length == 0
-                                ? SizedBox(
-                                    height: 5,
-                                    width: 20,
-                                    child: LinearProgressIndicator())
-                                : userData.user.address.length == 0
-                                    ? RaisedButton(
-                                        textColor: Colors.white,
-                                        color: Theme.of(context).accentColor,
-                                        child: Text('Add Address'),
-                                        onPressed: () {
-                                          showAddressDialog(context);
-                                        },
-                                      )
-                                    : Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                        builder: (_, userData, ch) => userData
+                                    .user.name.length ==
+                                0
+                            ? SizedBox(
+                                height: 5,
+                                width: 20,
+                                child: LinearProgressIndicator())
+                            : userData.user.address.length == 0
+                                ? RaisedButton(
+                                    textColor: Colors.white,
+                                    color: Theme.of(context).accentColor,
+                                    child: Text('Add Address'),
+                                    onPressed: () {
+                                      showAddressDialog(context);
+                                    },
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(top: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Row(
                                           children: <Widget>[
-                                            Row(
-                                              children: <Widget>[
-                                                Text('Name : '),
-                                                Text(userData.user.name),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: <Widget>[
-                                                Text('Address : '),
-                                                Text(userData.user.address),
-                                              ],
-                                            ),
+                                            Text('Name : '),
+                                            Text(userData.user.name),
                                           ],
                                         ),
-                                      ),
+                                        Row(
+                                          children: <Widget>[
+                                            Text('Address : '),
+                                            Text(userData.user.address),
+                                          ],
+                                        ),
+                                        RaisedButton(
+                                          textColor: Colors.white,
+                                          color: Theme.of(context).accentColor,
+                                          child: Text('Change Address'),
+                                          onPressed: () {
+                                            showAddressDialog(context);
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                  ),
                       ),
                     ),
                   ),
