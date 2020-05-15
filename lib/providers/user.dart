@@ -54,5 +54,7 @@ class Users with ChangeNotifier {
     await usersCollection
         .document(firebaseUser.uid)
         .updateData({'address': address});
+
+    getUser();
   }
 }
