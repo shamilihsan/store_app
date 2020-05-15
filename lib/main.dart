@@ -13,6 +13,7 @@ import 'package:store_app/screens/auth_screen.dart';
 import 'package:store_app/screens/cart_screen.dart';
 import 'package:store_app/screens/home_screen.dart';
 import 'package:store_app/screens/orders_screen.dart';
+import 'package:store_app/screens/profile_screen.dart';
 import 'package:store_app/screens/splash_screen.dart';
 
 void main() {
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
             HomeScreen.routeName: (ctx) => HomeScreen(),
             CartScreen.routeName: (ctx) => CartScreen(),
             OrdersScreen.routeName: (ctx) => OrdersScreen(),
+            ProfileScreen.routeName: (ctx) => ProfileScreen(),
           },
         ),
       ),
