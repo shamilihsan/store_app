@@ -164,7 +164,8 @@ class _CartScreenState extends State<CartScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Icon(Icons.info, size: 15),
+                Icon(Icons.info,
+                    size: 15, color: Theme.of(context).primaryColor),
                 SizedBox(width: 5),
                 Text(
                   'Swipe left on an item to remove it from the cart',
@@ -174,64 +175,81 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Divider(thickness: 2),
             SizedBox(height: 20),
-            Text(
-              'Drop Off Details',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Consumer<Users>(
-              builder: (_, userData, ch) => userData.user.name.length == 0
-                  ? SizedBox(
-                      height: 20, width: 20, child: CircularProgressIndicator())
-                  : userData.user.address.length == 0
-                      ? RaisedButton(
-                          textColor: Colors.white,
-                          color: Theme.of(context).accentColor,
-                          child: Text('Add Address'),
-                          onPressed: () {
-                            showAddressDialog(context);
-                          },
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(top: 10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text('Name : '),
-                                  Text(userData.user.name),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text('Address : '),
-                                  Text(userData.user.address),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-            ),
-            RaisedButton(
-              elevation: 10.0,
-              textColor: Colors.white,
-              color: Theme.of(context).accentColor,
-              onPressed: () {
-                setState(() {
-                  _isLoading = true;
-                });
-                Provider.of<Orders>(context, listen: false)
-                    .addOrder(cart.items.values.toList(), cart.totalAmount)
-                    .then((_) {
-                  setState(() {
-                    _isLoading = false;
-                  });
-                  cart.clear();
-                  showOrderSuccessDialog(context);
-                });
-              },
-              child: Text(
-                'Place your Order of Rs. ${cart.totalAmount}',
+            Card(
+              elevation: 5,
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 20),
+                    child: ListTile(
+                      title: Text('Drop Off Details'),
+                      subtitle: Consumer<Users>(
+                        builder: (_, userData, ch) =>
+                            userData.user.name.length == 0
+                                ? SizedBox(
+                                    height: 5,
+                                    width: 20,
+                                    child: LinearProgressIndicator())
+                                : userData.user.address.length == 0
+                                    ? RaisedButton(
+                                        textColor: Colors.white,
+                                        color: Theme.of(context).accentColor,
+                                        child: Text('Add Address'),
+                                        onPressed: () {
+                                          showAddressDialog(context);
+                                        },
+                                      )
+                                    : Padding(
+                                        padding:
+                                            const EdgeInsets.only(top: 10.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Row(
+                                              children: <Widget>[
+                                                Text('Name : '),
+                                                Text(userData.user.name),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: <Widget>[
+                                                Text('Address : '),
+                                                Text(userData.user.address),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                      ),
+                    ),
+                  ),
+                  RaisedButton(
+                    elevation: 10.0,
+                    textColor: Colors.white,
+                    color: Theme.of(context).accentColor,
+                    onPressed: () {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      Provider.of<Orders>(context, listen: false)
+                          .addOrder(
+                              cart.items.values.toList(), cart.totalAmount)
+                          .then((_) {
+                        setState(() {
+                          _isLoading = false;
+                        });
+                        cart.clear();
+                        showOrderSuccessDialog(context);
+                      });
+                    },
+                    child: Text(
+                      'Place your Order of Rs. ${cart.totalAmount}',
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
             ),
             SizedBox(height: 20),
