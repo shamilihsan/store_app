@@ -41,6 +41,8 @@ class _CartScreenState extends State<CartScreen> {
             TextFormField(
               decoration: InputDecoration(labelText: 'Your Address'),
               textCapitalization: TextCapitalization.sentences,
+              maxLines: 3,
+              keyboardType: TextInputType.multiline,
               validator: (value) {
                 if (value.isEmpty) {
                   return 'Enter your name!';
