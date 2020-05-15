@@ -220,6 +220,7 @@ class _CartScreenState extends State<CartScreen> {
                                             Text(userData.user.address),
                                           ],
                                         ),
+                                        SizedBox(height: 10),
                                         RaisedButton(
                                           textColor: Colors.white,
                                           color: Theme.of(context).accentColor,
