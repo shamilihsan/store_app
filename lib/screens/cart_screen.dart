@@ -160,7 +160,11 @@ class _CartScreenState extends State<CartScreen> {
                     .toList(),
               ),
             ),
-            Text('Drop off Address'),
+            Divider(thickness: 2,),
+            Text(
+              'Drop Off Details',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
             Consumer<Users>(
               builder: (_, userData, ch) => userData.user.name.length == 0
                   ? SizedBox(
@@ -174,7 +178,26 @@ class _CartScreenState extends State<CartScreen> {
                             showAddressDialog(context);
                           },
                         )
-                      : Text(userData.user.address),
+                      : Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Text('Name : '),
+                                  Text(userData.user.name),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text('Address : '),
+                                  Text(userData.user.address),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
             ),
             RaisedButton(
               elevation: 10.0,
