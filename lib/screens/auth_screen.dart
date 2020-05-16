@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:store_app/providers/auth.dart';
+import 'package:string_validator/string_validator.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -214,6 +215,8 @@ class _AuthCardState extends State<AuthCard> {
                         ? (value) {
                             if (value.isEmpty) {
                               return 'Enter your name!';
+                            } else if (!isAlpha(value)) {
+                              return 'Invalid Name';
                             }
                           }
                         : null,
