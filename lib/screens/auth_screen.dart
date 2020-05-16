@@ -100,7 +100,7 @@ class _AuthCardState extends State<AuthCard> {
     'email': '',
     'password': '',
     'name': '',
-    'number': '',
+    'contactNumber': '',
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
@@ -140,7 +140,7 @@ class _AuthCardState extends State<AuthCard> {
       } else {
         // Sign user up
         await Provider.of<Auth>(context, listen: false).signUp(
-            _authData['email'], _authData['password'], _authData['name']);
+            _authData['email'], _authData['password'], _authData['name'], _authData['contactNumber']);
       }
     } catch (error) {
       print(error);
@@ -235,7 +235,7 @@ class _AuthCardState extends State<AuthCard> {
                           }
                         : null,
                     onSaved: (value) {
-                      _authData['number'] = value;
+                      _authData['contactNumber'] = value;
                     },
                   ),
                 TextFormField(
