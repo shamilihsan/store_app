@@ -131,11 +131,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                width: mediaQuery.size.width,
-                height: mediaQuery.size.height * 3 / 4 - 50,
-                child: Wrap(children: <Widget>[
-                  _isLoading
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  width: mediaQuery.size.width,
+                  height: mediaQuery.size.height * 3 / 4 - 50,
+                  child: _isLoading
                       ? Center(child: CircularProgressIndicator())
                       : Consumer<Users>(
                           builder: (ctx, userData, child) {
@@ -213,9 +212,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             );
                           },
-                        )
-                ]),
-              ),
+                        )),
             ),
           ],
         ),
