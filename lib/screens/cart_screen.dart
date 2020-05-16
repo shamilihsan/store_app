@@ -109,6 +109,21 @@ class _CartScreenState extends State<CartScreen> {
     });
   }
 
+  void placeOrder(Cart cart) {
+    setState(() {
+      _isLoading = true;
+    });
+    Provider.of<Orders>(context, listen: false)
+        .addOrder(cart.items.values.toList(), cart.totalAmount, context)
+        .then((_) {
+      setState(() {
+        _isLoading = false;
+      });
+      cart.clear();
+      showOrderSuccessDialog(context);
+    });
+  }
+
   Widget renderEmptyCard(mediaQuery) {
     return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -252,29 +267,21 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                   ),
-                  RaisedButton(
-                    elevation: 3.0,
-                    textColor: Colors.white,
-                    color: Theme.of(context).accentColor,
-                    onPressed: () {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                      Provider.of<Orders>(context, listen: false)
-                          .addOrder(
-                              cart.items.values.toList(), cart.totalAmount)
-                          .then((_) {
-                        setState(() {
-                          _isLoading = false;
-                        });
-                        cart.clear();
-                        showOrderSuccessDialog(context);
-                      });
-                    },
-                    child: Text(
-                      'Place your Order of Rs. ${cart.totalAmount}',
-                    ),
-                  ),
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : RaisedButton(
+                          elevation: 3.0,
+                          textColor: Colors.white,
+                          color: Theme.of(context).accentColor,
+                          onPressed:
+                              Provider.of<Users>(context).user.address.length ==
+                                      0
+                                  ? null
+                                  : () => placeOrder(cart),
+                          child: Text(
+                            'Place your Order of Rs. ${cart.totalAmount}',
+                          ),
+                        ),
                   SizedBox(height: 20),
                 ],
               ),
