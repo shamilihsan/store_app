@@ -24,6 +24,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   void initState() {
     Provider.of<Users>(context, listen: false).getUser().then((_) {
       setState(() {
+        _profileData['email'] =
+            Provider.of<Users>(context, listen: false).user.email;
+        _profileData['name'] =
+            Provider.of<Users>(context, listen: false).user.name;
+        _profileData['address'] =
+            Provider.of<Users>(context, listen: false).user.address;
         _isLoading = false;
       });
     });
@@ -35,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // Invalid!
       return null;
     }
+    print(_profileData);
   }
 
   @override
@@ -131,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         return 'Invalid email!';
                                       }
                                     },
-                                    onSaved: (value) {
+                                    onChanged: (value) {
                                       _profileData['email'] = value;
                                     },
                                   ),
@@ -147,7 +154,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         return 'Invalid name!';
                                       }
                                     },
-                                    onSaved: (value) {},
+                                    onChanged: (value) {
+                                      _profileData['name'] = value;
+                                    },
                                   ),
                                   TextFormField(
                                     initialValue: userData.user.address,
@@ -163,7 +172,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       }
                                       return null;
                                     },
-                                    onChanged: (value) {},
+                                    onChanged: (value) {
+                                      _profileData['address'] = value;
+                                    },
                                   ),
                                   SizedBox(height: 20),
                                   Row(
