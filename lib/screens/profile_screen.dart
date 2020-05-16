@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:store_app/providers/user.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 
+import 'package:string_validator/string_validator.dart';
+
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
 
@@ -166,7 +168,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         TextCapitalization.words,
                                     validator: (value) {
                                       if (value.isEmpty) {
-                                        return 'Invalid name!';
+                                        return 'Name field is empty!';
+                                      } else if (!isAlpha(value)) {
+                                        return 'Invalid Name';
                                       }
                                     },
                                     onChanged: (value) {
