@@ -94,7 +94,7 @@ class OrdersScreen extends StatelessWidget {
                         if (dataSnapshot.error != null) {
                           // Error handle
                           return Center(
-                            child: Text('Check your connection'),
+                            child: Text('Something went wrong. Check your connection'),
                           );
                         } else {
                           return Consumer<Orders>(

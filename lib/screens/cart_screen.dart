@@ -15,6 +15,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
   var _isUserLoading = true;
   var address = '';
@@ -35,30 +36,38 @@ class _CartScreenState extends State<CartScreen> {
       context: context,
       builder: (ctx) => AlertDialog(
         title: Text('Enter your address'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            TextFormField(
-              decoration: InputDecoration(labelText: 'Your Address'),
-              textCapitalization: TextCapitalization.sentences,
-              maxLines: 3,
-              keyboardType: TextInputType.multiline,
-              validator: (value) {
-                if (value.isEmpty) {
-                  return 'Enter an address';
-                }
-                return null;
-              },
-              onChanged: (value) {
-                address = value;
-              },
-            ),
-          ],
+        content: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextFormField(
+                decoration: InputDecoration(labelText: 'Your Address'),
+                textCapitalization: TextCapitalization.sentences,
+                maxLines: 3,
+                keyboardType: TextInputType.multiline,
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter an address';
+                  }
+                  return null;
+                },
+                onChanged: (value) {
+                  address = value;
+                },
+              ),
+            ],
+          ),
         ),
         elevation: 10,
         actions: <Widget>[
           FlatButton(
               onPressed: () {
+                if (!_formKey.currentState.validate()) {
+                  // Invalid!
+                  return null;
+                }
+                _formKey.currentState.save();
                 Provider.of<Users>(context, listen: false)
                     .updateAddres(address)
                     .then((_) => Navigator.of(context).pop());
