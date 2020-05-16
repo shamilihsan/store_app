@@ -3,21 +3,35 @@ import 'package:provider/provider.dart';
 import 'package:store_app/providers/user.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   static const routeName = '/profile';
 
-  Map<String, String> _profileData = {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final Map<String, String> _profileData = {
     'email': '',
     'name': '',
     'address': '',
   };
 
-  submitProfile() {}
+  var _isLoading = true;
+
+  @override
+  void initState() {
+    Provider.of<Users>(context, listen: false).getUser().then((_) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final GlobalKey<FormState> _formKey = GlobalKey();
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -90,29 +104,11 @@ class ProfileScreen extends StatelessWidget {
                 width: mediaQuery.size.width,
                 height: mediaQuery.size.height * 3 / 4 - 50,
                 child: Wrap(children: <Widget>[
-                  FutureBuilder(
-                    future:
-                        Provider.of<Users>(context, listen: false).getUser(),
-                    builder: (ctx, userSnapshot) {
-                      //print('userSnapshot$userSnapshot');
-                      if (userSnapshot.connectionState ==
-                          ConnectionState.waiting) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      if (userSnapshot.error != null) {
-                        return Center(
-                          child: Text(
-                              'Something went wrong. Check your connection'),
-                        );
-                      }
-                      return Consumer<Users>(
-                        builder: (ctx, userData, child) {
-                          print(userData.user);
-                          return Form(
-                            key: _formKey,
-                            child: Column(
+                  _isLoading
+                      ? Center(child: CircularProgressIndicator())
+                      : Consumer<Users>(
+                          builder: (ctx, userData, child) {
+                            return Column(
                               children: <Widget>[
                                 TextFormField(
                                   initialValue: userData.user.email,
@@ -165,9 +161,7 @@ class ProfileScreen extends StatelessWidget {
                                       elevation: 3.0,
                                       textColor: Colors.white,
                                       color: Theme.of(context).accentColor,
-                                      onPressed: () {
-                                        submitProfile();
-                                      },
+                                      onPressed: () {},
                                       child: Text(
                                         'Update Profile',
                                       ),
@@ -175,12 +169,9 @@ class ProfileScreen extends StatelessWidget {
                                   ],
                                 )
                               ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
+                            );
+                          },
+                        )
                 ]),
               ),
             ),
