@@ -100,6 +100,7 @@ class _AuthCardState extends State<AuthCard> {
     'email': '',
     'password': '',
     'name': '',
+    'contactNumber': '',
   };
   var _isLoading = false;
   final _passwordController = TextEditingController();
@@ -139,7 +140,7 @@ class _AuthCardState extends State<AuthCard> {
       } else {
         // Sign user up
         await Provider.of<Auth>(context, listen: false).signUp(
-            _authData['email'], _authData['password'], _authData['name']);
+            _authData['email'], _authData['password'], _authData['name'], _authData['contactNumber']);
       }
     } catch (error) {
       print(error);
@@ -215,6 +216,26 @@ class _AuthCardState extends State<AuthCard> {
                         : null,
                     onSaved: (value) {
                       _authData['name'] = value;
+                    },
+                  ),
+                if (_authMode == AuthMode.Signup)
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    enabled: _authMode == AuthMode.Signup,
+                    decoration: InputDecoration(labelText: 'Phone Number'),
+                    textCapitalization: TextCapitalization.words,
+                    validator: _authMode == AuthMode.Signup
+                        ? (value) {
+                            if (value.isEmpty) {
+                              return 'Enter a phone number!';
+                            } else if (!RegExp('^(?:[+0]9)?[0-9]{10}')
+                                .hasMatch(value)) {
+                              return 'Enter valid phone number';
+                            }
+                          }
+                        : null,
+                    onSaved: (value) {
+                      _authData['contactNumber'] = value;
                     },
                   ),
                 TextFormField(
