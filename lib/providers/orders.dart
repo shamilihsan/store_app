@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:store_app/providers/cart.dart';
 import 'package:store_app/providers/order.dart';
+import 'package:store_app/providers/user.dart';
 
 class Orders with ChangeNotifier {
   final CollectionReference orderCollection =
@@ -66,9 +69,11 @@ class Orders with ChangeNotifier {
   }
 
   Future<DocumentReference> addOrder(
-      List<CartItem> cartItems, int total) async {
+      List<CartItem> cartItems, int total, BuildContext context) async {
     final prefs = await SharedPreferences.getInstance();
     final _userId = prefs.getString('userId');
+
+    User user = Provider.of<Users>(context, listen: false).user;
 
     return await orderCollection.add({
       'userId': _userId,
@@ -82,6 +87,9 @@ class Orders with ChangeNotifier {
                 'price': cartItem.price,
               })
           .toList(),
+      'dropAddress': user.address,
+      'userName': user.name,
+      'contactNumber': user.contactNumber
     });
   }
 }

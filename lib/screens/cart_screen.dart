@@ -7,6 +7,7 @@ import 'package:store_app/providers/orders.dart';
 import 'package:store_app/providers/user.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
+import 'package:store_app/widgets/orderDialog.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
@@ -15,69 +16,20 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
-  var _isUserLoading = true;
-  var address = '';
 
   @override
   void initState() {
-    Provider.of<Users>(context, listen: false)
-        .getUser()
-        .then((_) => setState(() {
-              _isUserLoading = false;
-            }));
+    Provider.of<Users>(context, listen: false).getUser();
 
     super.initState();
   }
 
   showAddressDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('Enter your address'),
-        content: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Your Address'),
-                textCapitalization: TextCapitalization.sentences,
-                maxLines: 3,
-                keyboardType: TextInputType.multiline,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter an address';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  address = value;
-                },
-              ),
-            ],
-          ),
-        ),
-        elevation: 10,
-        actions: <Widget>[
-          FlatButton(
-              onPressed: () {
-                if (!_formKey.currentState.validate()) {
-                  // Invalid!
-                  return null;
-                }
-                _formKey.currentState.save();
-                Provider.of<Users>(context, listen: false)
-                    .updateAddress(address)
-                    .then((_) => Navigator.of(context).pop());
-              },
-              child: Text('Update')),
-        ],
-      ),
-    ).then((_) {
-      //Navigator.of(context).pop();
-    });
+        barrierDismissible: false,
+        context: context,
+        builder: (ctx) => OrderDialog());
   }
 
   showOrderSuccessDialog(BuildContext context) {
@@ -106,6 +58,21 @@ class _CartScreenState extends State<CartScreen> {
       ),
     ).then((_) {
       Navigator.of(context).pop();
+    });
+  }
+
+  void placeOrder(Cart cart) {
+    setState(() {
+      _isLoading = true;
+    });
+    Provider.of<Orders>(context, listen: false)
+        .addOrder(cart.items.values.toList(), cart.totalAmount, context)
+        .then((_) {
+      setState(() {
+        _isLoading = false;
+      });
+      cart.clear();
+      showOrderSuccessDialog(context);
     });
   }
 
@@ -229,6 +196,13 @@ class _CartScreenState extends State<CartScreen> {
                                             Text(userData.user.address),
                                           ],
                                         ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: <Widget>[
+                                            Text('Contact Number : '),
+                                            Text(userData.user.contactNumber),
+                                          ],
+                                        ),
                                         SizedBox(height: 10),
                                         RaisedButton(
                                           textColor: Colors.white,
@@ -245,29 +219,21 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ),
                   ),
-                  RaisedButton(
-                    elevation: 3.0,
-                    textColor: Colors.white,
-                    color: Theme.of(context).accentColor,
-                    onPressed: () {
-                      setState(() {
-                        _isLoading = true;
-                      });
-                      Provider.of<Orders>(context, listen: false)
-                          .addOrder(
-                              cart.items.values.toList(), cart.totalAmount)
-                          .then((_) {
-                        setState(() {
-                          _isLoading = false;
-                        });
-                        cart.clear();
-                        showOrderSuccessDialog(context);
-                      });
-                    },
-                    child: Text(
-                      'Place your Order of Rs. ${cart.totalAmount}',
-                    ),
-                  ),
+                  _isLoading
+                      ? CircularProgressIndicator()
+                      : RaisedButton(
+                          elevation: 3.0,
+                          textColor: Colors.white,
+                          color: Theme.of(context).accentColor,
+                          onPressed:
+                              Provider.of<Users>(context).user.address.length ==
+                                      0
+                                  ? null
+                                  : () => placeOrder(cart),
+                          child: Text(
+                            'Place your Order of Rs. ${cart.totalAmount}',
+                          ),
+                        ),
                   SizedBox(height: 20),
                 ],
               ),

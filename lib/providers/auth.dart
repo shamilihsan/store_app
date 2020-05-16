@@ -31,7 +31,8 @@ class Auth with ChangeNotifier {
     }
   }
 
-  Future<void> signUp(String email, String password, String name) async {
+  Future<void> signUp(
+      String email, String password, String name, String contactNumber) async {
     try {
       AuthResult result = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
@@ -48,6 +49,7 @@ class Auth with ChangeNotifier {
       await usersCollection.document(user.uid).setData({
         'email': user.email,
         'name': updatedUser.displayName,
+        'contactNumber': contactNumber,
       });
 
       _userId = user.uid;
