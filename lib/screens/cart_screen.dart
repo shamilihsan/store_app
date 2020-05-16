@@ -60,7 +60,7 @@ class _CartScreenState extends State<CartScreen> {
           FlatButton(
               onPressed: () {
                 Provider.of<Users>(context, listen: false)
-                    .updateUserInfo(address)
+                    .updateAddres(address)
                     .then((_) => Navigator.of(context).pop());
               },
               child: Text('Update')),

@@ -48,7 +48,7 @@ class Users with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> updateUserInfo(String address) async {
+  Future<void> updateAddres(String address) async {
     FirebaseUser firebaseUser = await FirebaseAuth.instance.currentUser();
 
     await usersCollection
