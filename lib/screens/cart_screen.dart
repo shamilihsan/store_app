@@ -7,6 +7,7 @@ import 'package:store_app/providers/orders.dart';
 import 'package:store_app/providers/user.dart';
 import 'package:store_app/widgets/app_drawer.dart';
 import 'package:store_app/widgets/cart_item.dart' as cartItem;
+import 'package:store_app/widgets/orderDialog.dart';
 
 class CartScreen extends StatefulWidget {
   static const routeName = '/cart';
@@ -15,69 +16,20 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey();
   var _isLoading = false;
-  var _isUserLoading = true;
-  var address = '';
 
   @override
   void initState() {
-    Provider.of<Users>(context, listen: false)
-        .getUser()
-        .then((_) => setState(() {
-              _isUserLoading = false;
-            }));
+    Provider.of<Users>(context, listen: false).getUser();
 
     super.initState();
   }
 
   showAddressDialog(BuildContext context) {
     showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('Enter your address'),
-        content: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Your Address'),
-                textCapitalization: TextCapitalization.sentences,
-                maxLines: 3,
-                keyboardType: TextInputType.multiline,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Enter an address';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  address = value;
-                },
-              ),
-            ],
-          ),
-        ),
-        elevation: 10,
-        actions: <Widget>[
-          FlatButton(
-              onPressed: () {
-                if (!_formKey.currentState.validate()) {
-                  // Invalid!
-                  return null;
-                }
-                _formKey.currentState.save();
-                Provider.of<Users>(context, listen: false)
-                    .updateAddress(address)
-                    .then((_) => Navigator.of(context).pop());
-              },
-              child: Text('Update')),
-        ],
-      ),
-    ).then((_) {
-      //Navigator.of(context).pop();
-    });
+        barrierDismissible: false,
+        context: context,
+        builder: (ctx) => OrderDialog());
   }
 
   showOrderSuccessDialog(BuildContext context) {
