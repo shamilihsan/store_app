@@ -35,8 +35,6 @@ class Users with ChangeNotifier {
 
     var snapshot = await usersCollection.document(firebaseUser.uid).get();
 
-    print(snapshot.data);
-
     User user = User(
       name: snapshot.data['name'],
       email: snapshot.data['email'],

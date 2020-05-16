@@ -107,69 +107,77 @@ class ProfileScreen extends StatelessWidget {
                               'Something went wrong. Check your connection'),
                         );
                       }
-                      return Form(
-                        key: _formKey,
-                        child: Column(
-                          children: <Widget>[
-                            TextFormField(
-                              initialValue: _profileData['email'],
-                              decoration: InputDecoration(labelText: 'E-Mail'),
-                              keyboardType: TextInputType.emailAddress,
-                              validator: (value) {
-                                if (value.isEmpty || !value.contains('@')) {
-                                  return 'Invalid email!';
-                                }
-                              },
-                              onSaved: (value) {
-                                _profileData['email'] = value;
-                              },
-                            ),
-                            TextFormField(
-                              initialValue: _profileData['name'],
-                              decoration: InputDecoration(labelText: 'Name'),
-                              keyboardType: TextInputType.text,
-                              textCapitalization: TextCapitalization.words,
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Invalid name!';
-                                }
-                              },
-                              onSaved: (value) {},
-                            ),
-                            TextFormField(
-                              initialValue: _profileData['address'],
-                              decoration:
-                                  InputDecoration(labelText: 'Your Address'),
-                              textCapitalization: TextCapitalization.sentences,
-                              maxLines: 3,
-                              keyboardType: TextInputType.multiline,
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return 'Enter an address!';
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {},
-                            ),
-                            SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      return Consumer<Users>(
+                        builder: (ctx, userData, child) {
+                          print(userData.user);
+                          return Form(
+                            key: _formKey,
+                            child: Column(
                               children: <Widget>[
-                                RaisedButton(
-                                  elevation: 3.0,
-                                  textColor: Colors.white,
-                                  color: Theme.of(context).accentColor,
-                                  onPressed: () {
-                                    submitProfile();
+                                TextFormField(
+                                  initialValue: userData.user.email,
+                                  decoration:
+                                      InputDecoration(labelText: 'E-Mail'),
+                                  keyboardType: TextInputType.emailAddress,
+                                  validator: (value) {
+                                    if (value.isEmpty || !value.contains('@')) {
+                                      return 'Invalid email!';
+                                    }
                                   },
-                                  child: Text(
-                                    'Update Profile',
-                                  ),
+                                  onSaved: (value) {
+                                    _profileData['email'] = value;
+                                  },
                                 ),
+                                TextFormField(
+                                  initialValue: userData.user.name,
+                                  decoration:
+                                      InputDecoration(labelText: 'Name'),
+                                  keyboardType: TextInputType.text,
+                                  textCapitalization: TextCapitalization.words,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Invalid name!';
+                                    }
+                                  },
+                                  onSaved: (value) {},
+                                ),
+                                TextFormField(
+                                  initialValue: userData.user.address,
+                                  decoration: InputDecoration(
+                                      labelText: 'Your Address'),
+                                  textCapitalization:
+                                      TextCapitalization.sentences,
+                                  maxLines: 3,
+                                  keyboardType: TextInputType.multiline,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Enter an address!';
+                                    }
+                                    return null;
+                                  },
+                                  onChanged: (value) {},
+                                ),
+                                SizedBox(height: 20),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    RaisedButton(
+                                      elevation: 3.0,
+                                      textColor: Colors.white,
+                                      color: Theme.of(context).accentColor,
+                                      onPressed: () {
+                                        submitProfile();
+                                      },
+                                      child: Text(
+                                        'Update Profile',
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ],
-                            )
-                          ],
-                        ),
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
