@@ -77,8 +77,7 @@ class ProfileScreen extends StatelessWidget {
                 width: mediaQuery.size.width,
                 height: mediaQuery.size.height * 3 / 4 - 50,
                 child: Wrap(children: <Widget>[
-                  ListView(
-                    shrinkWrap: true,
+                  Column(
                     children: <Widget>[
                       TextFormField(
                         decoration: InputDecoration(labelText: 'E-Mail'),
