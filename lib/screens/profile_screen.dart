@@ -41,7 +41,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // Invalid!
       return null;
     }
-    print(_profileData);
+    setState(() {
+      _isLoading = true;
+    });
+    Provider.of<Users>(context, listen: false)
+        .updateProfile(_profileData['email'], _profileData['name'],
+            _profileData['address'])
+        .then((_) {
+      setState(() {
+        _profileData['email'] =
+            Provider.of<Users>(context, listen: false).user.email;
+        _profileData['name'] =
+            Provider.of<Users>(context, listen: false).user.name;
+        _profileData['address'] =
+            Provider.of<Users>(context, listen: false).user.address;
+        _isLoading = false;
+      });
+    });
   }
 
   @override

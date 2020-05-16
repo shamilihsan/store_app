@@ -69,7 +69,7 @@ class _CartScreenState extends State<CartScreen> {
                 }
                 _formKey.currentState.save();
                 Provider.of<Users>(context, listen: false)
-                    .updateAddres(address)
+                    .updateAddress(address)
                     .then((_) => Navigator.of(context).pop());
               },
               child: Text('Update')),
