@@ -229,6 +229,13 @@ class _CartScreenState extends State<CartScreen> {
                                             Text(userData.user.address),
                                           ],
                                         ),
+                                        SizedBox(height: 5),
+                                        Row(
+                                          children: <Widget>[
+                                            Text('Contact Number : '),
+                                            Text(userData.user.contactNumber),
+                                          ],
+                                        ),
                                         SizedBox(height: 10),
                                         RaisedButton(
                                           textColor: Colors.white,

@@ -10,16 +10,19 @@ class User with ChangeNotifier {
   final String email;
   final String name;
   final String address;
+  final String contactNumber;
 
   User(
       {@required this.userId,
       @required this.email,
       @required this.name,
-      @required this.address});
+      @required this.address,
+      @required this.contactNumber});
 }
 
 class Users with ChangeNotifier {
-  User _user = User(userId: '', email: '', name: '', address: '');
+  User _user =
+      User(userId: '', email: '', name: '', address: '', contactNumber: '');
 
   User get user {
     return _user;
@@ -40,6 +43,7 @@ class Users with ChangeNotifier {
       email: snapshot.data['email'],
       userId: firebaseUser.uid,
       address: snapshot.data['address'] ?? '',
+      contactNumber: snapshot.data['contactNumber'],
     );
 
     _user = user;
