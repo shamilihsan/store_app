@@ -46,23 +46,28 @@ class _OrderDialogState extends State<OrderDialog> {
             elevation: 10,
             actions: <Widget>[
               FlatButton(
-                  onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      // Invalid!
-                      return null;
-                    }
-                    setState(() {
-                      _isUpdating = true;
-                      _formKey.currentState.save();
-                      Provider.of<Users>(context, listen: false)
-                          .updateAddress(address)
-                          .then((_) {
-                        _isUpdating = false;
-                        Navigator.of(context).pop();
-                      });
+                onPressed: () {
+                  if (!_formKey.currentState.validate()) {
+                    // Invalid!
+                    return null;
+                  }
+                  setState(() {
+                    _isUpdating = true;
+                    _formKey.currentState.save();
+                    Provider.of<Users>(context, listen: false)
+                        .updateAddress(address)
+                        .then((_) {
+                      _isUpdating = false;
+                      Navigator.of(context).pop();
                     });
-                  },
-                  child: Text('Update')),
+                  });
+                },
+                child: Text('Update'),
+              ),
+              FlatButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('Cancel'),
+              ),
             ],
           );
   }
