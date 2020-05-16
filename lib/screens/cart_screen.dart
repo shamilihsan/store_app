@@ -45,7 +45,7 @@ class _CartScreenState extends State<CartScreen> {
               keyboardType: TextInputType.multiline,
               validator: (value) {
                 if (value.isEmpty) {
-                  return 'Enter your name!';
+                  return 'Enter an address';
                 }
                 return null;
               },
