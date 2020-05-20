@@ -189,11 +189,13 @@ class _AuthCardState extends State<AuthCard> {
     if (_authMode == AuthMode.Login) {
       setState(() {
         _formKey.currentState.reset();
+        _passwordController.clear();
         _authMode = AuthMode.Signup;
       });
     } else {
       setState(() {
         _formKey.currentState.reset();
+        _passwordController.clear();
         _authMode = AuthMode.Login;
       });
     }
