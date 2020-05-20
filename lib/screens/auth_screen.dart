@@ -106,7 +106,7 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
-  void _showErrorDialog(String message) {
+  void _showErrorDialog(String message, BuildContext context) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -124,7 +124,7 @@ class _AuthCardState extends State<AuthCard> {
     );
   }
 
-  Future<String> _submit() async {
+  Future<String> _submit(BuildContext context) async {
     if (!_formKey.currentState.validate()) {
       // Invalid!
       return null;
@@ -155,7 +155,7 @@ class _AuthCardState extends State<AuthCard> {
       } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
         errorMessage = 'Way too many failed login attempts. Try again later!';
       }
-      _showErrorDialog(errorMessage);
+      _showErrorDialog(errorMessage, context);
 
       setState(() {
         _isLoading = false;
@@ -279,7 +279,7 @@ class _AuthCardState extends State<AuthCard> {
                   RaisedButton(
                     child:
                         Text(_authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP'),
-                    onPressed: _submit,
+                    onPressed: () => _submit(context),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
