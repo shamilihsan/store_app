@@ -164,7 +164,8 @@ class _AuthCardState extends State<AuthCard> {
           break;
 
         case 'ERROR_EMAIL_ALREADY_IN_USE':
-          errorMessage = 'The email address is already in use by another account';
+          errorMessage =
+              'The email address is already in use by another account';
           break;
 
         default:
@@ -177,6 +178,7 @@ class _AuthCardState extends State<AuthCard> {
 
       setState(() {
         _isLoading = false;
+        _formKey.currentState.reset();
       });
     }
   }
@@ -184,10 +186,12 @@ class _AuthCardState extends State<AuthCard> {
   void _switchAuthMode() {
     if (_authMode == AuthMode.Login) {
       setState(() {
+        _formKey.currentState.reset();
         _authMode = AuthMode.Signup;
       });
     } else {
       setState(() {
+        _formKey.currentState.reset();
         _authMode = AuthMode.Login;
       });
     }
