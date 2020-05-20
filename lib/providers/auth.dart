@@ -59,7 +59,7 @@ class Auth with ChangeNotifier {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('userId', _userId);
     } catch (error) {
-      print(error);
+      throw error;
     }
   }
 

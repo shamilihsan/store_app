@@ -147,17 +147,37 @@ class _AuthCardState extends State<AuthCard> {
             _authData['contactNumber']);
       }
     } catch (error) {
+      print('The error');
       print(error);
-      var errorMessage =
-          'Oops. Something\'s wrong. Check your internet connection or try again later!';
+      var errorMessage;
 
-      if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
-        errorMessage = 'Seems like you entered a wrong password!';
-      } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
-        errorMessage = 'Way too many failed login attempts. Try again later!';
-      } else if (error.toString().contains('ERROR_USER_NOT_FOUND')) {
-        errorMessage = 'There is no account with this email!';
+      switch (error.code) {
+        case 'ERROR_WRONG_PASSWORD':
+          errorMessage = 'Seems like you entered a wrong password!';
+          break;
+
+        case 'ERROR_TOO_MANY_REQUESTS':
+          errorMessage = 'Way too many failed login attempts. Try again later!';
+          break;
+
+        case 'ERROR_USER_NOT_FOUND':
+          errorMessage = 'There is no account with this email!';
+          break;
+
+        default:
+          {
+            errorMessage =
+                'Oops. Something\'s wrong. Check your internet connection or try again later!';
+          }
       }
+
+      // if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
+      //   errorMessage = 'Seems like you entered a wrong password!';
+      // } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
+      //   errorMessage = 'Way too many failed login attempts. Try again later!';
+      // } else if (error.toString().contains('ERROR_USER_NOT_FOUND')) {
+      //   errorMessage = 'There is no account with this email!';
+      // }
       _showErrorDialog(errorMessage, context);
 
       setState(() {
