@@ -147,8 +147,7 @@ class _AuthCardState extends State<AuthCard> {
             _authData['contactNumber']);
       }
     } catch (error) {
-      print('The error');
-      print(error);
+      print(error.code);
       var errorMessage;
 
       switch (error.code) {
@@ -164,20 +163,16 @@ class _AuthCardState extends State<AuthCard> {
           errorMessage = 'There is no account with this email!';
           break;
 
+        case 'ERROR_EMAIL_ALREADY_IN_USE':
+          errorMessage = 'The email address is already in use by another account';
+          break;
+
         default:
           {
             errorMessage =
                 'Oops. Something\'s wrong. Check your internet connection or try again later!';
           }
       }
-
-      // if (error.toString().contains('ERROR_WRONG_PASSWORD')) {
-      //   errorMessage = 'Seems like you entered a wrong password!';
-      // } else if (error.toString().contains('ERROR_TOO_MANY_REQUESTS')) {
-      //   errorMessage = 'Way too many failed login attempts. Try again later!';
-      // } else if (error.toString().contains('ERROR_USER_NOT_FOUND')) {
-      //   errorMessage = 'There is no account with this email!';
-      // }
       _showErrorDialog(errorMessage, context);
 
       setState(() {
