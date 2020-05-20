@@ -106,6 +106,7 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
+
   void _showErrorDialog(String message, BuildContext context) {
     showDialog(
       context: context,
@@ -179,6 +180,7 @@ class _AuthCardState extends State<AuthCard> {
       setState(() {
         _isLoading = false;
         _formKey.currentState.reset();
+        _passwordController.clear();
       });
     }
   }
