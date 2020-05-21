@@ -106,7 +106,6 @@ class _AuthCardState extends State<AuthCard> {
   var _isLoading = false;
   final _passwordController = TextEditingController();
 
-
   void _showErrorDialog(String message, BuildContext context) {
     showDialog(
       context: context,
@@ -306,12 +305,9 @@ class _AuthCardState extends State<AuthCard> {
                     child:
                         Text(_authMode == AuthMode.Login ? 'LOGIN' : 'SIGN UP'),
                     onPressed: () => _submit(context),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
                     padding:
                         EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                    color: Theme.of(context).primaryColor,
+                    color: Theme.of(context).accentColor,
                     textColor: Theme.of(context).primaryTextTheme.button.color,
                   ),
                 FlatButton(
