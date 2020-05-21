@@ -31,46 +31,43 @@ class ItemListTile extends StatelessWidget {
           //     .showSnackBar(SnackBar(content: Text("Item added"))));
         },
         child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: ListTile(
-              leading: Hero(
-                tag: item.id,
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                    item.imageUrl,
-                  ),
-                ),
-              ),
-              title: Text(item.name),
-              subtitle: Text('Price: Rs. ${(item.price)}'),
-              trailing: AspectRatio(
-                aspectRatio: 1 / 1,
-                child: FlatButton(
-                  splashColor: Theme.of(context).accentColor,
-                  child: Icon(Icons.add, color: Colors.black),
-                  onPressed: () {
-                    cart.addToCart(
-                        item.id, item.price, item.name, item.imageUrl, 1);
-                    Scaffold.of(context).hideCurrentSnackBar();
-                    Scaffold.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text('Added ${item.name} to cart!'),
-                        duration: Duration(seconds: 2),
-                        action: SnackBarAction(
-                          label: 'UNDO',
-                          onPressed: () {
-                            cart.removeSingleItem(item.id);
-                          },
-                        ),
-                      ),
-                    );
-                  },
+          child: ListTile(
+            leading: Hero(
+              tag: item.id,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(
+                  item.imageUrl,
                 ),
               ),
             ),
+            title: Text(item.name),
+            subtitle: Text('Price: Rs. ${(item.price)}'),
+            trailing: AspectRatio(
+              aspectRatio: 1 / 1,
+              child: FlatButton(
+                splashColor: Theme.of(context).accentColor,
+                child: Icon(Icons.add, color: Colors.black),
+                onPressed: () {
+                  cart.addToCart(
+                      item.id, item.price, item.name, item.imageUrl, 1);
+                  Scaffold.of(context).hideCurrentSnackBar();
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Added ${item.name} to cart!'),
+                      duration: Duration(seconds: 2),
+                      action: SnackBarAction(
+                        label: 'UNDO',
+                        onPressed: () {
+                          cart.removeSingleItem(item.id);
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
-          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+          
         ),
       ),
     );
