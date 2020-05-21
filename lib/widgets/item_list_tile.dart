@@ -42,8 +42,11 @@ class ItemListTile extends StatelessWidget {
             ),
             title: Text(item.name),
             subtitle: Text('Price: Rs. ${(item.price)}'),
-            trailing: AspectRatio(
-              aspectRatio: 1 / 1,
+            trailing: ButtonTheme(
+              padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minWidth: 0,
+              height: 0,
               child: FlatButton(
                 splashColor: Theme.of(context).accentColor,
                 child: Icon(Icons.add, color: Colors.black),
@@ -67,7 +70,6 @@ class ItemListTile extends StatelessWidget {
               ),
             ),
           ),
-          
         ),
       ),
     );
