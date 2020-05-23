@@ -214,14 +214,23 @@ class _CartScreenState extends State<CartScreen> {
                                           ],
                                         ),
                                         SizedBox(height: 10),
-                                        RaisedButton(
-                                          textColor: Colors.white,
-                                          color: Theme.of(context).accentColor,
-                                          child: Text('CHANGE ADDRESS',
-                                              style: TextStyle(fontSize: 12)),
-                                          onPressed: () {
-                                            showAddressDialog(context);
-                                          },
+                                        ButtonTheme(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 8.0, horizontal: 8.0),
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          minWidth: 0,
+                                          height: 0,
+                                          child: RaisedButton(
+                                            textColor: Colors.white,
+                                            color:
+                                                Theme.of(context).accentColor,
+                                            child: Text('CHANGE ADDRESS',
+                                                style: TextStyle(fontSize: 8)),
+                                            onPressed: () {
+                                              showAddressDialog(context);
+                                            },
+                                          ),
                                         )
                                       ],
                                     ),
