@@ -59,20 +59,17 @@ class CartItem extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
       ),
       child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: ListTile(
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(
-                imageUrl,
-              ),
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(
+              imageUrl,
             ),
-            title: Text(itemName),
-            subtitle: Text('Total: Rs. ${(price * quantity)}'),
-            trailing: Text('$quantity x'),
           ),
+          title: Text(itemName),
+          subtitle: Text('Total: Rs. ${(price * quantity)}'),
+          trailing: Text('$quantity x'),
         ),
-        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+        margin: EdgeInsets.symmetric(vertical: 4),
       ),
     );
   }
