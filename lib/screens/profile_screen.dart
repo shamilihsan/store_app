@@ -145,6 +145,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               child: Column(
                                 children: <Widget>[
                                   TextFormField(
+                                    style: TextStyle(color: Colors.grey),
+                                    enabled: false,
+                                    readOnly: true,
                                     initialValue: userData.user.email,
                                     decoration:
                                         InputDecoration(labelText: 'E-Mail'),
