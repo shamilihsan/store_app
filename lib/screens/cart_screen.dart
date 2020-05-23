@@ -149,6 +149,16 @@ class _CartScreenState extends State<CartScreen> {
                 )
               ],
             ),
+            SizedBox(height: 15),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Text('Total - ${cart.totalAmount}',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
+              ],
+            ),
+            SizedBox(height: 15),
             Divider(thickness: 2),
             SizedBox(height: 20),
             Card(
@@ -207,7 +217,7 @@ class _CartScreenState extends State<CartScreen> {
                                         RaisedButton(
                                           textColor: Colors.white,
                                           color: Theme.of(context).accentColor,
-                                          child: Text('Change Address',
+                                          child: Text('CHANGE ADDRESS',
                                               style: TextStyle(fontSize: 12)),
                                           onPressed: () {
                                             showAddressDialog(context);
@@ -231,7 +241,7 @@ class _CartScreenState extends State<CartScreen> {
                                   ? null
                                   : () => placeOrder(cart),
                           child: Text(
-                            'Place your Order of Rs. ${cart.totalAmount}',
+                            'PLACE ORDER',
                           ),
                         ),
                   SizedBox(height: 20),
