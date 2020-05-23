@@ -46,32 +46,46 @@ class OrderItem extends StatelessWidget {
             ),
             key: ValueKey(order.id),
             children: <Widget>[
-              Center(
-                child: Text(
-                  'Order ID - ${order.id}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Divider(thickness: 1, color: Colors.grey),
+                    SizedBox(height: 10),
+                    RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style,
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: 'Order ID',
+                              style: TextStyle(fontWeight: FontWeight.bold)),
+                          TextSpan(text: ' - ${order.id}'),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 10,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   children: order.items
-                      .map((item) => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                '${item.name}',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text('Rs ${item.price}'),
-                              Text(
-                                ' x ${item.quantity}',
-                              ),
-                            ],
-                          ))
+                      .map(
+                        (item) => Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              '${item.name}',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            Text(' x ${item.quantity}'),
+                            Text('Rs ${item.price * item.quantity}'),
+                          ],
+                        ),
+                      )
                       .toList(),
                 ),
               ),
