@@ -189,9 +189,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: Text(
                                             'Rs. ${cartData.totalAmount}',
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                                           ),
                                         ),
+                                        SizedBox(height: 5,),
                                         Text(
                                           '${cartData.itemCount} items in cart',
                                           style: TextStyle(color: Colors.white),
@@ -204,7 +205,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       onPressed: () => Navigator.of(context)
                                           .pushNamed(CartScreen.routeName),
                                       child: Text(
-                                        'Cart',
+                                        'CART',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     )
