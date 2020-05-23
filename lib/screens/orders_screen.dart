@@ -94,7 +94,8 @@ class OrdersScreen extends StatelessWidget {
                         if (dataSnapshot.error != null) {
                           // Error handle
                           return Center(
-                            child: Text('Something went wrong. Check your connection'),
+                            child: Text(
+                                'Something went wrong. Check your connection'),
                           );
                         } else {
                           return Consumer<Orders>(
@@ -144,10 +145,14 @@ class OrdersScreen extends StatelessWidget {
                                       )
                                     ],
                                   )
-                                : ListView.builder(
-                                    itemBuilder: (ctx, i) =>
-                                        OrderItem(orderData.orders[i]),
-                                    itemCount: orderData.orders.length,
+                                : MediaQuery.removePadding(
+                                    removeTop: true,
+                                    context: context,
+                                    child: ListView.builder(
+                                      itemBuilder: (ctx, i) =>
+                                          OrderItem(orderData.orders[i]),
+                                      itemCount: orderData.orders.length,
+                                    ),
                                   );
                           });
                         }

@@ -16,21 +16,33 @@ class OrderItem extends StatelessWidget {
         child: Theme(
           data: theme,
           child: ExpansionTile(
-            title: Text(
-              DateFormat('dd-MM-yyyy hh:mm aaa').format(order.dateTime),
-            ),
-            subtitle: Row(
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Icon(Icons.date_range),
+                SizedBox(width: 5),
                 Text(
-                  'Rs. ${order.total.toString()}',
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'No. of items ${order.items.length}',
+                  DateFormat('dd-MM-yyyy hh:mm aaa').format(order.dateTime),
                 ),
               ],
+            ),
+            subtitle: Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Row(
+                children: <Widget>[
+                  Icon(Icons.info_outline),
+                  SizedBox(width: 5),
+                  Text(
+                    'Rs. ${order.total.toString()}',
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    'No. of items ${order.items.length}',
+                  ),
+                ],
+              ),
             ),
             key: ValueKey(order.id),
             children: <Widget>[
