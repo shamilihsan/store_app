@@ -153,7 +153,7 @@ class _CartScreenState extends State<CartScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Text('Total - ${cart.totalAmount}',
+                Text('Total - Rs ${cart.totalAmount}',
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
               ],
