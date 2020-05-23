@@ -27,15 +27,19 @@ class ItemList extends StatelessWidget {
       if (filteredItemList.length == 0) {
         return Center(child: Text('No results'));
       } else {
-        return ListView.builder(
-          // Set individual providers for each item which can then accessed in the child widget being built on it (i.e. ItemListTile)
-          itemBuilder: (context, index) => ChangeNotifierProvider.value(
-            // Value should be used in grids or lists because of the widget being destroyed and reference being empty issue
-            // Value is replace by the default builder arg that needs to be passed if ChangeNotifierProvider(builder => ) is used
-            value: filteredItemList[index],
-            child: ItemListTile(),
+        return MediaQuery.removePadding(
+          removeTop: true,
+          context: context,
+          child: ListView.builder(
+            // Set individual providers for each item which can then accessed in the child widget being built on it (i.e. ItemListTile)
+            itemBuilder: (context, index) => ChangeNotifierProvider.value(
+              // Value should be used in grids or lists because of the widget being destroyed and reference being empty issue
+              // Value is replace by the default builder arg that needs to be passed if ChangeNotifierProvider(builder => ) is used
+              value: filteredItemList[index],
+              child: ItemListTile(),
+            ),
+            itemCount: filteredItemList.length,
           ),
-          itemCount: filteredItemList.length,
         );
       }
     } else {
