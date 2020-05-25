@@ -272,86 +272,89 @@ class _CartScreenState extends State<CartScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       drawer: AppDrawer(),
-      body: Column(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topRight,
-                    end: Alignment.topLeft,
-                    colors: [
-                  Theme.of(context).primaryColor,
-                  Theme.of(context).accentColor
-                ])),
-            height: mediaQuery.size.height * 1 / 4,
-            padding: EdgeInsets.only(top: mediaQuery.padding.top),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Container(
-                      width: mediaQuery.size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          IconButton(
-                              icon: Icon(Icons.arrow_back_ios),
-                              color: Colors.white,
-                              onPressed: () => Navigator.of(context).pop()),
-                          if (cart.itemCount != 0)
-                            IconButton(
-                                icon: Icon(Icons.remove_shopping_cart),
-                                color: Colors.white,
-                                onPressed: () => cart.clear()),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(height: 20),
-                Container(
-                  padding: EdgeInsets.only(left: 40.0),
-                  child: Row(
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.centerRight,
+                tileMode: TileMode.mirror,
+                colors: [
+              Theme.of(context).primaryColor,
+              Theme.of(context).accentColor
+            ])),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: mediaQuery.size.height * 1 / 4,
+              padding: EdgeInsets.only(top: mediaQuery.padding.top),
+              child: Column(
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Text(
-                        'Your',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25.0,
+                      Container(
+                        width: mediaQuery.size.width,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            IconButton(
+                                icon: Icon(Icons.arrow_back_ios),
+                                color: Colors.white,
+                                onPressed: () => Navigator.of(context).pop()),
+                            if (cart.itemCount != 0)
+                              IconButton(
+                                  icon: Icon(Icons.remove_shopping_cart),
+                                  color: Colors.white,
+                                  onPressed: () => cart.clear()),
+                          ],
                         ),
-                      ),
-                      const SizedBox(width: 10.0),
-                      Text(
-                        'Cart',
-                        style: TextStyle(color: Colors.white, fontSize: 25.0),
                       )
                     ],
                   ),
-                ),
-              ],
+                  SizedBox(height: 20),
+                  Container(
+                    padding: EdgeInsets.only(left: 40.0),
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          'Your',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0,
+                          ),
+                        ),
+                        const SizedBox(width: 10.0),
+                        Text(
+                          'Cart',
+                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: const Radius.circular(75.0),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topRight: const Radius.circular(75.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Container(
+                      child: cart.itemCount == 0
+                          ? renderEmptyCard(mediaQuery)
+                          : renderCart(cart, mediaQuery)),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Container(
-                    child: cart.itemCount == 0
-                        ? renderEmptyCard(mediaQuery)
-                        : renderCart(cart, mediaQuery)),
-              ),
             ),
-          ),
-        ],
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+          ],
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+        ),
       ),
     );
   }

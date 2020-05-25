@@ -73,8 +73,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.topLeft,
+                  begin: Alignment.topLeft,
+                  end: Alignment.centerRight,
+                  tileMode: TileMode.mirror,
                   colors: [
                 Theme.of(context).primaryColor,
                 Theme.of(context).accentColor
