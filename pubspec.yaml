@@ -55,6 +55,8 @@ flutter:
    - assets/images/order_confirmed.svg
    - assets/images/empty_orders_old.svg
    - assets/images/empty_orders.svg
+   - assets/images/welcome.svg
+   - assets/images/welcome.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
