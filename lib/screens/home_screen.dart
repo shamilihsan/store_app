@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   var selectedCategory = 'All';
   String _searchText = '';
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  FocusNode _focusNode = new FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -224,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       0
                                   ? Center(
                                       child: Text(
-                                        'Seems like your cart is empty.....',
+                                        'Your cart looks empty, let\'s fill it up',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     )
