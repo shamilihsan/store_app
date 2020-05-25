@@ -59,16 +59,7 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.topLeft,
-                  colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).accentColor
-              ])),
-        ),
+        flexibleSpace: Container(),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -89,14 +80,6 @@ class _ItemDetailsScreenState extends State<ItemDetailsScreen> {
           Stack(
             children: [
               Container(
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topRight,
-                        end: Alignment.topLeft,
-                        colors: [
-                      Theme.of(context).primaryColor,
-                      Theme.of(context).accentColor
-                    ])),
                 height: MediaQuery.of(context).size.height - 50,
                 width: MediaQuery.of(context).size.width,
               ),
