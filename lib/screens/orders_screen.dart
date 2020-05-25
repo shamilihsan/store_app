@@ -22,8 +22,8 @@ class OrdersScreen extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
-                  end: Alignment.centerRight,
-                  tileMode: TileMode.mirror,
+                end: Alignment.centerRight,
+                tileMode: TileMode.mirror,
                 colors: [
               Theme.of(context).primaryColor,
               Theme.of(context).accentColor
