@@ -105,7 +105,7 @@ class _CartScreenState extends State<CartScreen> {
               width: mediaQuery.size.width,
               child: Center(
                 child: Text(
-                  'Seems like your cart is empty.....',
+                  'Your cart looks empty, let\'s fill it up',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
