@@ -69,21 +69,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 Icons.filter_list,
                                                 color: Colors.white,
                                               ),
-                                              style:
-                                                  TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                               underline: Container(
                                                 height: 2,
-                                                color:
-                                                    Theme.of(context).accentColor,
+                                                color: Theme.of(context)
+                                                    .accentColor,
                                               ),
                                               onChanged: (String newValue) {
                                                 setState(() {
                                                   selectedCategory = newValue;
                                                 });
                                               },
-                                              items: categories
-                                                  .map<DropdownMenuItem<String>>(
-                                                      (value) {
+                                              items: categories.map<
+                                                      DropdownMenuItem<String>>(
+                                                  (value) {
                                                 return DropdownMenuItem<String>(
                                                   key: ValueKey(value),
                                                   value: value.name,
@@ -127,14 +127,36 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(width: 10.0),
                             Text(
                               'Menu',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 25.0),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 25.0),
                             ),
                             Expanded(
-                              child: TextField(
-                                decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Enter a search term'),
+                              child: Container(
+                                margin:
+                                    EdgeInsets.only(left: 10.0, right: 15.0),
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(50, 255, 255, 255),
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(22.0))),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 12.0),
+                                    decoration: InputDecoration(
+                                        icon: Icon(
+                                          Icons.search,
+                                          color: Colors.white,
+                                          size: 14.0,
+                                        ),
+                                        hintStyle: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.white),
+                                        border: InputBorder.none,
+                                        hintText: 'Search for a product'),
+                                  ),
+                                ),
                               ),
                             )
                           ],
@@ -180,7 +202,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             child: Consumer<Cart>(
-                              builder: (_, cartData, ch) => cartData.itemCount ==
+                              builder: (_, cartData, ch) => cartData
+                                          .itemCount ==
                                       0
                                   ? Center(
                                       child: Text(
@@ -203,7 +226,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 'Rs. ${cartData.totalAmount}',
                                                 style: TextStyle(
                                                     color: Colors.white,
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                             SizedBox(
@@ -211,8 +235,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                             Text(
                                               '${cartData.itemCount} items in cart',
-                                              style:
-                                                  TextStyle(color: Colors.white),
+                                              style: TextStyle(
+                                                  color: Colors.white),
                                             ),
                                           ],
                                         ),
@@ -223,7 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               .pushNamed(CartScreen.routeName),
                                           child: Text(
                                             'CART',
-                                            style: TextStyle(color: Colors.white),
+                                            style:
+                                                TextStyle(color: Colors.white),
                                           ),
                                         )
                                       ],
