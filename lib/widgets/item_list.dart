@@ -6,8 +6,9 @@ import 'package:store_app/widgets/item_list_tile.dart';
 
 class ItemList extends StatelessWidget {
   final String selectedCategory;
+  final String _searchText;
 
-  ItemList(this.selectedCategory);
+  ItemList(this.selectedCategory, this._searchText);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,11 @@ class ItemList extends StatelessWidget {
               item.category.toLowerCase() == selectedCategory.toLowerCase())
           .toList();
     }
+
+    filteredItemList = filteredItemList
+        .where((item) =>
+            item.name.toLowerCase().contains(_searchText.toLowerCase()))
+        .toList();
 
     if (items != null) {
       if (filteredItemList.length == 0) {

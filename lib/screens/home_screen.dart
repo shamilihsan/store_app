@@ -17,6 +17,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var selectedCategory = 'All';
+  String _searchText = '';
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -142,6 +143,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: TextField(
+                                    textCapitalization:
+                                        TextCapitalization.sentences,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 12.0),
                                     decoration: InputDecoration(
@@ -155,6 +158,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                             color: Colors.white),
                                         border: InputBorder.none,
                                         hintText: 'Search for a product'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _searchText = value;
+                                      });
+                                    },
                                   ),
                                 ),
                               ),
@@ -187,7 +195,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const EdgeInsets.only(left: 25.0, right: 20.0),
                             child: Container(
                                 margin: const EdgeInsets.only(bottom: 10),
-                                child: ItemList(selectedCategory)),
+                                child: ItemList(selectedCategory, _searchText)),
                           ),
                         ),
                         Flexible(
