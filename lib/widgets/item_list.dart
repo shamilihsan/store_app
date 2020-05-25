@@ -1,4 +1,3 @@
-import 'package:store_app/providers/categories.dart';
 import 'package:store_app/providers/item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

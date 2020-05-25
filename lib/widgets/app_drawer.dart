@@ -13,9 +13,10 @@ class AppDrawer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           AppBar(
-            title: Text('Welcome!'),
+            title: Text('Welcome'),
             automaticallyImplyLeading: false,
           ),
+          Image.asset('assets/images/breakfast.jpg'),
           ListTile(
             leading: Icon(Icons.shop),
             title: Text('Shop'),
