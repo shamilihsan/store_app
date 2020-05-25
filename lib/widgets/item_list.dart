@@ -24,10 +24,12 @@ class ItemList extends StatelessWidget {
           .toList();
     }
 
-    filteredItemList = filteredItemList
-        .where((item) =>
-            item.name.toLowerCase().contains(_searchText.toLowerCase()))
-        .toList();
+    if (filteredItemList != null) {
+      filteredItemList = filteredItemList
+          .where((item) =>
+              item.name.toLowerCase().contains(_searchText.toLowerCase()))
+          .toList();
+    }
 
     if (items != null) {
       if (filteredItemList.length == 0) {

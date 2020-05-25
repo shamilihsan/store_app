@@ -16,7 +16,6 @@ class AppDrawer extends StatelessWidget {
             title: Text('Welcome!'),
             automaticallyImplyLeading: false,
           ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.shop),
             title: Text('Shop'),
@@ -24,7 +23,6 @@ class AppDrawer extends StatelessWidget {
               Navigator.of(context).pushReplacementNamed('/');
             },
           ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.payment),
             title: Text('Orders'),
@@ -32,7 +30,6 @@ class AppDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed(OrdersScreen.routeName);
             },
           ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.portrait),
             title: Text('Profile'),
@@ -40,7 +37,6 @@ class AppDrawer extends StatelessWidget {
               Navigator.of(context).pushNamed(ProfileScreen.routeName);
             },
           ),
-          Divider(),
           ListTile(
             leading: Icon(Icons.undo),
             title: Text('Sign Out'),
