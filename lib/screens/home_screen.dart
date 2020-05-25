@@ -31,6 +31,14 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.topLeft,
+                  colors: [
+                Theme.of(context).primaryColor,
+                Theme.of(context).accentColor
+              ])),
           height: mediaQuery.size.height,
           child: Column(
             children: <Widget>[

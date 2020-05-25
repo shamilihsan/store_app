@@ -275,6 +275,14 @@ class _CartScreenState extends State<CartScreen> {
       body: Column(
         children: <Widget>[
           Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.topLeft,
+                    colors: [
+                  Theme.of(context).primaryColor,
+                  Theme.of(context).accentColor
+                ])),
             height: mediaQuery.size.height * 1 / 4,
             padding: EdgeInsets.only(top: mediaQuery.padding.top),
             child: Column(
