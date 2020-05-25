@@ -17,6 +17,7 @@ class ItemListTile extends StatelessWidget {
       padding: EdgeInsets.only(top: 10.0),
       child: InkWell(
         onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => ItemDetailsScreen(

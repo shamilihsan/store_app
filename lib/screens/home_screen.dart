@@ -66,8 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   IconButton(
                                     icon: Icon(Icons.menu),
                                     color: Colors.white,
-                                    onPressed: () =>
-                                        _scaffoldKey.currentState.openDrawer(),
+                                    onPressed: () {
+                                      FocusScope.of(context)
+                                          .requestFocus(new FocusNode());
+                                      _scaffoldKey.currentState.openDrawer();
+                                    },
                                   ),
                                   Row(
                                     children: <Widget>[
@@ -94,6 +97,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       .accentColor,
                                                 ),
                                                 onChanged: (String newValue) {
+                                                  FocusScope.of(context)
+                                                      .requestFocus(
+                                                          new FocusNode());
                                                   setState(() {
                                                     selectedCategory = newValue;
                                                   });
@@ -118,8 +124,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: IconButton(
                                           icon: Icon(Icons.shopping_cart),
                                           color: Colors.white,
-                                          onPressed: () => Navigator.of(context)
-                                              .pushNamed(CartScreen.routeName),
+                                          onPressed: () {
+                                            FocusScope.of(context)
+                                                .requestFocus(new FocusNode());
+                                            Navigator.of(context).pushNamed(
+                                                CartScreen.routeName);
+                                          },
                                         ),
                                       )
                                     ],
