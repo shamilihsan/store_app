@@ -81,8 +81,14 @@ class OrderItem extends StatelessWidget {
                               '${item.name}',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            Text(' x ${item.quantity}'),
-                            Text('Rs ${item.price * item.quantity}'),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(' x ${item.quantity}'),
+                                SizedBox(width: 30),
+                                Text('Rs ${item.price * item.quantity}'),
+                              ],
+                            ),
                           ],
                         ),
                       )
