@@ -4,8 +4,13 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text('Loading...'),
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text('Loading...', style: TextStyle(color: Colors.white)),
+        ],
       ),
     );
   }

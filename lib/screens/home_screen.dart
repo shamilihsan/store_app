@@ -28,12 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Theme.of(context).primaryColor,
       drawer: AppDrawer(),
       body: SingleChildScrollView(
         child: GestureDetector(
           onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
+            FocusScope.of(context).requestFocus(FocusNode());
           },
           child: Container(
             decoration: BoxDecoration(
