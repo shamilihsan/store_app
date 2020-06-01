@@ -18,7 +18,7 @@ class Items with ChangeNotifier {
   }
 
   List<Item> _itemListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
+    List<Item> unorderedList = snapshot.documents.map((doc) {
       return Item(
         id: doc.documentID,
         name: doc.data['name'] ?? '',
@@ -28,5 +28,13 @@ class Items with ChangeNotifier {
         category: doc.data['category'] ?? '',
       );
     }).toList();
+
+    unorderedList.sort((a,b) {
+      var aName = a.name;
+      var bName = b.name;
+      return aName.compareTo(bName);
+    });
+
+    return unorderedList;
   }
 }
