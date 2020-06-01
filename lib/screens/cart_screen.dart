@@ -151,9 +151,12 @@ class _CartScreenState extends State<CartScreen> {
             ),
             SizedBox(height: 15),
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text('Total - Rs ${cart.totalAmount}',
+                Text('Total',
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                Text('Rs ${cart.totalAmount}',
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold))
               ],

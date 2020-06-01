@@ -120,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         builder: (_, cartData, ch) => Badge(
                                           child: ch,
                                           value: cartData.itemCount.toString(),
+                                          color: Colors.red,
                                         ),
                                         child: IconButton(
                                           icon: Icon(Icons.shopping_cart),
