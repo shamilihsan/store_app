@@ -25,6 +25,7 @@ class ItemListTile extends StatelessWidget {
                 itemName: item.name,
                 itemPrice: item.price,
                 imageUrl: item.imageUrl,
+                description: item.description,
               ),
             ),
           );
