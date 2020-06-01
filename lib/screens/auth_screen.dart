@@ -44,29 +44,11 @@ class AuthScreen extends StatelessWidget {
                   Flexible(
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 20.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Theme.of(context).accentColor,
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 8,
-                            color: Colors.black26,
-                            offset: Offset(0, 2),
-                          )
-                        ],
-                      ),
                       child: Container(
                         width: deviceSize.width * 0.75,
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Logo',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 50,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
+                        child:
+                            Image.asset('assets/images/logo.png', width: 220),
                       ),
                     ),
                   ),

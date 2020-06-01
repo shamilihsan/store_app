@@ -22,8 +22,9 @@ class AppDrawer extends StatelessWidget {
             ])),
         child: Column(
           children: <Widget>[
-            SizedBox(height: mediaQuery.padding.top),
-            Image.asset('assets/images/welcome.png'),
+            SizedBox(height: mediaQuery.padding.top + 20),
+            Image.asset('assets/images/logo.png', width: 220),
+            SizedBox(height: 20),
             ListTile(
               leading: Icon(Icons.shop, color: Colors.white),
               title: Text('Shop', style: TextStyle(color: Colors.white)),
