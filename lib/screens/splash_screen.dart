@@ -5,13 +5,8 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text('Loading...', style: TextStyle(color: Colors.white)),
-        ],
-      ),
+      body: Center(
+          child: Text('Loading...', style: TextStyle(color: Colors.white))),
     );
   }
 }
