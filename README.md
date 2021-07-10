@@ -6,4 +6,5 @@ A basic app which allows uses to view and order products
 
  - Flutter
  - Dart
+ - Provider
  - Firebase
